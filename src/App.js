@@ -8,60 +8,35 @@ import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
 import Footer from "./components/Footer/Footer";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import auth from "./firebase.init";
+
 function App() {
+  const [user] = useAuthState(auth);
   return (
     <div className="App">
       <Routes>
         <Route
           path="/"
           element={
-            <RequireAuth>
-              <Home></Home>
-            </RequireAuth>
+            <Home></Home>
+            // user ? (
+            //   <Home></Home>
+            // ) : (
+            //   <RequireAuth>
+            //     <Home></Home>
+            //   </RequireAuth>
+            // )
           }
         ></Route>
-        <Route
-          path="/home"
-          element={
-            <RequireAuth>
-              <Home></Home>
-            </RequireAuth>
-          }
-        ></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
         <Route path="/login" element={<WelcomePage></WelcomePage>}></Route>
-        <Route
-          path="/dept"
-          element={
-            <RequireAuth>
-              <Dept></Dept>
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="/transport"
-          element={
-            <RequireAuth>
-              <Transport></Transport>
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="/library"
-          element={
-            <RequireAuth>
-              <Library></Library>
-            </RequireAuth>
-          }
-        ></Route>
+        <Route path="/dept" element={<Dept></Dept>}></Route>
+        <Route path="/transport" element={<Transport></Transport>}></Route>
+        <Route path="/library" element={<Library></Library>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
-        <Route
-          path="/profile"
-          element={
-            <RequireAuth>
-              <Profile></Profile>
-            </RequireAuth>
-          }
-        ></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
       </Routes>
     </div>
   );

@@ -10,12 +10,10 @@ import TeacherRegistration from "../TeacherRegistration/TeacherRegistration";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
-  useSendEmailVerification,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
-import app from "../../firebase.init";
-const auth = getAuth(app);
+import auth from "../../firebase.init";
+import Header from "../Header/Header";
 
 const Register = () => {
   const [userType, setUserType] = useState(0);
@@ -47,28 +45,21 @@ const Register = () => {
     }
   };
   // Firebase Email Pass user creation below--
-  const [createUserWithEmailAndPassword] =
+  const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-  const [sendEmailVerification, sending] = useSendEmailVerification(auth);
-  const [user, loading, error] = useAuthState(auth);
+  // const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+
   // const [signInWithGoogle, user] = useSignInWithGoogle(auth);
   const handleEmailVerification = () => {
-    createUserWithEmailAndPassword(email, pass).then(async () => {
-      await sendEmailVerification().then(() => {
-        alert("Verify your email");
-        signInWithEmailAndPassword(auth, email, pass).then(
-          () => setRegistered(true),
-          console.log("register value:", registered)
-        );
-      });
-    });
+    createUserWithEmailAndPassword(email, pass).then(setRegistered(true));
+    console.log("working fine");
   };
 
   // Send Email verification
 
   return (
     <div className="w-4/5 mx-auto mt-10">
+      <Header></Header>
       <h3 className="text-4xl">Register Now</h3>
       <div className="divider"></div>
       {/* Student-Teacher checkbox */}
@@ -125,6 +116,7 @@ const Register = () => {
             className="btn"
             onClick={() => {
               console.log(user);
+              // window.location.reload();
             }}
           >
             See user
@@ -132,12 +124,13 @@ const Register = () => {
         </div>
       </div>
       {ertext !== null && <p>{ertext}</p>}
+      {user && `<p>${user?.email}</p>`}
       {/* Email validation done */}
-      {user && <p>{user.emailVerified}</p>}
-      {userType === 1 && user?.emailVerified === true && (
+      {user && `<p>${user?.emailVerified}</p>`}
+      {userType === 1 && registered === true && (
         <StudentRegistration></StudentRegistration>
       )}
-      {userType === 2 && user?.emailVerified === true && (
+      {userType === 2 && registered === true && (
         <TeacherRegistration></TeacherRegistration>
       )}
     </div>
