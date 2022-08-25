@@ -6,6 +6,8 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail, signOut } from "firebase/auth";
+import Loader from "../Loader/Loader";
+import { motion } from "framer-motion";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loadinglogin, errorlogin] =
     useSignInWithEmailAndPassword(auth);
@@ -22,10 +24,10 @@ const Login = () => {
     signInWithEmailAndPassword(email, pass).then(() => {
       navigate("/demo");
     });
-    // setTimeout(function () {
-    //   console.log('looping')
-    // }, 5 * 1000);
 
+    // setTimeout(function () {
+    //   <Loader></Loader>;
+    // }, 5 * 1000);
     // }
 
     // {
@@ -52,7 +54,12 @@ const Login = () => {
     });
   };
   return (
-    <div className="text-center bg-slate-700 rounded-lg w-96 h-[500px] py-6">
+    <motion.div
+      className="text-center bg-slate-700 rounded-lg w-96 h-[500px] py-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {/* Email and Password div */}
       <div>
         <div className=" py-4 px-auto text-left mx-12">
@@ -94,7 +101,7 @@ const Login = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

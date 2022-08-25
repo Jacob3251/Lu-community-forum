@@ -2,7 +2,7 @@ import React from "react";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "../Header/Header";
-
+import Loader from "../Loader/Loader";
 const Home = () => {
   const [user] = useAuthState(auth);
   return (
@@ -11,6 +11,7 @@ const Home = () => {
       <Header></Header>
       <h1>This is home </h1>
       {console.log(user)}
+      <Loader></Loader>
     </div>
   );
 };

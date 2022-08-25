@@ -12,7 +12,7 @@ const Header = () => {
             <label tabIndex="0" className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 mr-1 animate-bounce"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -44,7 +44,7 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-center">
+        <div className="navbar-center ">
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             Lu Community Forum
           </Link>
