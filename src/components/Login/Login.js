@@ -1,22 +1,55 @@
 import React, { useState } from "react";
 import auth from "../../firebase.init";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail, signOut } from "firebase/auth";
 const Login = () => {
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, user, loadinglogin, errorlogin] =
     useSignInWithEmailAndPassword(auth);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-
+  // const [user] = useAuthState(auth);
   const from = location?.state?.from?.pathname || "/";
   const handleLogin = () => {
+    // if (user) {
+    //   signOut(auth);
+    // } else {
     signInWithEmailAndPassword(email, pass).then(() => {
-      navigate(from, { replace: true });
+      navigate("/demo");
     });
-    console.log(error);
+    // setTimeout(function () {
+    //   console.log('looping')
+    // }, 5 * 1000);
+
+    // }
+
+    // {
+    //   userlogin.emailVerified ? navigate(from, { replace: true }) : signOut();
+    // }
+    // (user) => {
+    //   console.log(user);
+    //   const verifiedEmail = user.emailVerified;
+    // if (verifiedEmail) {
+    //   navigate(from, { replace: true });
+    // } else {
+    //   signOut();
+    //   let loginalert = window.confirm("verify your email then login");
+    //   if (loginalert) {
+    //     window.reload();
+    //   }
+    // }
+
+    // console.log();
+  };
+  const handleForgetPassword = () => {
+    sendPasswordResetEmail(auth, email).then(() => {
+      console.log("password reset email sent");
+    });
   };
   return (
     <div className="text-center bg-slate-700 rounded-lg w-96 h-[500px] py-6">
@@ -50,14 +83,14 @@ const Login = () => {
           Login
         </button>
         <br />
-        <div className="my-2 text-blue-700">
-          <a href="/register">Forgotten password</a>
-        </div>
+        <button className="my-2 text-blue-700" onClick={handleForgetPassword}>
+          <h3>Forgot Password</h3>
+        </button>
         <div className="py-8">
           <hr className="border-dashed" />
 
           <button className="bg-green-700 rounded-md w-28 h-12 mt-5">
-            Create New Account
+            <Link to="/register">Create New Account</Link>
           </button>
         </div>
       </div>

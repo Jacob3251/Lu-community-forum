@@ -17,6 +17,7 @@ import Header from "../Header/Header";
 
 const Register = () => {
   const [userType, setUserType] = useState(0);
+  const [userEmailType, setUserEmailType] = useState(0);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [registered, setRegistered] = useState(false);
@@ -24,11 +25,27 @@ const Register = () => {
   const [ertext, setErtext] = useState("");
   const handleEmail = (e) => {
     const useremail = e.target.value;
-    const emailreg = /@lus.ac.bd/.test(useremail)
-      ? (setEmail(useremail), setErtext(""))
-      : (setErtext("Please put correct values"),
-        setEmail(""),
-        console.log("wrongpass"));
+    const emailreg = /[a-z0-9._]*@lus.ac.bd$/.test(useremail);
+    const studentreg = /^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(
+      useremail
+    )
+      ? (setUserEmailType(1), setErtext(""), setEmail(useremail))
+      : emailreg
+      ? (setUserEmailType(2), setErtext(""), setEmail(useremail))
+      : (setErtext("Please put correct email values"),
+        setUserEmailType(0),
+        setEmail(""));
+    //   ? (setEmail(useremail), setErtext(""))
+    //   : (setErtext("Please put correct values"),
+    //     setEmail(""),
+    //     console.log("wrongpass"));
+    console.log(
+      "email is :",
+      email,
+      "usertype is : ",
+      userEmailType,
+      "inside handleEmail"
+    );
   };
   const handlePass = (e) => {
     const userpass = e.target.value;
@@ -40,30 +57,36 @@ const Register = () => {
     if (result === 0) {
       setPass(userRepass);
       setErtext("");
-    } else {
-      setErtext("Please put correct password");
     }
   };
   // Firebase Email Pass user creation below--
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-  // const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
-  // const [signInWithGoogle, user] = useSignInWithGoogle(auth);
   const handleEmailVerification = () => {
-    createUserWithEmailAndPassword(email, pass).then(setRegistered(true));
-    console.log("working fine");
+    if ((email === "" || pass === "") && userEmailType === 0) {
+      setErtext("Wrong inputs given 2");
+      setEmail("");
+      setPass("");
+      console.log("Wrong input email or pass missing", email, pass);
+      return;
+    } else {
+      if (userType === 1 && userEmailType === 1) {
+        setRegistered(true);
+      }
+      if (userType === 2 && userEmailType === 2) {
+        setRegistered(true);
+      }
+    }
+    console.log("setRegister value: ", registered);
   };
 
   // Send Email verification
 
   return (
     <div className="w-4/5 mx-auto mt-10">
-      <Header></Header>
+      {/* <Header></Header> */}
       <h3 className="text-4xl">Register Now</h3>
       <div className="divider"></div>
       {/* Student-Teacher checkbox */}
-
       <div className="flex my-2">
         <div className="form-control">
           <label className="label cursor-pointer">
@@ -115,7 +138,7 @@ const Register = () => {
           <button
             className="btn"
             onClick={() => {
-              console.log(user);
+              // console.log(user);
               // window.location.reload();
             }}
           >
@@ -124,15 +147,26 @@ const Register = () => {
         </div>
       </div>
       {ertext !== null && <p>{ertext}</p>}
-      {user && `<p>${user?.email}</p>`}
+      {/* {user && `<p>${user?.email}</p>`} */}
       {/* Email validation done */}
-      {user && `<p>${user?.emailVerified}</p>`}
       {userType === 1 && registered === true && (
-        <StudentRegistration></StudentRegistration>
+        <StudentRegistration
+          email={email}
+          password={pass}
+        ></StudentRegistration>
       )}
       {userType === 2 && registered === true && (
-        <TeacherRegistration></TeacherRegistration>
+        <TeacherRegistration
+          email={email}
+          password={pass}
+        ></TeacherRegistration>
       )}
+      {/* {user && `<p>${user?.emailVerified}</p>`} */}
+      {/* {userType === 1 && registered === true && (
+        <StudentRegistration></StudentRegistration>
+      )}
+      {userType === 2 &&
+        registered === true(<TeacherRegistration></TeacherRegistration>)} */}
     </div>
   );
 };

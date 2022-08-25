@@ -11,32 +11,61 @@ import RequireAuth from "./components/RequireAuth/RequireAuth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import auth from "./firebase.init";
+import Demo from "./components/Demo/Demo";
 
 function App() {
   const [user] = useAuthState(auth);
+  // console.log(user);
   return (
     <div className="App">
       <Routes>
         <Route
           path="/"
           element={
-            <Home></Home>
-            // user ? (
-            //   <Home></Home>
-            // ) : (
-            //   <RequireAuth>
-            //     <Home></Home>
-            //   </RequireAuth>
-            // )
+            // <Home></Home>
+            user ? (
+              <Home></Home>
+            ) : (
+              <RequireAuth>
+                <Home></Home>
+              </RequireAuth>
+            )
           }
         ></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
+
         <Route path="/login" element={<WelcomePage></WelcomePage>}></Route>
-        <Route path="/dept" element={<Dept></Dept>}></Route>
-        <Route path="/transport" element={<Transport></Transport>}></Route>
+        {/* <Route path="/dept" element={<Dept></Dept>}></Route> */}
+        <Route
+          path="/dept"
+          element={
+            // <Home></Home>
+            user ? (
+              <Dept></Dept>
+            ) : (
+              <RequireAuth>
+                <Dept></Dept>
+              </RequireAuth>
+            )
+          }
+        ></Route>
+        {/* <Route path="/transport" element={<Transport></Transport>}></Route> */}
+        <Route
+          path="/transport"
+          element={
+            // <Home></Home>
+            user ? (
+              <Transport></Transport>
+            ) : (
+              <RequireAuth>
+                <Transport></Transport>
+              </RequireAuth>
+            )
+          }
+        ></Route>
         <Route path="/library" element={<Library></Library>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/profile" element={<Profile></Profile>}></Route>
+        <Route path="/demo" element={<Demo></Demo>}></Route>
       </Routes>
     </div>
   );

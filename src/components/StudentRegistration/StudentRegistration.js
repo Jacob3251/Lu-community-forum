@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
+} from "react-firebase-hooks/auth";
+import { Navigate, useLocation } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useNavigate } from "react-router-dom";
+const StudentRegistration = ({ email, password }) => {
+  const navigate = useNavigate();
 
-const StudentRegistration = () => {
+  const location = useLocation();
+  const [createUserWithEmailAndPassword, user, loading] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [sendEmailVerification, sending, error] =
+    useSendEmailVerification(auth);
+  const handleFormSubmit = () => {
+    createUserWithEmailAndPassword(email, password).then(async () => {
+      await sendEmailVerification().then(() => {
+        let userlog = window.confirm("Verify your email and login in");
+        if (userlog) {
+          navigate("/login");
+        }
+      });
+    });
+    console.log("working fine");
+  };
   return (
     <div>
       <div className="flex justify-evenly">
@@ -88,7 +112,9 @@ const StudentRegistration = () => {
         </div>
       </div>
       <div className="text-center mt-10">
-        <button className="btn">Submit</button>
+        <button className="btn" onClick={handleFormSubmit}>
+          Submit
+        </button>
       </div>
     </div>
   );
