@@ -71,7 +71,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
             .then((res) => res.json())
             .then((data) => {
               console.log("success", data);
-              alert("user added successfully");
+
               event.target.reset();
             });
           navigate("/login");
@@ -91,6 +91,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
           <input
             type="text"
             placeholder="Type here"
+            onBlur={handleUsername}
             className="input input-bordered w-full max-w-xs"
           />
         </div>
@@ -100,6 +101,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
           </label>
           <input
             type="text"
+            onBlur={handleTeacherID}
             placeholder="Type here"
             className="input input-bordered w-full max-w-xs"
           />
@@ -109,16 +111,17 @@ const TeacherRegistration = ({ email, password, userType }) => {
             <label className="label">
               <span className="label-text">Pick your Designation</span>
             </label>
-            <select className="select select-bordered">
-              <option disabled selected>
-                Select designation
-              </option>
-              <option>Professor</option>
-              <option>Assistant Professor</option>
-              <option>Asociate Professor</option>
-              <option>Senior Lecturer</option>
-              <option>Lecturer</option>
-              <option>Adjunct Faculty</option>
+            <select
+              onChange={handleDesignation}
+              className="select select-bordered"
+            >
+              <option value="not">Select designation</option>
+              <option value="Professor">Professor</option>
+              <option value="Assistant Professor">Assistant Professor</option>
+              <option value="Asociate Professor">Asociate Professor</option>
+              <option value="Senior Lecturer">Senior Lecturer</option>
+              <option value="Lecturer">Lecturer</option>
+              <option value="Adjunct Faculty">Adjunct Faculty</option>
             </select>
           </div>
         </div>
@@ -128,7 +131,8 @@ const TeacherRegistration = ({ email, password, userType }) => {
             <span className="label-text">Write your Phone Number</span>
           </label>
           <input
-            type="text"
+            type="number"
+            onBlur={handlePhoneNumber}
             placeholder="Type here"
             className="input input-bordered w-full max-w-xs"
           />
@@ -141,6 +145,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
           </label>
           <input
             type="text"
+            onBlur={handleBloodGrp}
             placeholder="Type here"
             className="input input-bordered w-full max-w-xs"
           />
@@ -151,6 +156,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
           </label>
           <input
             type="text"
+            onBlur={handleAddress}
             placeholder="Type here"
             className="input input-bordered w-full max-w-xs"
           />

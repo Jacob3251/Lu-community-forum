@@ -1,31 +1,31 @@
 import { signOut } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import Loader from "../Loader/Loader";
-
+import Modal from "../Modal/Modal";
 const Demo = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
+
   useEffect(() => {
+    console.log(user);
     if (user?.emailVerified) {
       navigate("/");
+    } else if (!user) {
+      console.log("user not registered");
+      navigate("/login");
     } else {
-      if (user) {
-        alert("user didn't verify email");
+      {
         signOut(auth);
+        <Modal></Modal>;
+        // alert("user didn't verify email");
         navigate("/login");
-      } else {
-        alert("User not registered");
-        navigate("/register");
       }
     }
   }, []);
 
-  const handleVerification = () => {
-    // console.log(user, "email verified: ", user.emailVerified);
-  };
+  return <div></div>;
 };
 
 export default Demo;

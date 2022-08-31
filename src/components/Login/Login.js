@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import auth from "../../firebase.init";
 import {
   useAuthState,
@@ -13,40 +13,30 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [loggedUser, setLoggedUser] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    fetch("http://localhost:9000/user")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setLoggedUser(data);
+      });
+  }, []);
   // const [user] = useAuthState(auth);
   const from = location?.state?.from?.pathname || "/";
-  const handleLogin = () => {
-    // if (user) {
-    //   signOut(auth);
-    // } else {
-    signInWithEmailAndPassword(email, pass).then(() => {
-      navigate("/demo");
-    });
+  const handleLogin = (event) => {
+    event.preventDefault();
 
-    // setTimeout(function () {
-    //   <Loader></Loader>;
-    // }, 5 * 1000);
-    // }
+    const matched = loggedUser.find((u) => u.email === email);
+    console.log("Login matched value: ", matched);
 
-    // {
-    //   userlogin.emailVerified ? navigate(from, { replace: true }) : signOut();
-    // }
-    // (user) => {
-    //   console.log(user);
-    //   const verifiedEmail = user.emailVerified;
-    // if (verifiedEmail) {
-    //   navigate(from, { replace: true });
-    // } else {
-    //   signOut();
-    //   let loginalert = window.confirm("verify your email then login");
-    //   if (loginalert) {
-    //     window.reload();
-    //   }
-    // }
-
-    // console.log();
+    if (matched) {
+      signInWithEmailAndPassword(email, pass).then(() => {
+        navigate("/demo");
+      });
+    }
   };
 
   return (
@@ -58,7 +48,7 @@ const Login = () => {
     >
       {/* Email and Password div */}
       <div>
-        <div className=" py-4 px-auto text-left mx-12">
+        <form onClick={handleLogin} className=" py-4 px-auto text-left mx-12">
           <h3 className="text-xl my-2">Enter Email</h3>
           <input
             onBlur={(e) => {
@@ -77,14 +67,11 @@ const Login = () => {
             placeholder="Enter password"
             className="text-black h-10 w-full rounded-lg"
           />
-        </div>
+          <button className="bg-blue-800 text-white rounded-md w-20 h-9 font-bold my-4">
+            <input type="submit" value="Login" />
+          </button>
+        </form>
 
-        <button
-          onClick={handleLogin}
-          className="bg-blue-800 text-white rounded-md w-20 h-9 font-bold my-4"
-        >
-          Login
-        </button>
         <br />
         <button className="my-2 text-blue-700">
           <Link to="/forgotemail">Forgot Password</Link>

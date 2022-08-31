@@ -71,7 +71,8 @@ const StudentRegistration = ({ email, password, userType }) => {
             .then((res) => res.json())
             .then((data) => {
               console.log("success", data);
-              alert("user added successfully");
+              // alert("user added successfully");
+
               event.target.reset();
             });
           navigate("/login");
@@ -153,18 +154,23 @@ const StudentRegistration = ({ email, password, userType }) => {
         </div>
 
         {/* dept dropdown */}
-        <select
-          onChange={handleDeptSelect}
-          className="select select-bordered w-full max-w-xs"
-        >
-          <option value="not">Select Department</option>
-          <option value="cse">Computer Science</option>
-          <option value="eee">Electrical Engineering</option>
-          <option value="ce">Civil Engineering</option>
-          <option value="arch">Architecture</option>
-          <option value="ee">English</option>
-          <option value="bba">Business Administration</option>
-        </select>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Pick your Department</span>
+          </label>
+          <select
+            className="select select-bordered"
+            onChange={handleDeptSelect}
+          >
+            <option value="not">Select Department</option>
+            <option value="cse">Computer Science</option>
+            <option value="eee">Electrical Engineering</option>
+            <option value="ce">Civil Engineering</option>
+            <option value="ee">English</option>
+            <option value="arch">Architecture</option>
+            <option value="bba">Business Administration</option>
+          </select>
+        </div>
         {/*<div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Confirm your Password</span>
