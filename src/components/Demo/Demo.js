@@ -11,23 +11,21 @@ const Demo = () => {
   useEffect(() => {
     if (user?.emailVerified) {
       navigate("/");
-    } else if (!user) {
-      alert("User not registered");
-      navigate("/login");
     } else {
-      signOut(auth);
-      alert("user didn't verify email");
-      navigate("/login");
+      if (user) {
+        alert("user didn't verify email");
+        signOut(auth);
+        navigate("/login");
+      } else {
+        alert("User not registered");
+        navigate("/register");
+      }
     }
   }, []);
+
   const handleVerification = () => {
     // console.log(user, "email verified: ", user.emailVerified);
   };
-  return (
-    <div>
-      <Loader></Loader>
-    </div>
-  );
 };
 
 export default Demo;

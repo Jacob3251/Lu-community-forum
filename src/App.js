@@ -13,6 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./firebase.init";
 import Demo from "./components/Demo/Demo";
 import { AnimatePresence } from "framer-motion";
+import ForgotEmail from "./components/ForgotEmail/ForgotEmail";
 function App() {
   const [user] = useAuthState(auth);
   // console.log(user);
@@ -40,14 +41,15 @@ function App() {
           <Route
             path="/dept"
             element={
+              <Dept></Dept>
               // <Home></Home>
-              user ? (
-                <Dept></Dept>
-              ) : (
-                <RequireAuth>
-                  <Dept></Dept>
-                </RequireAuth>
-              )
+              // user ? (
+              //   <Dept></Dept>
+              // ) : (
+              //   <RequireAuth>
+              //     <Dept></Dept>
+              //   </RequireAuth>
+              // )
             }
           ></Route>
           {/* <Route path="/transport" element={<Transport></Transport>}></Route> */}
@@ -68,6 +70,10 @@ function App() {
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/demo" element={<Demo></Demo>}></Route>
+          <Route
+            path="/forgotemail"
+            element={<ForgotEmail></ForgotEmail>}
+          ></Route>
         </Routes>
       </AnimatePresence>
     </div>

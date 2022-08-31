@@ -48,14 +48,10 @@ const Login = () => {
 
     // console.log();
   };
-  const handleForgetPassword = () => {
-    sendPasswordResetEmail(auth, email).then(() => {
-      console.log("password reset email sent");
-    });
-  };
+
   return (
     <motion.div
-      className="text-center bg-slate-700 rounded-lg w-96 h-[500px] py-6"
+      className="text-center bg-gray-200 rounded-lg w-96 h-[500px] py-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -70,7 +66,7 @@ const Login = () => {
             }}
             type="email"
             placeholder="Enter university email"
-            className="text-black"
+            className="text-black h-10 w-full rounded-lg"
           />
           <h3 className="text-xl my-2">Enter password</h3>
           <input
@@ -79,7 +75,7 @@ const Login = () => {
             }}
             type="password"
             placeholder="Enter password"
-            className="text-black"
+            className="text-black h-10 w-full rounded-lg"
           />
         </div>
 
@@ -90,13 +86,13 @@ const Login = () => {
           Login
         </button>
         <br />
-        <button className="my-2 text-blue-700" onClick={handleForgetPassword}>
-          <h3>Forgot Password</h3>
+        <button className="my-2 text-blue-700">
+          <Link to="/forgotemail">Forgot Password</Link>
         </button>
         <div className="py-8">
-          <hr className="border-dashed" />
+          <hr className="border-dashed bg-slate-600" />
 
-          <button className="bg-green-700 rounded-md w-28 h-12 mt-5">
+          <button className="bg-green-700 rounded-md w-32 h-14 mt-5">
             <Link to="/register">Create New Account</Link>
           </button>
         </div>
