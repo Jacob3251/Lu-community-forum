@@ -14,25 +14,35 @@ import auth from "./firebase.init";
 import Demo from "./components/Demo/Demo";
 import { AnimatePresence } from "framer-motion";
 import ForgotEmail from "./components/ForgotEmail/ForgotEmail";
+import { useState } from "react";
+import { setLogLevel } from "firebase/app";
+import NotFound from "./components/NotFound/NotFound";
 function App() {
   const [user] = useAuthState(auth);
-  // console.log(user);
   const location = useLocation();
+  console.log("from app js", user?.emailVerified);
+  console.log(user);
+  // const [log, setLog] = useState(false);
+  // if (user?.emailVerified) {
+  //   setLog(true);
+  // }
+
   return (
+    // inside routes }
     <div className="App">
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
             element={
-              // <Home></Home>
-              user ? (
-                <Home></Home>
-              ) : (
-                <RequireAuth>
-                  <Home></Home>
-                </RequireAuth>
-              )
+              // !user?.emailVerified ? (
+              //   <Home></Home>
+              // ) : (
+              <Home></Home>
+              // <RequireAuth>
+              //   <Home></Home>
+              // </RequireAuth>
+              // )
             }
           ></Route>
 
@@ -56,14 +66,14 @@ function App() {
           <Route
             path="/transport"
             element={
-              // <Home></Home>
-              user ? (
-                <Transport></Transport>
-              ) : (
-                <RequireAuth>
-                  <Transport></Transport>
-                </RequireAuth>
-              )
+              <Transport></Transport>
+              // user ? (
+              //   <Transport></Transport>
+              // ) : (
+              //   <RequireAuth>
+              //     <Transport></Transport>
+              //   </RequireAuth>
+              // )
             }
           ></Route>
           <Route path="/library" element={<Library></Library>}></Route>
@@ -74,6 +84,7 @@ function App() {
             path="/forgotemail"
             element={<ForgotEmail></ForgotEmail>}
           ></Route>
+          <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </AnimatePresence>
     </div>

@@ -56,7 +56,7 @@ const Login = () => {
             }}
             type="email"
             placeholder="Enter university email"
-            className="text-black h-10 w-full rounded-lg"
+            className="text-black h-10 w-full rounded-lg pl-4"
           />
           <h3 className="text-xl my-2">Enter password</h3>
           <input
@@ -65,7 +65,7 @@ const Login = () => {
             }}
             type="password"
             placeholder="Enter password"
-            className="text-black h-10 w-full rounded-lg"
+            className="text-black h-10 w-full rounded-lg pl-4"
           />
           <button className="bg-blue-800 text-white rounded-md w-20 h-9 font-bold my-4">
             <input type="submit" value="Login" />

@@ -7,13 +7,13 @@ import Modal from "../Modal/Modal";
 const Demo = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-
+  // const [isLogged, setIsLogged] = CheckUser();
   useEffect(() => {
     console.log(user);
     if (user?.emailVerified) {
       navigate("/");
     } else if (!user) {
-      console.log("user not registered");
+      alert("user not registered");
       navigate("/login");
     } else {
       {

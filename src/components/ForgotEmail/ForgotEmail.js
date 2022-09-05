@@ -14,29 +14,48 @@ const ForgotEmail = () => {
   const handleForgetPassword = async (event) => {
     event.preventDefault();
     await sendPasswordResetEmail(email).then();
+    if (error) {
+      alert(`${error.message}`);
+      window.location.reload();
+    }
+    if (!error) {
+      console.log("password reset email sent");
+      navigate("/login");
+    }
   };
-  if (error) {
-    alert(`${error.message}`);
-    window.location.reload();
-  } else {
-    alert("Password reset email sent");
-    console.log("password reset email sent");
-    navigate("/login");
-  }
   return (
     <div>
-      <form onSubmit={handleForgetPassword} className="text-center">
-        <input
-          type="email"
-          placeholder="enter email"
-          required
-          onBlur={handleEmail}
-        />
-        <br />
-        <button>
-          <input type="submit" />
-        </button>
-      </form>
+      <div className="h-[100vh] flex justify-center items-center bg-green-400">
+        <div className=" w-5/6  mx-auto bg-slate-200 py-10 rounded-xl shadow-lg ">
+          <div className="text-center  w-5/6 mx-auto">
+            <div>
+              <h1 className="bg-blue-200 w-5/6 mx-auto text-xl font-bold outline outline-2 outline-offset-0 outline-gray-500 rounded-md py-2">
+                Find Your Account
+              </h1>
+              <p className="py-6">
+                Please enter your email address of your account.
+              </p>
+              {/* email part */}
+              <form onSubmit={handleForgetPassword}>
+                <div className="flex justify-center items-center">
+                  <span className="text-xl mr-5">Enter Email</span>
+                  <input
+                    type="email"
+                    required
+                    className="h-8 w-1/3 rounded-md"
+                    onBlur={handleEmail}
+                  />
+                </div>
+                <div>
+                  <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 border border-blue-700 rounded">
+                    <input type="submit" value="Submit" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
