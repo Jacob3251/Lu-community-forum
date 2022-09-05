@@ -101,7 +101,7 @@ const Register = () => {
   // Send Email verification
 
   return (
-    <div className="w-4/5 mx-auto mt-10">
+    <div className="w-4/5 mx-auto py-14 px-10 my-10 bg-slate-200 h-[80vh]">
       {/* <Header></Header> */}
       <h3 className="text-4xl">Register Now</h3>
       <div className="divider"></div>
@@ -150,7 +150,7 @@ const Register = () => {
           className="input input-bordered w-full max-w-xs"
           onChange={handleRePass}
         />
-        <button className="btn ml-5">
+        <button className="btn ml-5 bg-blue-400 text-white text-md rounded-xl">
           <input type="submit" value="Submit" />
         </button>
       </form>

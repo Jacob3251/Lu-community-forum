@@ -183,7 +183,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
         </div>
       </div>
       <div className="text-center mt-10">
-        <button className="btn">
+        <button className="btn bg-blue-400 text-white text-md rounded-xl">
           <input type="submit" value="Submit Form" />
         </button>
       </div>
