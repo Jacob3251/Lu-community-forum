@@ -9,7 +9,7 @@ import Register from "./components/Register/Register";
 import Footer from "./components/Footer/Footer";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import LandingPage from "./components/LandingPage/LandingPage";
 import auth from "./firebase.init";
 import Demo from "./components/Demo/Demo";
 import { AnimatePresence } from "framer-motion";
@@ -32,8 +32,9 @@ function App() {
     <div className="App">
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<LandingPage></LandingPage>}></Route>
           <Route
-            path="/"
+            path="/home"
             element={
               // !user?.emailVerified ? (
               //   <Home></Home>

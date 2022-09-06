@@ -62,7 +62,7 @@ const Profile = () => {
               </h3>
             </div>
           </div>
-          <PencilSquareIcon className="h-10 w-10 text-blue-500 fixed bottom-10 right-12 absolute hover:bg-slate-100 p-[3px] bg-slate-300 rounded-xl" />
+          <PencilSquareIcon className="h-10 w-10 text-blue-500 bottom-10 right-12 absolute hover:bg-slate-100 p-[3px] bg-slate-300 rounded-xl" />
         </div>
       </div>
     </div>

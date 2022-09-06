@@ -9,7 +9,7 @@ const Home = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="w-4/5 mx-auto mt-10">
+    <div className="w-5/6 lg:w-full mx-auto  lg:mt-10">
       {/* <Header></Header> */}
       <div className="sticky top-0 z-10">
         <Header></Header>
