@@ -14,7 +14,10 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Header from "../Header/Header";
-
+import Footer from "../Footer/Footer";
+import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
+import Login from "../Login/Login";
 const Register = () => {
   const [userType, setUserType] = useState(0);
   const [userEmailType, setUserEmailType] = useState(0);
@@ -101,82 +104,121 @@ const Register = () => {
   // Send Email verification
 
   return (
-    <div className="w-4/5 mx-auto py-14 px-10 my-10 bg-slate-200 h-[80vh]">
-      {/* <Header></Header> */}
-      <h3 className="text-4xl">Register Now</h3>
-      <div className="divider"></div>
-      {/* Student-Teacher checkbox */}
-      <div className="flex my-2">
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text mr-2">Student</span>
-            <input
-              type="radio"
-              name="radio-6"
-              className="radio checked:bg-red-500"
-              onClick={() => setUserType(1)}
-            />
-          </label>
+    <div>
+      <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
+        {/* header left side */}
+        <div className="flex items-center">
+          {/* <div>
+              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
+            </div> */}
+          <div className="text-lg text-white font-semibold ml-2">
+            <Link to="/">LU Community Forum</Link>
+          </div>
         </div>
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text mr-2">Teacher</span>
-            <input
-              type="radio"
-              name="radio-6"
-              className="radio checked:bg-blue-500"
-              onClick={() => setUserType(2)}
-            />
-          </label>
+        {/* header Links right side */}
+        <div className="flex space-x-2 items-center">
+          <div className="text-base text-black-400 font-medium bg-white font-serif p-1 rounded-lg">
+            <label htmlFor="my-modal-3" className="modal-button">
+              Login
+            </label>
+          </div>
+          <div className="text-base text-white font-medium bg-green-400 font-serif p-1 rounded-lg">
+            <Link to="/register">Register</Link>
+          </div>
         </div>
       </div>
-      {/* Student-teacher checkbox complete email validation below-------*/}
-      <form onSubmit={handleEmailVerification} className="flex my-4">
-        <input
-          type="text"
-          placeholder="Enter university email"
-          className="input input-bordered w-full max-w-xs mr-2"
-          onBlur={handleEmail}
-        />
-        <input
-          type="password"
-          placeholder="Enter password"
-          className="input input-bordered w-full max-w-xs mr-2"
-          onBlur={handlePass}
-        />
-        <input
-          type="password"
-          placeholder="Type password again"
-          className="input input-bordered w-full max-w-xs"
-          onChange={handleRePass}
-        />
-        <button className="btn ml-5 bg-blue-400 text-white text-md rounded-xl">
-          <input type="submit" value="Submit" />
-        </button>
-      </form>
-      {ertext !== null && <p>{ertext}</p>}
-      {/* {user && `<p>${user?.email}</p>`} */}
-      {/* Email validation done */}
-      {userType === 1 && registered === true && (
-        <StudentRegistration
-          email={email}
-          password={pass}
-          userType={userType}
-        ></StudentRegistration>
-      )}
-      {userType === 2 && registered === true && (
-        <TeacherRegistration
-          email={email}
-          password={pass}
-          userType={userType}
-        ></TeacherRegistration>
-      )}
-      {/* {user && `<p>${user?.emailVerified}</p>`} */}
-      {/* {userType === 1 && registered === true && (
+      <div className="w-4/5 mx-auto py-14 px-10 my-10 bg-slate-200 h-[80vh]">
+        {/* <Header></Header> */}
+        <h3 className="text-4xl">Register Now</h3>
+        <div className="divider"></div>
+        {/* Student-Teacher checkbox */}
+        <div className="flex my-2">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text mr-2">Student</span>
+              <input
+                type="radio"
+                name="radio-6"
+                className="radio checked:bg-red-500"
+                onClick={() => setUserType(1)}
+              />
+            </label>
+          </div>
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text mr-2">Teacher</span>
+              <input
+                type="radio"
+                name="radio-6"
+                className="radio checked:bg-blue-500"
+                onClick={() => setUserType(2)}
+              />
+            </label>
+          </div>
+        </div>
+        {/* Student-teacher checkbox complete email validation below-------*/}
+        <form onSubmit={handleEmailVerification} className="flex my-4">
+          <input
+            type="text"
+            placeholder="Enter university email"
+            className="input input-bordered w-full max-w-xs mr-2"
+            onBlur={handleEmail}
+          />
+          <input
+            type="password"
+            placeholder="Enter password"
+            className="input input-bordered w-full max-w-xs mr-2"
+            onBlur={handlePass}
+          />
+          <input
+            type="password"
+            placeholder="Type password again"
+            className="input input-bordered w-full max-w-xs"
+            onChange={handleRePass}
+          />
+          <button className="btn ml-5 bg-blue-400 text-white text-md rounded-xl">
+            <input type="submit" value="Submit" />
+          </button>
+        </form>
+        {ertext !== null && <p>{ertext}</p>}
+        {/* {user && `<p>${user?.email}</p>`} */}
+        {/* Email validation done */}
+        {userType === 1 && registered === true && (
+          <StudentRegistration
+            email={email}
+            password={pass}
+            userType={userType}
+          ></StudentRegistration>
+        )}
+        {userType === 2 && registered === true && (
+          <TeacherRegistration
+            email={email}
+            password={pass}
+            userType={userType}
+          ></TeacherRegistration>
+        )}
+        {/* {user && `<p>${user?.emailVerified}</p>`} */}
+        {/* {userType === 1 && registered === true && (
         <StudentRegistration></StudentRegistration>
       )}
       {userType === 2 &&
         registered === true(<TeacherRegistration></TeacherRegistration>)} */}
+      </div>
+      <Footer className="h-[10vh] absolute bottom-0"></Footer>
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="my-modal-3"
+            className="btn btn-sm btn-circle absolute right-5 top-2"
+          >
+            ✕
+          </label>
+          <div className=" pl-8">
+            <Login></Login>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

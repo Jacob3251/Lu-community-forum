@@ -4,7 +4,7 @@ import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 const PostBox = () => {
   return (
     <div className="">
-      <div className="bg-slate-300  rounded-2xl mx-auto my-5 shadow-lg shadow-gray-700">
+      <div className="bg-white  rounded-2xl mx-auto my-5 shadow-lg">
         {/* top part  */}
         <div className="w-5/6 mx-auto">
           <div className="flex pt-6 pb-4">

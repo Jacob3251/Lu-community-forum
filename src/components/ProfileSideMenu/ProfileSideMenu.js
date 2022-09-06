@@ -40,7 +40,7 @@ const ProfileSideMenu = () => {
           </li>
           <li>
             <Link
-              to="/login"
+              to="/"
               onClick={() => {
                 signOut(auth);
               }}

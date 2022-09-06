@@ -11,7 +11,7 @@ const Demo = () => {
   useEffect(() => {
     console.log(user);
     if (user?.emailVerified) {
-      navigate("/");
+      navigate("/home");
     } else if (!user) {
       alert("user not registered");
       navigate("/login");

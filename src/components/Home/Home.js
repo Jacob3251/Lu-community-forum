@@ -4,33 +4,70 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "../Header/Header";
 import PostBox from "../PostBox/PostBox";
 import Loader from "../Loader/Loader";
+import { HashLink } from "react-router-hash-link";
 import CreatePost from "../CreatePost/CreatePost";
+import { Link } from "react-router-dom";
+import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
+import Footer from "../Footer/Footer";
 const Home = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="w-5/6 lg:w-full mx-auto  lg:mt-10">
+    <div className="w-5/6 lg:w-full mx-auto ">
       {/* <Header></Header> */}
       <div className="sticky top-0 z-10">
-        <Header></Header>
+        {/* <Header></Header> */}
+        <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
+          {/* header left side */}
+          <div className="flex items-center">
+            {/* <div>
+              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
+            </div> */}
+            <div className="text-lg text-white font-semibold ml-2">
+              LU Community Forum
+            </div>
+          </div>
+          {/* header Links right side */}
+          <div className="flex space-x-2 items-center">
+            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
+              <Link to="/home">Homepage</Link>
+            </div>
+            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
+              <Link to="/dept">Department</Link>
+            </div>
+            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
+              <Link to="/library">Library</Link>
+            </div>
+            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
+              <Link to="/transport">Transport</Link>
+            </div>
+            <div className="text-base text-white font-medium  font-serif p-1 rounded-lg">
+              <ProfileSideMenu></ProfileSideMenu>
+            </div>
+          </div>
+        </div>
       </div>
-      <CreatePost></CreatePost>
+      {/* body part */}
+      <div className="w-5/6 mx-auto">
+        <CreatePost></CreatePost>
 
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
-      <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+        <PostBox></PostBox>
+      </div>
       {console.log(user)}
       <Loader></Loader>
+      <Footer></Footer>
     </div>
   );
 };

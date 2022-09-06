@@ -49,16 +49,16 @@ const Login = () => {
       {/* Email and Password div */}
       <div>
         <form onClick={handleLogin} className=" py-4 px-auto text-left mx-12">
-          <h3 className="text-xl my-2">Enter Email</h3>
+          <h3 className="text-3xl my-2 text-center font-semibold ">Log In</h3>
           <input
             onBlur={(e) => {
               setEmail(e.target.value);
             }}
             type="email"
             placeholder="Enter university email"
-            className="text-black h-10 w-full rounded-lg pl-4"
+            className="text-black h-10 w-full rounded-lg pl-4 my-5"
           />
-          <h3 className="text-xl my-2">Enter password</h3>
+          {/* <h3 className="text-xl my-2">Enter password</h3> */}
           <input
             onBlur={(e) => {
               setPass(e.target.value);
@@ -67,19 +67,21 @@ const Login = () => {
             placeholder="Enter password"
             className="text-black h-10 w-full rounded-lg pl-4"
           />
-          <button className="bg-blue-800 text-white rounded-md w-20 h-9 font-bold my-4">
+          <button className="my-2 text-blue-700">
+            <Link to="/forgotemail">Forgot Password</Link>
+          </button>{" "}
+          <br />
+          <button className="bg-blue-800 text-white rounded-md w-full h-9 font-bold my-4">
             <input type="submit" value="Login" />
           </button>
         </form>
 
         <br />
-        <button className="my-2 text-blue-700">
-          <Link to="/forgotemail">Forgot Password</Link>
-        </button>
+
         <div className="py-8">
           <hr className="border-dashed bg-slate-600" />
 
-          <button className="bg-green-700 rounded-md w-32 h-14 mt-5">
+          <button className="bg-green-700 text-white font-semibold rounded-md w-4/5 h-14 mt-5">
             <Link to="/register">Create New Account</Link>
           </button>
         </div>

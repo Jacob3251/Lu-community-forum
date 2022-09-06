@@ -5,6 +5,9 @@ import { HashLink } from "react-router-hash-link";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import logo1 from "../../images/mainlogo.png";
+import { Link } from "react-router-dom";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 const LandingPage = () => {
   return (
     <div>
@@ -39,17 +42,19 @@ const LandingPage = () => {
               </HashLink>
             </div>
             <div className="text-base text-black-400 font-medium bg-white font-serif p-1 rounded-lg">
-              Login
+              <label htmlFor="my-modal-3" className="modal-button">
+                Login
+              </label>
             </div>
             <div className="text-base text-white font-medium bg-green-400 font-serif p-1 rounded-lg">
-              Signup
+              <Link to="/register">Register</Link>
             </div>
           </div>
         </div>
         {/* Body part */}
         <div>
           {/* carosel part */}
-          <div className=" bg-white">
+          <div className=" bg-white ">
             <Carousel
               autoPlay
               infiniteLoop
@@ -225,6 +230,22 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
           </div>
         </div>
       </div>
+      {/* login modal */}
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="my-modal-3"
+            className="btn btn-sm btn-circle absolute right-5 top-2"
+          >
+            ✕
+          </label>
+          <div className=" pl-8">
+            <Login></Login>
+          </div>
+        </div>
+      </div>
+
       <Footer className=""></Footer>
     </div>
   );
