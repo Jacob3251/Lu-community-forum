@@ -1,20 +1,22 @@
 import React from "react";
-import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Header from "../Header/Header";
-import PostBox from "../PostBox/PostBox";
-import Loader from "../Loader/Loader";
-import { HashLink } from "react-router-hash-link";
-import CreatePost from "../CreatePost/CreatePost";
 import { Link } from "react-router-dom";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
-import Footer from "../Footer/Footer";
-const Home = () => {
+import auth from "../../firebase.init";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import PostBox from "../PostBox/PostBox";
+import DashboardLeft from "./DashboardLeft";
+const AdminDashboard = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
+  //   if (/^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(user?.email)) {
+  //     return navigate("/home");
+  //   }
   return (
-    <div className=" lg:w-full mx-auto ">
-      {/* <Header></Header> */}
+    <div className="">
+      {/* Header Start */}
       <div className="sticky top-0 z-10">
         {/* <Header></Header> */}
         <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
@@ -47,29 +49,20 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* body part */}
-      <div className="w-5/6 mx-auto">
-        <CreatePost></CreatePost>
-
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
+      {/* Header End */}
+      {/* body start */}
+      <div className="w-full bg-red-500 mx-auto flex ">
+        {/* admin left navigation */}
+        <div className="bg-green-400 w-1/4  sticky top-0">
+          <DashboardLeft></DashboardLeft>
+        </div>
+        {/* Main Bodypart */}
+        <div className="w-1/2 bg-yellow-500">MainBOdy</div>
+        {/* right bodypart */}
+        <div className="w-1/4 bg-gray-500">Chat part</div>
       </div>
-      {console.log(user)}
-      <Loader></Loader>
-      <Footer></Footer>
     </div>
   );
 };
 
-export default Home;
+export default AdminDashboard;

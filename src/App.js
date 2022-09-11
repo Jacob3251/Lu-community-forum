@@ -17,6 +17,8 @@ import ForgotEmail from "./components/ForgotEmail/ForgotEmail";
 import { useState } from "react";
 import { setLogLevel } from "firebase/app";
 import NotFound from "./components/NotFound/NotFound";
+import RequireAdmin from "./components/RequireAdmin/RequireAdmin";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -81,6 +83,14 @@ function App() {
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/demo" element={<Demo></Demo>}></Route>
+          <Route
+            path="/admin"
+            element={
+              <RequireAdmin>
+                <AdminDashboard></AdminDashboard>
+              </RequireAdmin>
+            }
+          ></Route>
           <Route
             path="/forgotemail"
             element={<ForgotEmail></ForgotEmail>}

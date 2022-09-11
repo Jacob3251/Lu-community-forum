@@ -24,6 +24,7 @@ const Dept = () => {
     fetch("http://localhost:9000/selectedpost")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         // console.log(data[0].map((u) => u.newPostUniversity));
         setNewPostUniversity(data[0].map((u) => u.newPostUniversity));
         setNewPostDepartment(data[1].map((u) => u.newPostDepartment));
@@ -147,7 +148,6 @@ const Dept = () => {
           <div>
             <div className="form-control w-full max-w-xs ">
               <select
-                onChange={() => setPostType(2)}
                 tabIndex="0"
                 className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-10  hover:bg-blue-200"
               >
@@ -201,27 +201,23 @@ const Dept = () => {
         )}
         {postType === 3 && (
           <div>
-            <div className="">
-              <div className="">
-                <div className="form-control w-full ">
-                  <select
-                    onChange={(event) => {
-                      setPostType(3);
-                      const value = event.target.value;
-                      setTeacher(value);
+            <div className="form-control w-full ">
+              <select
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setTeacher(value);
 
-                      console.log(value);
-                    }}
-                    tabIndex="0"
-                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-10 hover:bg-gray-200 "
-                  >
-                    <option value="not">Select teacher</option>
-                    <option value="aac">Adil Ahmed Chowdhury</option>
-                    <option value="prb">Prithwiraj Bhattacharjee</option>
-                  </select>
-                </div>
-              </div>
+                  console.log(value);
+                }}
+                tabIndex="0"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-10 hover:bg-gray-200 "
+              >
+                <option value="not">Select teacher</option>
+                <option value="aac">Adil Ahmed Chowdhury</option>
+                <option value="prb">Prithwiraj Bhattacharjee</option>
+              </select>
             </div>
+
             {techArray.map((u) => (
               // <p>{u.content}</p>
               <div className="bg-white shadow-lg rounded-2xl mx-auto my-5  ">

@@ -27,6 +27,10 @@ const Profile = () => {
           const studentProfile = data[0].find((p) => p.email === email);
           console.log(studentProfile);
           setProfile(studentProfile);
+        } else {
+          const teacherProfile = data[1].find((p) => p.email === email);
+          console.log(teacherProfile);
+          setProfile(teacherProfile);
         }
       });
   }, []);
@@ -78,13 +82,21 @@ const Profile = () => {
                   <input
                     className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
                     type="text"
-                    value={`Name: ${profile.name}` || "Name"}
+                    value={
+                      profile.userType === 1
+                        ? `Student Name: ${profile.name}` || "Student Name"
+                        : `Teacher Name: ${profile.name}` || "Name"
+                    }
                     name="name"
                   />
                   <input
                     className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
                     type="text"
-                    value={`Student ID: ${profile.studentID}` || "Student ID"}
+                    value={
+                      profile.userType === 1
+                        ? `Student ID: ${profile.studentID}` || "Studnet ID"
+                        : `Teacher ID: ${profile.teacherID}` || "Teacher ID"
+                    }
                   />
                   <input
                     className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
@@ -104,14 +116,16 @@ const Profile = () => {
                     value={`Phone: ${profile.phoneNumber}` || "Phone"}
                     name="phone"
                   />
-                  <input
-                    className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
-                    type="text"
-                    value={
-                      `Batch Number: ${profile.batchNumber}` || "Batch Number"
-                    }
-                    name="batch"
-                  />
+                  {profile.userType === 1 && (
+                    <input
+                      className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
+                      type="text"
+                      value={
+                        `Batch Number: ${profile.batchNumber}` || "Batch Number"
+                      }
+                      name="batch"
+                    />
+                  )}
                   <input
                     className="w-72 md:w-96 h-12 bg-white rounded pl-4 text-stone-800 focus:outline-none mb-3"
                     type="text"

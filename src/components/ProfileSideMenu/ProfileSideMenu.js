@@ -1,7 +1,8 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import useAdmin from "../../hooks/useAdmin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
@@ -10,6 +11,12 @@ import {
 import { Link } from "react-router-dom";
 const ProfileSideMenu = () => {
   const [user] = useAuthState(auth);
+
+  // if (user) {
+
+  //   console.log("checking the admin: ", checkreg);
+  const [admin, adminLoading] = useAdmin(user);
+
   return (
     <div className="">
       <div className="dropdown dropdown-end ">
@@ -38,6 +45,11 @@ const ProfileSideMenu = () => {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
+          {admin === true && (
+            <li>
+              <Link to="/admin">Dashboard</Link>
+            </li>
+          )}
           <li>
             <Link
               to="/"
