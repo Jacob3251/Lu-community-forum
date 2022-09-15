@@ -23,7 +23,7 @@ const Login = () => {
         console.log(data);
         setLoggedUser(data);
       });
-  }, []);
+  }, [loggedUser]);
   // const [user] = useAuthState(auth);
   const from = location?.state?.from?.pathname || "/";
   const handleLogin = (event) => {

@@ -9,9 +9,16 @@ import CreatePost from "../CreatePost/CreatePost";
 import { Link } from "react-router-dom";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import Footer from "../Footer/Footer";
+import { useEffect } from "react";
+import { useState } from "react";
 const Home = () => {
   const [user] = useAuthState(auth);
-
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:9000/generalposts")
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, [posts]);
   return (
     <div className=" lg:w-full mx-auto ">
       {/* <Header></Header> */}
@@ -51,19 +58,15 @@ const Home = () => {
       <div className="w-5/6 mx-auto">
         <CreatePost></CreatePost>
 
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
-        <PostBox></PostBox>
+        {posts.map((u) => (
+          <PostBox
+            title={u.title}
+            content={u.content}
+            postId={u._id}
+            key={u._id}
+            email={u.email}
+          ></PostBox>
+        ))}
       </div>
       {console.log(user)}
       <Loader></Loader>
