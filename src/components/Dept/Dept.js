@@ -16,19 +16,19 @@ const Dept = () => {
   const [newPostDepartment, setNewPostDepartment] = useState([]);
   const [newPostTeacher, setNewPostTeacher] = useState([]);
   const [teacher, setTeacher] = useState([]);
-  const uniArray = newPostUniversity[0];
-  const deptArray = newPostDepartment[0];
-  const techArray = newPostTeacher[0];
-  let x = 0;
+  // const uniArray = newPostUniversity[0];
+  // const deptArray = newPostDepartment[0];
+  // const techArray = newPostTeacher[0];
+
   useEffect(() => {
     fetch("http://localhost:9000/selectedpost")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         // console.log(data[0].map((u) => u.newPostUniversity));
-        setNewPostUniversity(data[0].map((u) => u.newPostUniversity));
-        setNewPostDepartment(data[1].map((u) => u.newPostDepartment));
-        setNewPostTeacher(data[2].map((u) => u.newPostTeacher));
+        setNewPostUniversity(data[0]);
+        setNewPostDepartment(data[1]);
+        setNewPostTeacher(data[2]);
       });
   }, []);
 
@@ -105,11 +105,11 @@ const Dept = () => {
         {postType === 0 && <DeptCarosel className=""></DeptCarosel>}
         {postType === 1 && (
           <div>
-            {uniArray.map((u) => (
+            {newPostUniversity.map((u) => (
               // <p>{u.content}</p>
               <div
                 className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
-                key={++x}
+                key={u._id}
               >
                 <div className="w-5/6 mx-auto text-left pb-5">
                   <h2 className="pt-8 pb-4 font-bold text-lg">{u.title}</h2>
@@ -160,11 +160,11 @@ const Dept = () => {
                 <option value="bba">Busincess</option>
               </select>
             </div>
-            {deptArray.map((u) => (
+            {newPostDepartment.map((u) => (
               // <p>{u.content}</p>
               <div
                 className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
-                key={++x}
+                key={u._id}
               >
                 <div className="w-5/6 mx-auto text-left pb-5">
                   <h2 className="pt-8 pb-4 font-bold text-lg">{u.title}</h2>
@@ -218,9 +218,12 @@ const Dept = () => {
               </select>
             </div>
 
-            {techArray.map((u) => (
+            {newPostTeacher.map((u) => (
               // <p>{u.content}</p>
-              <div className="bg-white shadow-lg rounded-2xl mx-auto my-5  ">
+              <div
+                className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
+                key={u._id}
+              >
                 {/* top part  */}
                 <div className="w-5/6 mx-auto">
                   <div className="flex pt-6 pb-4">

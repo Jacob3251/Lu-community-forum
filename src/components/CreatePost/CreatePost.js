@@ -13,11 +13,14 @@ const CreatePost = () => {
     const title = post.current[0].value;
     const content = post.current[1].value;
     const email = user?.email;
-
+    const likes = [];
+    const comments = [{ email: "", content: "" }];
     const postObject = {
       title: title,
       content: content,
       email: email,
+      likes: likes,
+      comments: comments,
     };
     console.log(postObject);
     fetch("http://localhost:9000/generalposts", {

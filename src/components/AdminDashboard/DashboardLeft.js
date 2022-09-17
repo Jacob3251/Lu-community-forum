@@ -3,8 +3,8 @@ import React from "react";
 const DashboardLeft = () => {
   return (
     <div className="">
-      <div className="sticky top-24  bg-white px-5 mx-2 py-10 rounded-xl">
-        <h3>Left Side Navigation</h3>
+      <div className="bg-blue-200 px-5 mx-2 py-10 rounded-xl">
+        <h3 className="text-center font-medium text-xl">Admin Dashboard</h3>
         <div className="flex flex-col px-5">
           <div className="btn my-6 ">
             <svg

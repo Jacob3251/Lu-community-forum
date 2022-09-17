@@ -11,14 +11,11 @@ import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import Footer from "../Footer/Footer";
 import { useEffect } from "react";
 import { useState } from "react";
+import usePost from "../../hooks/usePost";
 const Home = () => {
   const [user] = useAuthState(auth);
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:9000/generalposts")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, [posts]);
+  const [posts] = usePost([]);
+
   return (
     <div className=" lg:w-full mx-auto ">
       {/* <Header></Header> */}
@@ -68,7 +65,7 @@ const Home = () => {
           ></PostBox>
         ))}
       </div>
-      {console.log(user)}
+      {/* {console.log(user)} */}
       <Loader></Loader>
       <Footer></Footer>
     </div>

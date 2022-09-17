@@ -11,8 +11,8 @@ const PostBox = ({ title, content, email, postId }) => {
       .then((data) => {
         const found = data[0].find((u) => u.email === email);
         const found1 = data[1].find((u) => u.email === email);
-        console.log("found in student: ", found);
-        console.log("found in teacher: ", found1);
+        // console.log("found in student: ", found);
+        // console.log("found in teacher: ", found1);
         if (found) {
           setUserdata(found);
         }
@@ -20,7 +20,7 @@ const PostBox = ({ title, content, email, postId }) => {
           setUserdata(found1);
         }
       });
-  }, [userdata]);
+  }, []);
   return (
     <div className="">
       <div className="bg-white  rounded-2xl mx-auto my-5 shadow-lg">

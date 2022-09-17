@@ -19,11 +19,12 @@ import { setLogLevel } from "firebase/app";
 import NotFound from "./components/NotFound/NotFound";
 import RequireAdmin from "./components/RequireAdmin/RequireAdmin";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
+import UniversityPostManager from "./components/AdminDashboard/UniversityPostManager";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
-  console.log("from app js", user?.emailVerified);
-  console.log(user);
+  // console.log("from app js", user?.emailVerified);
+  // console.log(user);
   // const [log, setLog] = useState(false);
   // if (user?.emailVerified) {
   //   setLog(true);
@@ -85,11 +86,7 @@ function App() {
           <Route path="/demo" element={<Demo></Demo>}></Route>
           <Route
             path="/admin"
-            element={
-              <RequireAdmin>
-                <AdminDashboard></AdminDashboard>
-              </RequireAdmin>
-            }
+            element={<AdminDashboard></AdminDashboard>}
           ></Route>
           <Route
             path="/forgotemail"

@@ -15,7 +15,7 @@ const ProfileSideMenu = () => {
   // if (user) {
 
   //   console.log("checking the admin: ", checkreg);
-  const [admin, adminLoading] = useAdmin(user);
+  const [admin] = useAdmin();
 
   return (
     <div className="">

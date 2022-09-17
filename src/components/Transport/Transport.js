@@ -54,7 +54,7 @@ const Transport = () => {
         <h2 className="text-3xl my-8 text-center font-semibold">
           Today's Transport Schedule
         </h2>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <div className="grid grid-cols-2 gap-10 bg-slate-100 p-4 my-5 z-10">
           <TransportBox Bus={R1} Capacity={C1} Route_name={1}></TransportBox>
           <TransportBox Bus={R2} Capacity={C2} Route_name={2}></TransportBox>
@@ -64,7 +64,7 @@ const Transport = () => {
         <h2 className="text-3xl my-8 text-center font-semibold">
           Regular Schedule
         </h2>
-        <div class="divider"></div>
+        <div className="divider"></div>
         <img src={img} alt="" className="w-4/5 mx-auto" />
         <div
           tabIndex="0"
