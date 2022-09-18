@@ -6,7 +6,7 @@ import { useState } from "react";
 const PostBox = ({ title, content, email, postId }) => {
   const [userdata, setUserdata] = useState({});
   useEffect(() => {
-    fetch("http://localhost:9000/users")
+    fetch("https://cryptic-plateau-06322.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => {
         const found = data[0].find((u) => u.email === email);

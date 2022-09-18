@@ -42,10 +42,10 @@ function App() {
               // !user?.emailVerified ? (
               //   <Home></Home>
               // ) : (
-              <Home></Home>
-              // <RequireAuth>
-              //   <Home></Home>
-              // </RequireAuth>
+              // <Home></Home>
+              <RequireAuth>
+                <Home></Home>
+              </RequireAuth>
               // )
             }
           ></Route>

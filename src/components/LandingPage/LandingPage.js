@@ -25,28 +25,28 @@ const LandingPage = () => {
           </div>
           {/* header Links right side */}
           <div className="flex space-x-2 items-center">
-            <div className="text-base text-white font-medium  font-serif">
+            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
               <HashLink smooth to="/#about">
                 About
               </HashLink>
             </div>
 
-            <div className="text-base text-white font-medium  font-serif">
+            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
               <HashLink smooth to="/#location">
                 Location
               </HashLink>
             </div>
-            <div className="text-base text-white font-medium  font-serif">
+            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
               <HashLink smooth to="/#contact">
                 Contact
               </HashLink>
             </div>
-            <div className="text-base text-black-400 font-medium bg-white font-serif p-1 rounded-lg">
+            <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1 hover:scale-110 duration-200">
               <label htmlFor="my-modal-3" className="modal-button">
                 Login
               </label>
             </div>
-            <div className="text-base text-white font-medium bg-green-400 font-serif p-1 rounded-lg">
+            <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1 hover:scale-110 duration-200">
               <Link to="/register">Register</Link>
             </div>
           </div>
@@ -110,7 +110,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
                       individual Departments, Teachers and also for students
                     </p>
                     <button className="w-32 bg-blue-500 text-white p-3 font-medium tracking-wider rounded-sm hover:bg-[#0cabc7] transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
-                      Explore
+                      <Link to="/register">Explore</Link>
                     </button>
                   </div>
                 </div>

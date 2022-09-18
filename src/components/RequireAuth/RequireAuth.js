@@ -7,7 +7,7 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
   console.log("from require auth 88888888888", user);
   if (user === null) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
   // else if (user === null) {
   //   return <Navigate to="/login" state={{ from: location }} replace />;

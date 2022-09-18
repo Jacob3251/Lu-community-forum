@@ -66,7 +66,7 @@ const Home = () => {
         ))}
       </div>
       {/* {console.log(user)} */}
-      <Loader></Loader>
+      {/* <Loader></Loader> */}
       <Footer></Footer>
     </div>
   );

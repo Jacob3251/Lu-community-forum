@@ -27,7 +27,7 @@ const Register = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [ertext, setErtext] = useState("");
   useEffect(() => {
-    fetch("http://localhost:9000/user")
+    fetch("https://cryptic-plateau-06322.herokuapp.com/user")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -117,13 +117,13 @@ const Register = () => {
         </div>
         {/* header Links right side */}
         <div className="flex space-x-2 items-center">
-          <div className="text-base text-black-400 font-medium bg-white font-serif p-1 rounded-lg">
+          <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1">
             <label htmlFor="my-modal-3" className="modal-button">
               Login
             </label>
           </div>
-          <div className="text-base text-white font-medium bg-green-400 font-serif p-1 rounded-lg">
-            <Link to="/register">Register</Link>
+          <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1">
+            <Link to="/">Back to home</Link>
           </div>
         </div>
       </div>
@@ -161,23 +161,23 @@ const Register = () => {
           <input
             type="text"
             placeholder="Enter university email"
-            className="input input-bordered w-full max-w-xs mr-2"
+            className="input input-bordered w-full max-w-xs mr-2 rounded-none h-14"
             onBlur={handleEmail}
           />
           <input
             type="password"
             placeholder="Enter password"
-            className="input input-bordered w-full max-w-xs mr-2"
+            className="input input-bordered w-full max-w-xs mr-2 rounded-none h-14"
             onBlur={handlePass}
           />
           <input
             type="password"
             placeholder="Type password again"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs rounded-none h-14"
             onChange={handleRePass}
           />
-          <button className="btn ml-5 bg-blue-400 text-white text-md rounded-xl">
-            <input type="submit" value="Submit" />
+          <button className="btn ml-5 bg-blue-400 h-14 hover:translate-y-[2px] hover:bg-blue-500 border-none  text-white text-md rounded-none">
+            <input type="submit" value="Submit" className="text-lg font-bold" />
           </button>
         </form>
         {ertext !== null && <p>{ertext}</p>}

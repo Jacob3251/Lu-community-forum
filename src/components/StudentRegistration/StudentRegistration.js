@@ -63,7 +63,7 @@ const StudentRegistration = ({ email, password, userType }) => {
         let userlog = window.confirm("Verify your email and login in");
         if (userlog) {
           // sending data to the server
-          fetch("http://localhost:9000/user", {
+          fetch("https://cryptic-plateau-06322.herokuapp.com/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(userObject),
@@ -92,7 +92,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleUsername}
-            className="input input-bordered w-full max-w-xs"
+            className="input w-full rounded-none max-w-xs"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -103,7 +103,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleStudentID}
-            className="input input-bordered w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -114,7 +114,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleBatchNumber}
-            className="input input-bordered w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -125,7 +125,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handlePhoneNumber}
-            className="input input-bordered w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs"
           />
         </div>
       </div>
@@ -138,7 +138,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleBloodGrp}
-            className="input input-bordered w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -149,7 +149,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleAddress}
-            className="input input-bordered w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs"
           />
         </div>
 
@@ -158,10 +158,7 @@ const StudentRegistration = ({ email, password, userType }) => {
           <label className="label">
             <span className="label-text">Pick your Department</span>
           </label>
-          <select
-            className="select select-bordered"
-            onChange={handleDeptSelect}
-          >
+          <select className="select rounded-none" onChange={handleDeptSelect}>
             <option value="not">Select Department</option>
             <option value="cse">Computer Science</option>
             <option value="eee">Electrical Engineering</option>
@@ -183,7 +180,7 @@ const StudentRegistration = ({ email, password, userType }) => {
         </div> */}
       </div>
       <div className="text-center mt-10">
-        <button className="btn bg-blue-400 text-white text-md rounded-xl">
+        <button className="btn bg-blue-400 h-14 hover:translate-y-[2px] hover:bg-blue-500 border-none font-bold text-white text-lg rounded-none">
           <input type="submit" value="Submit Form" />
         </button>
       </div>

@@ -6,24 +6,22 @@ import auth from "../../firebase.init";
 import Modal from "../Modal/Modal";
 const Demo = () => {
   const [user] = useAuthState(auth);
+  const email = user?.emailVerified;
   const navigate = useNavigate();
   // const [isLogged, setIsLogged] = CheckUser();
   useEffect(() => {
     console.log(user);
     if (user?.emailVerified) {
       navigate("/home");
-    } else if (!user) {
-      alert("user not registered");
-      navigate("/login");
     } else {
       {
         signOut(auth);
-        <Modal></Modal>;
+        // <Modal></Modal>;
         // alert("user didn't verify email");
         navigate("/login");
       }
     }
-  }, []);
+  }, [email]);
 
   return <div></div>;
 };

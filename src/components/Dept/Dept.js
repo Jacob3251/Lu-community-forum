@@ -21,7 +21,7 @@ const Dept = () => {
   // const techArray = newPostTeacher[0];
 
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost")
+    fetch("https://cryptic-plateau-06322.herokuapp.com/selectedpost")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

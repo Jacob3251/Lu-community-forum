@@ -39,29 +39,29 @@ const Library = () => {
           </div>
         </div>
       </div>
-      <div className="w-2/3 my-10  mx-auto bg-slate-200 py-10 rounded-xl shadow-lg ">
+      <div className="w-2/3 my-10  mx-auto bg-slate-200 py-10  shadow-lg ">
         <div className="text-center">
           <div>
-            <h1 className=" w-5/6 mx-auto text-2xl font-bold  rounded-md py-2">
+            <h1 className=" w-5/6 mx-auto text-3xl font-bold  py-2">
               Library System
             </h1>
           </div>
         </div>
 
-        <div className="form-control w-2/3 mx-auto max-w-xs my-3">
+        <div className="form-control w-2/3 mx-auto  my-3 ">
           <label className="label">
-            <div className="flex rounded my-5 mx-5  ">
+            <div className="w-full mx-auto rounded my-5 flex space-x-5">
               <input
                 type="text"
-                className="block w-full  px-4 py-2 text-purple-700 bg-white  rounded-md focus:border-purple-400 focus:ring-purple-300 "
+                className="w-2/3  px-4 py-2 text-black bg-white"
                 placeholder="Search..."
               />
-              <button className="px-4 ml-3 text-white bg-purple-600 border-l rounded ">
+              <button className="px-4 w-1/3 text-white bg-blue-400 hover:bg-blue-500 hover:translate-y-[2px] duration-700 ">
                 Search
               </button>
             </div>
           </label>
-          <select className="select select-primary mx-10  ">
+          <select className="select select-primary mx-10 focus:outline-none bg-white rounded-none border-none">
             <option disabled selected>
               Pick one
             </option>

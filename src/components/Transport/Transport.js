@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import NoticeBox from "./NoticeBox";
 import img from "./routine.PNG";
 import TransportBox from "./TransportBox";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import { Link } from "react-router-dom";
+import NoticeBoxStudent from "./NoticeBoxStudent";
 const Transport = () => {
   const R1 = [2, 2, 2, 2];
   const C1 = [100, 100, 100, 100];
@@ -14,6 +15,13 @@ const Transport = () => {
   const C3 = [100, 100, 100, 100];
   const R4 = [2, 2, 2, 2];
   const C4 = [100, 100, 100, 100];
+  const [notices, setNotices] = useState([]);
+  let x = 0;
+  useEffect(() => {
+    fetch("https://cryptic-plateau-06322.herokuapp.com/transportnotice")
+      .then((res) => res.json())
+      .then((data) => setNotices(data));
+  }, [notices]);
   return (
     <div className="w-full mx-auto ">
       <div className="sticky top-0 z-20">
@@ -74,12 +82,15 @@ const Transport = () => {
             Transport Notices
           </div>
           <div className="collapse-content">
-            <NoticeBox></NoticeBox>
-            <NoticeBox></NoticeBox>
-            <NoticeBox></NoticeBox>
-            <NoticeBox></NoticeBox>
-            <NoticeBox></NoticeBox>
-            <NoticeBox></NoticeBox>
+            {notices.map((u) => (
+              <NoticeBoxStudent
+                key={u._id}
+                number={++x}
+                title={u.title}
+                link={u.link}
+                id={u._id}
+              ></NoticeBoxStudent>
+            ))}
           </div>
         </div>
       </div>

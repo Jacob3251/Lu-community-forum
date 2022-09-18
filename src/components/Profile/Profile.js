@@ -20,7 +20,7 @@ const Profile = () => {
   const emailreg = /^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(email);
 
   useEffect(() => {
-    fetch("http://localhost:9000/users")
+    fetch("https://cryptic-plateau-06322.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => {
         if (emailreg) {

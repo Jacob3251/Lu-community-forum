@@ -27,17 +27,17 @@ const ProfileSideMenu = () => {
         <FontAwesomeIcon
           tabIndex="0"
           icon={faUserCircle}
-          className="w-8 h-8 text-white mask hover:text-gray-500 "
+          className="w-8 h-8 text-white mask "
         ></FontAwesomeIcon>
         <ul
           tabIndex="0"
-          className="dropdown-content menu p-2 bg-slate-200 shadow rounded-box w-52"
+          className="dropdown-content menu p-2 bg-blue-400 shadow rounded-box w-52"
         >
-          <div className="h-24 rounded mx-auto">
+          <div className="h-24 mt-5 rounded mx-auto">
             <div className="text-center">
               <FontAwesomeIcon
                 icon={faUserCircle}
-                className="w-12 h-12 text-gray-400  hover:text-gray-500 "
+                className="w-12 h-12 text-white  hover:text-gray-100"
               ></FontAwesomeIcon>
               <h3>{user?.email}</h3>
             </div>
