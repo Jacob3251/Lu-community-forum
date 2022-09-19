@@ -74,24 +74,20 @@ const Transport = () => {
         </h2>
         <div className="divider"></div>
         <img src={img} alt="" className="w-4/5 mx-auto" />
-        <div
-          tabIndex="0"
-          className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-10"
-        >
-          <div className="collapse-title text-2xl font-medium">
-            Transport Notices
-          </div>
-          <div className="collapse-content">
-            {notices.map((u) => (
-              <NoticeBoxStudent
-                key={u._id}
-                number={++x}
-                title={u.title}
-                link={u.link}
-                id={u._id}
-              ></NoticeBoxStudent>
-            ))}
-          </div>
+        <div className="text-3xl my-8 text-center font-semibold">
+          Transport Notices
+        </div>{" "}
+        <div className="divider"></div>
+        <div className="">
+          {notices.map((u) => (
+            <NoticeBoxStudent
+              key={u._id}
+              number={++x}
+              title={u.title}
+              link={u.link}
+              id={u._id}
+            ></NoticeBoxStudent>
+          ))}
         </div>
       </div>
     </div>
