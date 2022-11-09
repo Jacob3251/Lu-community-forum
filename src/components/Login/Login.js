@@ -13,19 +13,33 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loadinglogin, errorlogin] =
     useSignInWithEmailAndPassword(auth);
   const formRef = useRef();
-  const [loggedUser, setLoggedUser] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const [loggedUser, setLoggedUser] = useState([]);
   useEffect(() => {
     fetch("https://cryptic-plateau-06322.herokuapp.com/user")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setLoggedUser(data);
       });
   }, [loggedUser]);
   // const [user] = useAuthState(auth);
   const from = location?.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
+  let errorElement;
+  if (errorlogin) {
+    errorElement = (
+      <div className="text-center font-normal text-sm text-red-500">
+        Error: {errorlogin.message}
+      </div>
+    );
+  } else {
+    errorElement = null;
+  }
   const handleLogin = (event) => {
     event.preventDefault();
     const email = formRef.current[0].value;
@@ -33,12 +47,9 @@ const Login = () => {
     // console.log(email);
     const matched = loggedUser.find((u) => u.email === email);
     console.log("Login matched value: ", matched);
-
     if (matched) {
-      signInWithEmailAndPassword(email, pass).then(() => {
-        event.target.reset();
-        navigate("/demo");
-      });
+      signInWithEmailAndPassword(email, pass);
+      event.target.reset();
     } else {
       alert(`${email} is not registered`);
       event.target.reset();
@@ -76,6 +87,7 @@ const Login = () => {
             <Link to="/forgotemail">Forgot Password</Link>
           </button>{" "}
           <br />
+          {errorElement}
           <button className="bg-blue-800 text-white rounded-md w-full h-9 font-bold my-4">
             <input type="submit" value="Login" />
           </button>

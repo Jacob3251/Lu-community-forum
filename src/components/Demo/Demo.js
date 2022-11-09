@@ -18,7 +18,7 @@ const Demo = () => {
         signOut(auth);
         // <Modal></Modal>;
         // alert("user didn't verify email");
-        navigate("/login");
+        navigate("/");
       }
     }
   }, [email]);

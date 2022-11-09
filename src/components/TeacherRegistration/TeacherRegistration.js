@@ -74,7 +74,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
 
               event.target.reset();
             });
-          navigate("/login");
+          navigate("/");
         }
       });
     });

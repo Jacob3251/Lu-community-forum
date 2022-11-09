@@ -19,7 +19,7 @@ const UniversityPostManager = () => {
         // console.log(data[0].map((u) => u.newPostUniversity));
         setNewPostUniversity(data[0]);
       });
-  }, []);
+  }, [newPostUniversity]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const title = postInput.current[0].value;

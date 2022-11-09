@@ -1,17 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import map from "./Map.PNG";
 import { HashLink } from "react-router-hash-link";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import logo1 from "../../images/mainlogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import {
+  useAuthState,
+  useSendEmailVerification,
+} from "react-firebase-hooks/auth";
+import ToastComponent from "../Shared/ToastComponent/ToastComponent";
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
 const LandingPage = () => {
+  const [user, loading] = useAuthState(auth);
+  const [sendEmailVerification, sending, error] =
+    useSendEmailVerification(auth);
+
+  const navigate = useNavigate();
+  const [loggedUser, setLoggedUser] = useState([]);
+  useEffect(() => {
+    fetch("https://cryptic-plateau-06322.herokuapp.com/user")
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setLoggedUser(data);
+      });
+  }, [loggedUser]);
+  if (loading) {
+    return <p>Waiting</p>;
+  }
+
+  let verifyError;
+  if (user) {
+    if (!user?.emailVerified) {
+      verifyError = (
+        <div className="text-red-500 text-xl font-medium text-center">
+          <h3>Verification mail has been sent. Verify to continue...</h3>
+        </div>
+      );
+    }
+  } else {
+    verifyError = <div></div>;
+  }
+  if (user?.emailVerified) {
+    navigate("/home");
+  }
+
   return (
     <div>
       <div className="">
+        {verifyError}
         {/* headerpart */}
         <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
           {/* header left side */}
@@ -30,7 +73,6 @@ const LandingPage = () => {
                 About
               </HashLink>
             </div>
-
             <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
               <HashLink smooth to="/#location">
                 Location
@@ -41,14 +83,27 @@ const LandingPage = () => {
                 Contact
               </HashLink>
             </div>
-            <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1 hover:scale-110 duration-200">
-              <label htmlFor="my-modal-3" className="modal-button">
-                Login
-              </label>
-            </div>
-            <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1 hover:scale-110 duration-200">
-              <Link to="/register">Register</Link>
-            </div>
+
+            {!user && (
+              <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1 hover:scale-110 duration-200">
+                <label htmlFor="my-modal-3" className="modal-button">
+                  Login
+                </label>
+              </div>
+            )}
+            {user ? (
+              <button
+                onClick={() => {
+                  signOut(auth);
+                }}
+              >
+                Signout
+              </button>
+            ) : (
+              <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1 hover:scale-110 duration-200">
+                <Link to="/register">Register</Link>
+              </div>
+            )}
           </div>
         </div>
         {/* Body part */}
@@ -232,20 +287,22 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
       </div>
       {/* login modal */}
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-circle absolute right-5 top-2"
-          >
-            ✕
-          </label>
-          <div className=" pl-8">
-            <Login></Login>
+      {!user && (
+        <div className="modal">
+          <div className="modal-box relative">
+            <label
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-5 top-2"
+            >
+              ✕
+            </label>
+            <div className=" pl-8">
+              <Login></Login>
+            </div>
           </div>
         </div>
-      </div>
-
+      )}
+      <ToastContainer limit={1} />
       <Footer className=""></Footer>
     </div>
   );

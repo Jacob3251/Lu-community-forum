@@ -55,7 +55,9 @@ function App() {
           <Route
             path="/dept"
             element={
-              <Dept></Dept>
+              <RequireAuth>
+                <Dept></Dept>
+              </RequireAuth>
               // <Home></Home>
               // user ? (
               //   <Dept></Dept>
