@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
+import Header1 from "../Shared/Header/Header";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -20,7 +21,7 @@ const Profile = () => {
   const emailreg = /^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(email);
 
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/users")
+    fetch("http://localhost:9000/users")
       .then((res) => res.json())
       .then((data) => {
         if (emailreg) {
@@ -70,6 +71,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Header1></Header1>
       <div className="w-5/6 mx-auto">
         <div className=" bg-blue-200 my-5 rounded-lg flex ">
           <div className=" w-full relative">

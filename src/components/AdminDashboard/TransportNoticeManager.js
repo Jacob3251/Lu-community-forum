@@ -13,7 +13,7 @@ const TransportNoticeManager = () => {
   const [notices, setNotices] = useState([]);
   let x = 0;
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/transportnotice")
+    fetch("http://localhost:9000/transportnotice")
       .then((res) => res.json())
       .then((data) => setNotices(data));
   }, [notices]);
@@ -27,7 +27,7 @@ const TransportNoticeManager = () => {
       link: link,
       email: email,
     };
-    fetch("https://cryptic-plateau-06322.herokuapp.com/transportnotice", {
+    fetch("http://localhost:9000/transportnotice", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(postObject),

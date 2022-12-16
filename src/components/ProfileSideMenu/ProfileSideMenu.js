@@ -31,7 +31,7 @@ const ProfileSideMenu = () => {
         ></FontAwesomeIcon>
         <ul
           tabIndex="0"
-          className="dropdown-content menu p-2 bg-blue-400 shadow rounded-box w-52"
+          className="dropdown-content menu p-2 bg-[#628e90] hover:border-white border-2 shadow-md hover:shadow-gray-700 rounded-md space-y-2 w-52"
         >
           <div className="h-24 mt-5 rounded mx-auto">
             <div className="text-center">
@@ -42,15 +42,18 @@ const ProfileSideMenu = () => {
               <h3>{user?.email}</h3>
             </div>
           </div>
-          <li>
+          <li className="hover:text-white bg-white ">
             <Link to="/profile">Profile</Link>
           </li>
+          <li className="hover:text-white bg-white ">
+            <Link to="/profile">Messages</Link>
+          </li>
           {admin === true && (
-            <li>
+            <li className="hover:text-white bg-white ">
               <Link to="/admin">Dashboard</Link>
             </li>
           )}
-          <li>
+          <li className="hover:text-white bg-white ">
             <Link
               to="/"
               onClick={() => {

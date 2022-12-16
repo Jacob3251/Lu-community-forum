@@ -63,7 +63,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
         let userlog = window.confirm("Verify your email and login in");
         if (userlog) {
           // sending data to the server
-          fetch("https://cryptic-plateau-06322.herokuapp.com/user", {
+          fetch("http://localhost:9000/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(userObject),

@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 const useAdmin = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [admin, setAdmin] = useState(false);
   // const [isAdminLoading, setIsAdminLoading] = useState(true);
 
@@ -20,7 +20,6 @@ const useAdmin = () => {
       console.log("from use Admin, admin after: ", admin);
     }
   }, [user]);
-
   return [admin];
 };
 

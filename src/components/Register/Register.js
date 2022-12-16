@@ -27,7 +27,7 @@ const Register = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [ertext, setErtext] = useState("");
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/user")
+    fetch("http://localhost:9000/user")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

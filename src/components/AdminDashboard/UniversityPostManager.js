@@ -12,7 +12,7 @@ const UniversityPostManager = () => {
 
   const [newPostUniversity, setNewPostUniversity] = useState([]);
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/selectedpost")
+    fetch("http://localhost:9000/selectedpost")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -34,7 +34,7 @@ const UniversityPostManager = () => {
       postType: 0,
     };
     console.log(postInput);
-    fetch("https://cryptic-plateau-06322.herokuapp.com/selectedpost", {
+    fetch("http://localhost:9000/selectedpost", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(postObject),

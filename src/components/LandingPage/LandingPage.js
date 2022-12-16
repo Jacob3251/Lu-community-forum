@@ -24,7 +24,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState([]);
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/user")
+    fetch("http://localhost:9000/user")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -52,7 +52,26 @@ const LandingPage = () => {
   }
 
   return (
-    <div>
+    <div className="relative">
+      <div className="fixed bottom-5 right-5">
+        <div className=" flex space-x-2 items-center">
+          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+            <HashLink smooth to="/#about">
+              About
+            </HashLink>
+          </div>
+          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+            <HashLink smooth to="/#location">
+              Location
+            </HashLink>
+          </div>
+          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+            <HashLink smooth to="/#contact">
+              Contact
+            </HashLink>
+          </div>
+        </div>
+      </div>
       <div className="">
         {verifyError}
         {/* headerpart */}
@@ -67,44 +86,6 @@ const LandingPage = () => {
             </div>
           </div>
           {/* header Links right side */}
-          <div className="flex space-x-2 items-center">
-            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
-              <HashLink smooth to="/#about">
-                About
-              </HashLink>
-            </div>
-            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
-              <HashLink smooth to="/#location">
-                Location
-              </HashLink>
-            </div>
-            <div className="text-base text-white font-medium  font-serif hover:scale-110 duration-200 px-3">
-              <HashLink smooth to="/#contact">
-                Contact
-              </HashLink>
-            </div>
-
-            {!user && (
-              <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1 hover:scale-110 duration-200">
-                <label htmlFor="my-modal-3" className="modal-button">
-                  Login
-                </label>
-              </div>
-            )}
-            {user ? (
-              <button
-                onClick={() => {
-                  signOut(auth);
-                }}
-              >
-                Signout
-              </button>
-            ) : (
-              <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1 hover:scale-110 duration-200">
-                <Link to="/register">Register</Link>
-              </div>
-            )}
-          </div>
         </div>
         {/* Body part */}
         <div>
@@ -179,7 +160,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
                 Website Features
               </h3>
             </div>
-            <div class="divider my-8"></div>
+            <div className="divider my-8"></div>
             <div className="w-5/6 mx-auto">
               <div className="flex flex-row flex-wrap justify-center  gap-x-10 gap-y-2">
                 <div className="w-[400px] bg-gray-100 rounded-md my-10 p-10">
@@ -250,7 +231,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
                 Campus Location
               </h3>
             </div>
-            <div class="divider my-8"></div>
+            <div className="divider my-8"></div>
             <img src={map} alt="location" className="mx-auto" />
           </div>
           {/* contact form */}
@@ -258,7 +239,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
             <p className="text-center text-2xl lg:text-3xl font-medium  my-5 text-gray-500">
               Contact Us
             </p>
-            <div class="divider pt-5"></div>
+            <div className="divider pt-5"></div>
             {/* <hr className="w-20 mx-auto mb-10 border-black" /> */}
             <div className="flex flex-col items-center justify-center mt-8 mb-10">
               <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 mb-4 md:mb-6">
@@ -285,23 +266,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
           </div>
         </div>
       </div>
-      {/* login modal */}
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      {!user && (
-        <div className="modal">
-          <div className="modal-box relative">
-            <label
-              htmlFor="my-modal-3"
-              className="btn btn-sm btn-circle absolute right-5 top-2"
-            >
-              ✕
-            </label>
-            <div className=" pl-8">
-              <Login></Login>
-            </div>
-          </div>
-        </div>
-      )}
+
       <ToastContainer limit={1} />
       <Footer className=""></Footer>
     </div>

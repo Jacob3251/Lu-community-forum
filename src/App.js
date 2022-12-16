@@ -20,6 +20,7 @@ import NotFound from "./components/NotFound/NotFound";
 import RequireAdmin from "./components/RequireAdmin/RequireAdmin";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import UniversityPostManager from "./components/AdminDashboard/UniversityPostManager";
+import Header from "./components/Shared/Header/Header";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -33,16 +34,13 @@ function App() {
   return (
     // inside routes }
     <div className="App">
+      <Header></Header>
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingPage></LandingPage>}></Route>
           <Route
             path="/home"
             element={
-              // !user?.emailVerified ? (
-              //   <Home></Home>
-              // ) : (
-              // <Home></Home>
               <RequireAuth>
                 <Home></Home>
               </RequireAuth>
@@ -50,45 +48,28 @@ function App() {
             }
           ></Route>
 
-          {/* <Route path="/login" element={<WelcomePage></WelcomePage>}></Route> */}
-          {/* <Route path="/dept" element={<Dept></Dept>}></Route> */}
           <Route
             path="/dept"
             element={
               <RequireAuth>
                 <Dept></Dept>
               </RequireAuth>
-              // <Home></Home>
-              // user ? (
-              //   <Dept></Dept>
-              // ) : (
-              //   <RequireAuth>
-              //     <Dept></Dept>
-              //   </RequireAuth>
-              // )
             }
           ></Route>
-          {/* <Route path="/transport" element={<Transport></Transport>}></Route> */}
-          <Route
-            path="/transport"
-            element={
-              <Transport></Transport>
-              // user ? (
-              //   <Transport></Transport>
-              // ) : (
-              //   <RequireAuth>
-              //     <Transport></Transport>
-              //   </RequireAuth>
-              // )
-            }
-          ></Route>
+
+          <Route path="/transport" element={<Transport></Transport>}></Route>
           <Route path="/library" element={<Library></Library>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route path="/blogs" element={<Profile></Profile>}></Route>
           <Route path="/demo" element={<Demo></Demo>}></Route>
           <Route
             path="/admin"
-            element={<AdminDashboard></AdminDashboard>}
+            element={
+              <RequireAdmin>
+                <AdminDashboard></AdminDashboard>
+              </RequireAdmin>
+            }
           ></Route>
           <Route
             path="/forgotemail"

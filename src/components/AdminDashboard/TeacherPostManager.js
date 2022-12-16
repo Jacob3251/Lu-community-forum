@@ -11,7 +11,7 @@ const TeacherPostManager = () => {
   const email = user?.email;
   const [profile, setProfile] = useState({});
   useEffect(() => {
-    fetch("https://cryptic-plateau-06322.herokuapp.com/users")
+    fetch("http://localhost:9000/users")
       .then((res) => res.json())
       .then((data) => {
         const teacherProfile = data[1].find((p) => p.email === email);
@@ -34,7 +34,7 @@ const TeacherPostManager = () => {
       type: type,
       postType: 2,
     };
-    fetch("https://cryptic-plateau-06322.herokuapp.com/selectedpost", {
+    fetch("http://localhost:9000/selectedpost", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(postObject),
