@@ -53,19 +53,19 @@ const LandingPage = () => {
 
   return (
     <div className="relative">
-      <div className="fixed bottom-5 right-5">
-        <div className=" flex space-x-2 items-center">
-          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+      <div className="fixed bottom-5 right-5 bg-[#3c2317] rounded-md z-50 p-5">
+        <div className=" flex  space-x-2 items-center">
+          <div className="text-base  rounded-xl  p-4  text-white   font-bold hover:scale-125 duration-100 px-3">
             <HashLink smooth to="/#about">
               About
             </HashLink>
           </div>
-          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+          <div className="text-base  rounded-xl  p-4 text-white   font-bold hover:scale-125 duration-100 px-3">
             <HashLink smooth to="/#location">
               Location
             </HashLink>
           </div>
-          <div className="text-base text-black font-medium  font-serif hover:scale-110 duration-200 px-3">
+          <div className="text-base  rounded-xl  p-4 text-white   font-bold hover:scale-125 duration-100 px-3">
             <HashLink smooth to="/#contact">
               Contact
             </HashLink>
@@ -268,7 +268,6 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
       </div>
 
       <ToastContainer limit={1} />
-      <Footer className=""></Footer>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Header = () => {
   const [activeSide, setActiveSide] = useState(false);
   const navigate = useNavigate();
   return (
-    <header className="">
+    <div className="bg-[#628e90]">
       <div className="main-header flex justify-between   items-center px-[8.5%] py-2 rounded-sm hover:shadow-lg hover:shadow-[#3c2317] duration-150">
         {/* secondary menu name  */}
         <div className="sideMenuIcon">
@@ -26,11 +26,9 @@ const Header = () => {
           <h1 className="company-name">Leading University</h1>
         </div>
         {/* Website Name */}
-        {/* <div className="w-1/3">
-          <h1 className="company-name">Free Square Education Consultancy</h1>
-        </div> */}
+
         {/* Menu here below */}
-        <div className="menuBar  ">
+        <div className="menuBar   ">
           <ul className="flex space-x-3 justify-end items-center">
             <li className="header-text">
               <NavLink
@@ -244,7 +242,7 @@ const Header = () => {
         </div>
       )}
       <ToastContainer />
-    </header>
+    </div>
   );
 };
 

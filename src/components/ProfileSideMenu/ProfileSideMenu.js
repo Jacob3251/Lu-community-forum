@@ -2,21 +2,34 @@ import { signOut } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import useAdmin from "../../hooks/useAdmin";
+// import useAdmin from "../../hooks/useAdmin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-const ProfileSideMenu = () => {
-  const [user] = useAuthState(auth);
+import { Link, useAsyncError } from "react-router-dom";
+import RequireAdmin from "../RequireAdmin/RequireAdmin";
 
+const ProfileSideMenu = () => {
+  const [user, loading] = useAuthState(auth);
+  const [admin, setAdmin] = useState(false);
+
+  const email = user?.email;
+  useEffect(() => {
+    const checkreg = /^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(email);
+    console.log("writing");
+    if (!checkreg) {
+      // setAdmin(true);
+      setAdmin(!admin);
+      // console.log("from use Admin, admin after: ", admin);
+    }
+  }, []);
   // if (user) {
 
   //   console.log("checking the admin: ", checkreg);
-  const [admin] = useAdmin();
-
+  // const [admin] = useAdmin(user?.email);
+  // const admin = FindAdmin(user?.email);
   return (
     <div className="">
       <div className="dropdown dropdown-end ">
@@ -31,7 +44,7 @@ const ProfileSideMenu = () => {
         ></FontAwesomeIcon>
         <ul
           tabIndex="0"
-          className="dropdown-content menu p-2 bg-[#628e90] hover:border-white border-2 shadow-md hover:shadow-gray-700 rounded-md space-y-2 w-52"
+          className="dropdown-content p-2 bg-[#628e90] hover:border-white border-2 shadow-md hover:shadow-gray-700 rounded-md space-y-2 w-52"
         >
           <div className="h-24 mt-5 rounded mx-auto">
             <div className="text-center">
@@ -53,6 +66,7 @@ const ProfileSideMenu = () => {
               <Link to="/admin">Dashboard</Link>
             </li>
           )}
+
           <li className="hover:text-white bg-white ">
             <Link
               to="/"
@@ -61,7 +75,7 @@ const ProfileSideMenu = () => {
               }}
             >
               Logout
-              <span>
+              <span className="ml-2">
                 <FontAwesomeIcon
                   icon={faArrowRightFromBracket}
                 ></FontAwesomeIcon>

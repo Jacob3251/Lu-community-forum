@@ -17,8 +17,9 @@ const Home = () => {
   const [user] = useAuthState(auth);
   const [posts] = usePost([]);
   const reversed = [...posts].reverse();
+  const footerClass = "bg-red-200 relative bottom-0 w-full";
   return (
-    <div className=" lg:w-full mx-auto ">
+    <div className=" lg:w-full h-[80%] overflow-scroll mx-auto ">
       {/* <Header></Header> */}
       {/* <Header></Header> */}
       {/* body part */}
@@ -40,7 +41,7 @@ const Home = () => {
         )}
       </div>
 
-      <Footer></Footer>
+      <Footer footerClass={footerClass}></Footer>
     </div>
   );
 };

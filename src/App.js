@@ -33,8 +33,13 @@ function App() {
 
   return (
     // inside routes }
-    <div className="App">
-      <Header></Header>
+    <div
+      className="App relative "
+      style={{
+        backgroundImage: `url("https://images.unsplash.com/photo-1560780552-ba54683cb263?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")`,
+      }}
+    >
+      <Header className=""></Header>
       <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingPage></LandingPage>}></Route>
