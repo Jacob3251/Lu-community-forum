@@ -1,10 +1,9 @@
 import React from "react";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import { HashLink } from "react-router-hash-link";
 import PostBox from "../PostBox/PostBox";
 import Loader from "../Loader/Loader";
-import { HashLink } from "react-router-hash-link";
 import CreatePost from "../CreatePost/CreatePost";
 import { Link } from "react-router-dom";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
@@ -13,30 +12,48 @@ import { useEffect } from "react";
 import { useState } from "react";
 import usePost from "../../hooks/usePost";
 import Header from "../Shared/Header/Header";
+import ImageBox from "../ImageBox/ImageBox";
+import { CgArrowUpO } from "react-icons/cg";
 const Home = () => {
   const [user] = useAuthState(auth);
   const [posts] = usePost([]);
+
   const reversed = [...posts].reverse();
   const footerClass = "bg-red-200 relative bottom-0 w-full";
+  const links = [
+    "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1616766098956-c81f12114571?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1541112324160-e8a425b58dac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGh1bWFuJTIwZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  ];
+  const links2 = [
+    "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1541112324160-e8a425b58dac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGh1bWFuJTIwZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  ];
+  const links1 = [
+    "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  ];
   return (
-    <div className=" lg:w-full h-[80%] overflow-scroll mx-auto ">
+    <div className=" lg:w-full h-[80%]  mx-auto ">
       {/* <Header></Header> */}
       {/* <Header></Header> */}
       {/* body part */}
-      <div className="w-5/6 mx-auto">
+      <div className="w-5/6 mx-auto relative" id="top">
         <CreatePost></CreatePost>
-
+        {/* <ImageBox links={links1}></ImageBox>
+        <ImageBox links={links2}></ImageBox>
+        <ImageBox links={links}></ImageBox> */}
+        <HashLink smooth to="/#top" className="">
+          <CgArrowUpO
+            className={`fixed shadow-md shadow-white bottom-[5%] right-[8%] md:right-[48%] h-[50px] hover:text-[#628E90] hover:bg-white hover:scale-125  bg-[#628E90] text-white rounded-full text-[50px]`}
+          ></CgArrowUpO>
+        </HashLink>
         {posts.length === 0 ? (
-          <h3>No posts yet</h3>
+          <div className="flex justify-center items-center h-[57vh]">
+            <h3>No posts yet</h3>
+          </div>
         ) : (
-          reversed.map((u) => (
-            <PostBox
-              title={u.title}
-              content={u.content}
-              postId={u._id}
-              key={u._id}
-              email={u.email}
-            ></PostBox>
+          reversed.map((singlePostData) => (
+            <PostBox post={singlePostData} key={singlePostData._id}></PostBox>
           ))
         )}
       </div>

@@ -21,6 +21,7 @@ import RequireAdmin from "./components/RequireAdmin/RequireAdmin";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import UniversityPostManager from "./components/AdminDashboard/UniversityPostManager";
 import Header from "./components/Shared/Header/Header";
+import SingleImage from "./components/ImageBox/SingleImage";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -67,6 +68,14 @@ function App() {
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/blogs" element={<Profile></Profile>}></Route>
+          <Route
+            path="/:imageId"
+            element={
+              <RequireAuth>
+                <SingleImage></SingleImage>
+              </RequireAuth>
+            }
+          ></Route>
           <Route path="/demo" element={<Demo></Demo>}></Route>
           <Route
             path="/admin"

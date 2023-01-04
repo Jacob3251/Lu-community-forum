@@ -5,8 +5,11 @@ const usePost = () => {
   useEffect(() => {
     fetch("http://localhost:9000/generalposts")
       .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, [posts]);
+      .then((data) => {
+        setPosts(data);
+      });
+  }, [posts, posts.comments]);
+
   return [posts];
 };
 
