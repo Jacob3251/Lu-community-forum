@@ -1,0 +1,8 @@
+.framed-carousel {
+  background: none;
+}
+.framed-carousel :hover {
+  background: none;
+  transform: scale(1);
+  transition: width 2s;
+}

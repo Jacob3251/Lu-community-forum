@@ -22,6 +22,10 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import UniversityPostManager from "./components/AdminDashboard/UniversityPostManager";
 import Header from "./components/Shared/Header/Header";
 import SingleImage from "./components/ImageBox/SingleImage";
+import Gallery from "./components/Gallery/Gallery";
+import CareerBlogs from "./components/CareerBlogs/CareerBlogs";
+import Research from "./components/Research/Research";
+import Alumni from "./components/Alumni/Alumni";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -64,7 +68,14 @@ function App() {
           ></Route>
 
           <Route path="/transport" element={<Transport></Transport>}></Route>
+          <Route path="/gallery" element={<Gallery></Gallery>}></Route>
+          <Route
+            path="/careerblogs"
+            element={<CareerBlogs></CareerBlogs>}
+          ></Route>
+          <Route path="/research" element={<Research></Research>}></Route>
           <Route path="/library" element={<Library></Library>}></Route>
+          <Route path="/alumni" element={<Alumni></Alumni>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
           <Route path="/blogs" element={<Profile></Profile>}></Route>

@@ -19,7 +19,7 @@ const Header = () => {
       <div className="main-header flex justify-between   items-center px-[8.5%] py-2 rounded-sm hover:shadow-lg hover:shadow-[#3c2317] duration-150">
         {/* secondary menu name  */}
         <div className="sideMenuIcon">
-          <h1 className=" text-red-500">LUCM</h1>
+          <h1 className="font-bold text-2xl my-2 text-white">LUCM</h1>
         </div>
         {/* Left header logo below */}
         <div className="hover:text-[#3c2317] ">
@@ -42,32 +42,42 @@ const Header = () => {
             </li>
             <li className="header-text">
               <NavLink
-                to="/service"
+                to="/gallery"
                 className={({ isActive }) =>
                   isActive ? activeDesign : "header-text text-[#F5EFE6]"
                 }
               >
-                Service
+                Gallery
               </NavLink>
             </li>
             <li className="header-text">
               <NavLink
-                to="/blogs"
+                to="/careerblogs"
                 className={({ isActive }) =>
                   isActive ? activeDesign : "header-text text-[#F5EFE6]"
                 }
               >
-                Blogs
+                Career Blogs
               </NavLink>
             </li>
             <li className="header-text">
               <NavLink
-                to="about"
+                to="research"
                 className={({ isActive }) =>
                   isActive ? activeDesign : "header-text text-[#F5EFE6]"
                 }
               >
-                About
+                Research
+              </NavLink>
+            </li>
+            <li className="header-text">
+              <NavLink
+                to="alumni"
+                className={({ isActive }) =>
+                  isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                }
+              >
+                Alumni
               </NavLink>
             </li>
             {user && (
