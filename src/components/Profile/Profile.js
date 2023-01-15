@@ -18,12 +18,15 @@ import cover from "../../images/cover.jpg";
 import profilepic from "../../images/profilepic.jpg";
 import ProfileInfo from "./ProfileInfo";
 import ProfileBio from "./ProfileBio";
-
+import useSingleUserAllPost from "../../hooks/useSingleUserAllPost";
+import PostBox from "../PostBox/PostBox";
+import { RotatingSquare } from "react-loader-spinner";
 const Profile = () => {
   const [userArray, setUserArray] = useState([]);
   // const [profile, setProfile] = useState({});
   const [user, loading] = useAuthState(auth);
   const profile = useSingleUser(user?.email);
+  const ap = useSingleUserAllPost(user?.email);
   // const email = user?.email;
   const footerClass = " w-full";
   // console.log(userArray[1]);
@@ -109,6 +112,20 @@ const Profile = () => {
           <div className="h-[50px] w-[50px] bg-red-500 ">4</div>
           <div className="h-[50px] w-[50px] bg-red-500 ">5</div>
         </div> */}
+        <h3 className="text-3xl font-IndiFlower my-10 py-8 rounded-md bg-gray-400 bg-opacity-50 w-[80%] mx-auto text-center">Posts</h3>
+        <div>
+          
+          {
+            ap.postLoading && <div className="flex justify-center items-center">
+              <RotatingSquare color="#628E90"></RotatingSquare>
+            </div>
+          }
+          {
+            !ap.postLoading && ap.allSinglePost.length === 0? <div className="flex justify-center items-center">
+            <h3> No posts yet</h3>
+          </div>:ap.allSinglePost.map(singlePostData=>  <PostBox post={singlePostData} key={singlePostData._id}></PostBox>)
+          }
+        </div>
       </div>
 
       <Footer footerClass={footerClass}></Footer>
