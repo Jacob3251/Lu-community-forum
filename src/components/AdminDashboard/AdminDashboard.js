@@ -241,18 +241,7 @@ const AdminDashboard = () => {
         </div>
         {/* right bottom chat bodypart */}
         <div className="w-1/5 h-14 rounded-2xl fixed flex justify-center items-center bottom-4 right-2 bg-blue-500 px-10 text-xl font-semibold text-white">
-          <div className="flex justify-between items-center  w-full">
-            <div className="flex items-center">
-              <h3 className="mx-3 ">Chats</h3>
-              <FontAwesomeIcon
-                icon={faCircle}
-                className="h-3 w-3 text-green-600"
-              />
-            </div>
-            <div>
-              <h3>(Active {activePeople})</h3>
-            </div>
-          </div>
+         Context api chat will go here
         </div>
       </div>
     </div>

@@ -69,9 +69,9 @@ const Profile = () => {
                     Md. Nayeem Hasan Adil
                   </h3>
                   {/* follow button  */}
-                  <button className="bg-white px-5 py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
-                    Follow
-                  </button>
+                  <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
+                    Followers: 443
+                  </h3>
                 </div>
               </div>
             </div>
@@ -83,9 +83,9 @@ const Profile = () => {
             Md. Nayeem Hasan Adil
           </h3>
           {/* follow button  */}
-          <button className="bg-white px-10 py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
-            Follow
-          </button>
+          <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
+                    Followers: 443
+                  </h3>
         </div>
         {/* Main contents of profile section */}
         <div className="mt-[80px] mb-[50px] md:mt-[180px]">
@@ -112,7 +112,7 @@ const Profile = () => {
           <div className="h-[50px] w-[50px] bg-red-500 ">4</div>
           <div className="h-[50px] w-[50px] bg-red-500 ">5</div>
         </div> */}
-        <h3 className="text-3xl font-IndiFlower my-10 py-8 rounded-md bg-gray-400 bg-opacity-50 w-[80%] mx-auto text-center">Posts</h3>
+        {!ap.postLoading && ap.allSinglePost.length !== 0 && <h3 className="text-3xl font-IndiFlower font-bold  my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">Posts</h3>}
         <div>
           
           {
@@ -122,7 +122,7 @@ const Profile = () => {
           }
           {
             !ap.postLoading && ap.allSinglePost.length === 0? <div className="flex justify-center items-center">
-            <h3> No posts yet</h3>
+            <h3 className="text-3xl font-IndiFlower font-bold my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center"> No posts yet</h3>
           </div>:ap.allSinglePost.map(singlePostData=>  <PostBox post={singlePostData} key={singlePostData._id}></PostBox>)
           }
         </div>
