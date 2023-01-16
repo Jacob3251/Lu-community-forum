@@ -8,11 +8,54 @@ import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
 import ProfileSideMenu from "../../ProfileSideMenu/ProfileSideMenu";
 import Login from "../../Login/Login";
+import { useEffect } from "react";
+import { checkTargetForNewValues } from "framer-motion";
+import { useRef } from "react";
 const Header = () => {
   const [user] = useAuthState(auth);
   // const [signOut, loading, error] = useSignOut(auth);
   const activeDesign = "text-[#3c2317] text-underline scale-125 header-text";
   const [activeSide, setActiveSide] = useState(false);
+  const [allUsers,setAllUsers] = useState([]);
+  const [showSearchSubmit,setShowSearchSubmit]= useState(false)
+  const [allUsersProfile,setAllUsersProfile] = useState([]);
+  const [searchedUsers,setSearchedUsers]= useState([]);
+  const searchRef = useRef("");
+  useEffect(()=>{
+    fetch("http://localhost:9000/user")
+    .then(res => res.json())
+    .then(data =>setAllUsers(data))
+    allUsers.map(u=> {
+      fetch(`http://localhost:9000/users/${u.email}`)
+      .then(res=>res.json())
+      .then(output => setAllUsersProfile(prev => [...prev,output]))
+    })
+    
+  },[allUsers.length])
+  const handleNav = () =>{
+    if( user?.email === searchedUsers[0].email ){
+      navigate("/profile");
+      setSearchedUsers([]);
+    }else{
+      navigate(`/userprofile/${searchedUsers[0].email}`);
+      setSearchedUsers([]);
+    }
+    
+  }
+  const handleSearchUser = () =>{
+    const searchValue = searchRef.current.value;
+    
+    
+    const found = allUsersProfile.filter(u => u.name.toUpperCase()=== searchValue.toUpperCase() || u.email === searchValue)
+    if(found){
+      setSearchedUsers(found)
+    }
+    console.log(found);
+    setShowSearchSubmit(!showSearchSubmit)
+    // if(allUsersProfile.length !== 0){
+
+    // }
+  }
   const navigate = useNavigate();
   return (
     <div className="bg-[#628e90]">
@@ -22,8 +65,23 @@ const Header = () => {
           <h1 className="font-bold text-2xl my-2 text-white">LUCM</h1>
         </div>
         {/* Left header logo below */}
-        <div className="hover:text-[#3c2317] ">
+        <div className=" ">
           <h1 className="company-name">Leading University</h1>
+          {user?.emailVerified &&
+            <div className="flex flex-col md:flex-row justify-center items-center my-2">
+            <input type="text" ref={searchRef}  
+            className=" pl-2 rounded-md"  placeholder="Search by name or email"/>
+            <button  className="block bg-[#FFFFF0] px-2 py-1 mt-2 md:mt-0 md:ml-2 rounded-md" onClick={handleSearchUser}>Sub</button>
+            
+          </div>
+          }
+            {/* showing users */}
+            {searchedUsers.length !== 0 && 
+            <div className="bg-white hover:bg-[#FFFFF0] pl-2 z-50 w-full" onClick={handleNav}>
+              {searchedUsers[0].name}
+              
+            </div>}
+          
         </div>
         {/* Website Name */}
 

@@ -16,9 +16,9 @@ const ProfileInfo = ({ profile, classes }) => {
       <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
         <div>Department: {profile.dept}</div>
       </div>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
+      {profile.userType === 2  && <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
         <div>Designation: {profile.designation}</div>
-      </div>
+      </div>}
       {profile.userType === 1 ? (
         <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
           <div>Student Id: {profile.studentID}</div>

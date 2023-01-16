@@ -63,7 +63,8 @@ const PostBox = ({ post }) => {
   const handleDelete = () => {
     const found = window.confirm("Do you want to delete your post?");
     console.log(found);
-    fetch(`http://localhost:9000/generalposts/${_id}`, {
+    if(found){
+      fetch(`http://localhost:9000/generalposts/${_id}`, {
       method: "DELETE", // or 'PUT'
     })
       .then((response) => response.json())
@@ -73,6 +74,7 @@ const PostBox = ({ post }) => {
       .catch((error) => {
         console.error("Error:", error);
       });
+    }
   };
   // useEffect(() => {
   //   fetch(`http://localhost:9000/users/${user?.email}`)

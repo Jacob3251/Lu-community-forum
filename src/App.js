@@ -26,6 +26,7 @@ import Gallery from "./components/Gallery/Gallery";
 import CareerBlogs from "./components/CareerBlogs/CareerBlogs";
 import Research from "./components/Research/Research";
 import Alumni from "./components/Alumni/Alumni";
+import IndividualProfile from "./components/Profile/IndividualProfile";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -69,6 +70,7 @@ function App() {
 
           <Route path="/transport" element={<Transport></Transport>}></Route>
           <Route path="/gallery" element={<Gallery></Gallery>}></Route>
+          <Route path="/userProfile/:id" element={<IndividualProfile></IndividualProfile>}></Route>
           <Route
             path="/careerblogs"
             element={<CareerBlogs></CareerBlogs>}
