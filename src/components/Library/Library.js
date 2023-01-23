@@ -3,41 +3,94 @@ import Header from "../Header/Header";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import { Link } from "react-router-dom";
 const Library = () => {
+  const data = [{
+    "id": 1,
+    "courseName": "Tahoe",
+    "email": "gforrest0@wsj.com"
+  }, {
+    "id": 2,
+    "courseName": "Volare",
+    "email": "lburgoyne1@twitter.com"
+  }, {
+    "id": 3,
+    "courseName": "8 Series",
+    "email": "nkersaw2@admin.ch"
+  }, {
+    "id": 4,
+    "courseName": "Corvair",
+    "email": "acossentine3@arstechnica.com"
+  }, {
+    "id": 5,
+    "courseName": "Explorer Sport",
+    "email": "moldford4@umich.edu"
+  }, {
+    "id": 6,
+    "courseName": "Continental",
+    "email": "rheadan5@parallels.com"
+  }, {
+    "id": 7,
+    "courseName": "Galant",
+    "email": "mnussii6@sourceforge.net"
+  }, {
+    "id": 8,
+    "courseName": "CX-7",
+    "email": "dbatho7@umich.edu"
+  }, {
+    "id": 9,
+    "courseName": "Protege",
+    "email": "psperling8@cyberchimps.com"
+  }, {
+    "id": 10,
+    "courseName": "Alero",
+    "email": "hcanton9@dell.com"
+  }, {
+    "id": 11,
+    "courseName": "G35",
+    "email": "rpawelleka@columbia.edu"
+  }, {
+    "id": 12,
+    "courseName": "Cayenne",
+    "email": "bwildb@fc2.com"
+  }, {
+    "id": 13,
+    "courseName": "F150",
+    "email": "agurgec@dion.ne.jp"
+  }, {
+    "id": 14,
+    "courseName": "V40",
+    "email": "kdavidavidovicsd@google.cn"
+  }, {
+    "id": 15,
+    "courseName": "Villager",
+    "email": "scaneye@a8.net"
+  }, {
+    "id": 16,
+    "courseName": "Tempo",
+    "email": "dbrookzief@yahoo.com"
+  }, {
+    "id": 17,
+    "courseName": "Avenger",
+    "email": "glunbechg@friendfeed.com"
+  }, {
+    "id": 18,
+    "courseName": "Golf",
+    "email": "srotherforthh@typepad.com"
+  }, {
+    "id": 19,
+    "courseName": "900",
+    "email": "clumbi@geocities.jp"
+  }, {
+    "id": 20,
+    "courseName": "Continental GTC",
+    "email": "ecalderaj@bluehost.com"
+  }];
+
+  const secondary = data.slice(10)
+
   return (
-    <div className=" w-full mx-auto ">
+    <div className=" w-full mx-auto h-[100vh] ">
       <div className="sticky top-0 z-10">
-        {/* <Header></Header> */}
-        <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
-          {/* header left side */}
-          <div className="flex items-center">
-            {/* <div>
-              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
-            </div> */}
-            <div className="text-lg text-white font-semibold ml-2">
-              LU Community Forum
-            </div>
-          </div>
-          {/* header Links right side */}
-          <div className="flex space-x-2 items-center">
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/home">Homepage</Link>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <div className="dropdown dropdown-hover">
-                <Link to="/dept">Department</Link>
-              </div>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/library">Library</Link>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/transport">Transport</Link>
-            </div>
-            <div className="text-base text-white font-medium  font-serif p-1 rounded-lg">
-              <ProfileSideMenu></ProfileSideMenu>
-            </div>
-          </div>
-        </div>
+        
       </div>
       <div className="w-2/3 my-10  mx-auto bg-slate-200 py-10  shadow-lg ">
         <div className="text-center">
@@ -49,21 +102,10 @@ const Library = () => {
         </div>
 
         <div className="form-control w-2/3 mx-auto  my-3 ">
-          <label className="label">
-            <div className="w-full mx-auto rounded my-5 flex space-x-5">
-              <input
-                type="text"
-                className="w-2/3  px-4 py-2 text-black bg-white"
-                placeholder="Search..."
-              />
-              <button className="px-4 w-1/3 text-white bg-blue-400 hover:bg-blue-500 hover:translate-y-[2px] duration-700 ">
-                Search
-              </button>
-            </div>
-          </label>
+          
           <select className="select select-primary mx-10 focus:outline-none bg-white rounded-none border-none">
             <option disabled selected>
-              Pick one
+              Pick Department...
             </option>
             <option>CSE</option>
             <option>EEE</option>
@@ -72,11 +114,15 @@ const Library = () => {
             <option>Civil</option>
             <option>BBA</option>
           </select>
-          {/* <div className="mx-auto">
-            <button className="my-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-xl ">
-              Find Book
-            </button>
-          </div> */}
+          <form className="">
+            <input className="block w-[86%] mx-auto pl-4 my-4 py-2" type="text" placeholder="Enter book name..."/>
+            <input className="block w-[86%] mx-auto bg-white p-2 rounded-md" type="submit" value="Search"/>
+          </form>
+          <ul>
+          {
+            secondary.map(u=> <li>{u.courseName}</li>)
+          }
+          </ul>
         </div>
       </div>
     </div>

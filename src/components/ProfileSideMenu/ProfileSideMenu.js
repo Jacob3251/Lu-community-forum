@@ -61,6 +61,15 @@ const ProfileSideMenu = () => {
           <li className="hover:text-white bg-white ">
             <Link to="/profile">Messages</Link>
           </li>
+          <li className="hover:text-white bg-white ">
+            <Link to="/dept">Official Posts</Link>
+          </li>
+          <li className="hover:text-white bg-white ">
+            <Link to="/transport">Transport Posts</Link>
+          </li>
+          <li className="hover:text-white bg-white ">
+            <Link to="/library">Search Library</Link>
+          </li>
           {admin === true && (
             <li className="hover:text-white bg-white ">
               <Link to="/admin">Dashboard</Link>

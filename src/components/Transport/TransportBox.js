@@ -2,7 +2,7 @@ import React from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 const TransportBox = ({ Bus, Capacity, Route_name }) => {
   return (
-    <div className="">
+    <div className="bg-white rounded-md p-2">
       <h3 className="text-lg text-center my-3 font-bold">
         Route Name: {Route_name}
       </h3>

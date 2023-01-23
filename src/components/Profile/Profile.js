@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import Header1 from "../Shared/Header/Header";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
-import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsCameraFill, BsFillCameraFill } from "react-icons/bs";
-import {
-  faUserCircle,
-  faArrowRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Footer/Footer";
 import useSingleUser from "../../hooks/useSingleUser";
 import cover from "../../images/cover.jpg";
@@ -27,12 +17,18 @@ const Profile = () => {
   const [user, loading] = useAuthState(auth);
   const profile = useSingleUser(user?.email);
   const ap = useSingleUserAllPost(user?.email);
+  const [teacherData, setTeacherData] = useState(null);
   // const email = user?.email;
   const footerClass = " w-full";
   // console.log(userArray[1]);
   if (loading && Object.keys(profile).length === 0) {
     <div>Loading</div>;
   }
+  useEffect(() => {
+    fetch("http://localhost:9000/selectedTech/cse_1832020032@lus.ac.bd")
+      .then((res) => res.json())
+      .then((data) => setTeacherData(data));
+  }, []);
   return (
     <div className=" w-full  ">
       <div className="w-full md:w-[75%]  mx-auto">
@@ -66,7 +62,7 @@ const Profile = () => {
                 </div>
                 <div className="ml-5 hidden md:block">
                   <h3 className=" text-2xl font-bold text-black">
-                    Md. Nayeem Hasan Adil
+                    {profile[0]?.name}
                   </h3>
                   {/* follow button  */}
                   <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
@@ -80,12 +76,12 @@ const Profile = () => {
         {/* secondary name and follow button container becauser of positoning issue */}
         <div className="text-center md:hidden mt-[90px] w-full ">
           <h3 className=" text-2xl font-bold text-black overflow-x-hidden">
-            Md. Nayeem Hasan Adil
+            {profile[0].name}
           </h3>
           {/* follow button  */}
           <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
-                    Followers: 443
-                  </h3>
+            Followers: 443
+          </h3>
         </div>
         {/* Main contents of profile section */}
         <div className="mt-[80px] mb-[50px] md:mt-[180px]">
@@ -97,6 +93,7 @@ const Profile = () => {
               ></ProfileInfo>
               <ProfileBio
                 profile={profile[0]}
+                subscribedData={teacherData}
                 classes="p-5 bg-[#628e90] bg-opacity-70 rounded-xl"
               ></ProfileBio>
             </div>
@@ -105,26 +102,30 @@ const Profile = () => {
           )}
         </div>
         {/* User's own post section */}
-        {/* <div className="grid grid-cols-3 gap-5 bg-blue-500">
-          <div className="h-[50px] w-[50px] bg-red-500 ">1</div>
-          <div className="h-[50px] w-[50px] bg-red-500 ">2</div>
-          <div className="h-[50px] w-[50px] bg-red-500 ">3</div>
-          <div className="h-[50px] w-[50px] bg-red-500 ">4</div>
-          <div className="h-[50px] w-[50px] bg-red-500 ">5</div>
-        </div> */}
-        {!ap.postLoading && ap.allSinglePost.length !== 0 && <h3 className="text-3xl font-IndiFlower font-bold  my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">Posts</h3>}
+
+        {!ap.postLoading && ap.allSinglePost.length !== 0 && (
+          <h3 className="text-3xl font-IndiFlower font-bold  my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">
+            Posts
+          </h3>
+        )}
         <div>
-          
-          {
-            ap.postLoading && <div className="flex justify-center items-center">
+          {ap.postLoading && (
+            <div className="flex justify-center items-center">
               <RotatingSquare color="#628E90"></RotatingSquare>
             </div>
-          }
-          {
-            !ap.postLoading && ap.allSinglePost.length === 0? <div className="flex justify-center items-center">
-            <h3 className="text-3xl font-IndiFlower font-bold my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center"> No posts yet</h3>
-          </div>:ap.allSinglePost.map(singlePostData=>  <PostBox post={singlePostData} key={singlePostData._id}></PostBox>)
-          }
+          )}
+          {!ap.postLoading && ap.allSinglePost.length === 0 ? (
+            <div className="flex justify-center items-center">
+              <h3 className="text-3xl font-IndiFlower font-bold my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">
+                {" "}
+                No posts yet
+              </h3>
+            </div>
+          ) : (
+            ap.allSinglePost.map((singlePostData) => (
+              <PostBox post={singlePostData} key={singlePostData._id}></PostBox>
+            ))
+          )}
         </div>
       </div>
 

@@ -2,19 +2,18 @@ import React from "react";
 
 const NoticeBoxStudent = ({ id, link, title, number }) => {
   return (
-    <div className="w-full">
-      <div className="flex justify-between items-center">
-        <h3>{number}</h3>
-        <h3>{title}</h3>
-        <div className="flex space-x-4">
-          <button className="w-32 bg-blue-500 text-white p-3 font-medium tracking-wider rounded-sm hover:bg-[#0cabc7] transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
-            <a href={link} target="_blank">
-              Link
-            </a>
-          </button>
-        </div>
-      </div>
-      <div class="divider"></div>
+    <div className="flex bg-white my-5 px-2 py-2 justify-between items-center">
+      <h3>{number}</h3>
+      <h3>{title}</h3>
+
+      <a
+        href={link}
+        target="_blank"
+        alt="img"
+        className="w-32 flex justify-center items-center bg-[#628e90] scale-95 text-white p-3 font-medium tracking-wider rounded-md hover:bg-[#0cabc7] hover:scale-100 duration-200"
+      >
+        Link
+      </a>
     </div>
   );
 };

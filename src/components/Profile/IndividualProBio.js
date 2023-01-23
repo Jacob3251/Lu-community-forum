@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { SlPencil } from "react-icons/sl";
-const ProfileBio = ({ profile, classes, subscribedData }) => {
+const IndividualProBio = ({ profile, classes, subscribedData }) => {
   const [updater, setUpdater] = useState(false);
   const [bio, setBio] = useState("");
   console.log(subscribedData);
@@ -58,57 +58,8 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
           </form>
         )}
       </div>
-      <div
-        className={`${classes} mt-11 w-[80%] mx-auto font-pacifico text-white text-2xl font-bold hover:scale-105 duration-200 overflow-auto`}
-      >
-        <label
-          htmlFor="my-modal1"
-          className=" flex items-center justify-center  w-full text-lg"
-        >
-          <span className="">Update Subscription </span>
-          <SlPencil className=" ml-3"></SlPencil>
-        </label>
-      </div>
-
-      {/* Modal Start */}
-      <input type="checkbox" id="my-modal1" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box bg-[#628e90]">
-          <div className="relative">
-            <h3 className="text-center font-bold text-white text-2xl mt-5 mb-8">
-              Select Teachers
-            </h3>
-            <label
-              htmlFor="my-modal1"
-              className="absolute top-0 right-2 btn btn-circle btn-md"
-            >
-              X
-            </label>
-
-            {/* checkbox for dept */}
-
-            <div className="grid grid-cols-2 gap-5  overflow-auto">
-              {subscribedData?.notSubcribed.map((u) => (
-                <div
-                  key={u.id}
-                  className="flex flex-col rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200"
-                >
-                  <img
-                    className="w-[80%] h-[60%] mx-auto"
-                    alt="img"
-                    src={u.photoURL}
-                  ></img>
-                  <h3 className="text-center text-md font-bold ">{u.name}</h3>
-                  <h5 className="text-center text-sm"> {u.designation}</h5>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Modal End */}
     </div>
   );
 };
 
-export default ProfileBio;
+export default IndividualProBio;

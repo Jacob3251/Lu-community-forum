@@ -44,7 +44,7 @@ const Home = () => {
         <ImageBox links={links}></ImageBox> */}
         <HashLink smooth to="/#top" className="">
           <CgArrowUpO
-            className={`fixed shadow-md shadow-white bottom-[5%] right-[8%] md:right-[48%] h-[50px] hover:text-[#628E90] hover:bg-white hover:scale-125  bg-[#628E90] text-white rounded-full text-[50px]`}
+            className={`fixed shadow-md animate-bounce400 shadow-white bottom-[5%] right-[8%] md:right-[48%] h-[50px] hover:text-[#628E90] hover:bg-white hover:scale-125  bg-[#628E90] text-white rounded-full text-[50px]`}
           ></CgArrowUpO>
         </HashLink>
         {posts.length === 0 ? (

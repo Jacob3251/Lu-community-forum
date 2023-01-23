@@ -11,7 +11,7 @@ import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 const Dept = () => {
   const [user] = useAuthState(auth);
-  const [postType, setPostType] = useState(0);
+  const [postType, setPostType] = useState(1);
   const [newPostUniversity, setNewPostUniversity] = useState([]);
   const [newPostDepartment, setNewPostDepartment] = useState([]);
   const [newPostTeacher, setNewPostTeacher] = useState([]);
@@ -33,76 +33,32 @@ const Dept = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto">
-      <div className="sticky top-0 z-10">
-        {/* <Header></Header> */}
-        <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
-          {/* header left side */}
-          <div className="flex items-center">
-            {/* <div>
-              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
-            </div> */}
-            <div className="text-lg text-white font-semibold ml-2">
-              LU Community Forum
-            </div>
+    <div className="w-full h-[100vh] overflow-scroll mx-auto">
+      {/* Toggle Buttons Below */}
+      <div className="block md:inline-block  md:ml-[10%]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-4 place-content-center place-items-center">
+          <div
+            onClick={() => setPostType(1)}
+            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+          >
+            University
           </div>
-          {/* header Links right side */}
-          <div className="flex space-x-2 items-center">
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/home">Homepage</Link>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <div className="dropdown dropdown-hover">
-                <label tabindex={0} className="">
-                  <Link to="/home">Department</Link>
-                </label>
-                <ul
-                  tabindex={0}
-                  className="dropdown-content bg-blue-400 menu p-2 shadow rounded-box w-52"
-                >
-                  <li>
-                    <div
-                      className="form-control w-full max-w-xs"
-                      onClick={() => setPostType(1)}
-                    >
-                      University Posts
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="form-control w-full max-w-xs"
-                      onClick={() => setPostType(2)}
-                    >
-                      Department Posts
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="form-control w-full max-w-xs"
-                      onClick={() => setPostType(3)}
-                    >
-                      Teacher Posts
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/library">Library</Link>
-            </div>
-            <div className="text-base font-medium text-white font-serif p-1 rounded-lg">
-              <Link to="/transport">Transport</Link>
-            </div>
-            <div className="text-base text-white font-medium  font-serif p-1 rounded-lg">
-              <ProfileSideMenu></ProfileSideMenu>
-            </div>
+          <div
+            onClick={() => setPostType(2)}
+            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+          >
+            Department
+          </div>
+          <div
+            onClick={() => setPostType(3)}
+            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+          >
+            Teacher
           </div>
         </div>
       </div>
-      {/* teacher button remainining  +++++++++++++++++++++++++++++++++++ */}
 
       <div className=" my-6 rounded-2xl p-2 w-4/5 mx-auto">
-        {postType === 0 && <DeptCarosel className=""></DeptCarosel>}
         {postType === 1 && (
           <div>
             {newPostUniversity.map((u) => (

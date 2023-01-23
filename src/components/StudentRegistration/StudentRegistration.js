@@ -56,6 +56,7 @@ const StudentRegistration = ({ email, password, userType }) => {
       batchNumber: batchNumber,
       dept: deptSelect,
       userType: userType,
+      subscribedTeachers: [1, 2, 3],
     };
 
     createUserWithEmailAndPassword(email, password).then(async () => {
