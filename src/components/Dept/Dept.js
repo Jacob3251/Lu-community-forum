@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Header from "../Header/Header";
-import { Link } from "react-router-dom";
-import DeptCarosel from "../DeptCarosel/DeptCarosel";
-import DepartmentPost from "../SelectedPost/DepartmentPost/DepartmentPost";
-import UniversityPost from "../SelectedPost/UniversityPost/UniversityPost";
-import TeacherPost from "../SelectedPost/TeacherPost/TeacherPost";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
-import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
+
+const SpecificUniversityPost = ({ title, content, email, type }) => {
+  return (
+    <div className="bg-white my-5">
+      <h3>{title}</h3>
+      <h6>
+        <i>Type:{type}</i>
+      </h6>
+      <p>{content}</p>
+    </div>
+  );
+};
+
 const Dept = () => {
   const [user] = useAuthState(auth);
   const [postType, setPostType] = useState(1);
@@ -30,7 +36,7 @@ const Dept = () => {
         setNewPostDepartment(data[1]);
         setNewPostTeacher(data[2]);
       });
-  }, []);
+  }, [newPostUniversity, newPostDepartment, newPostTeacher]);
 
   return (
     <div className="w-full h-[100vh] overflow-scroll mx-auto">
@@ -61,41 +67,15 @@ const Dept = () => {
       <div className=" my-6 rounded-2xl p-2 w-4/5 mx-auto">
         {postType === 1 && (
           <div>
-            {newPostUniversity.map((u) => (
+            {newPostUniversity.reverse().map((u) => (
               // <p>{u.content}</p>
-              <div
-                className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
+              <SpecificUniversityPost
                 key={u._id}
-              >
-                <div className="w-5/6 mx-auto text-left pb-5">
-                  <h2 className="pt-8 pb-4 font-bold text-lg">{u.title}</h2>
-                  <div className="">
-                    <p className="text-xs">{u.content}</p>
-                  </div>
-                  <div className=" py-3">
-                    <div className="flex justify-between mb-2">
-                      <div className="text-gray-700">
-                        {" "}
-                        20 Likes . 10 dislikes
-                      </div>
-                      <div className="text-gray-700"> 60 comments</div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex  ">
-                        <button className="btn btn-ghost">
-                          <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
-                        </button>
-                        <button className="btn btn-ghost">
-                          <HandThumbDownIcon className="h-6 w-6 mr-2" /> Dislike
-                        </button>
-                      </div>
-                      <div>
-                        <button className="btn btn-ghost">Comment</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                title={u.title}
+                content={u.content}
+                email={u.email}
+                type={u.type}
+              ></SpecificUniversityPost>
               // <UniversityPost posts={u} key={++x}></UniversityPost>
             ))}
           </div>
