@@ -28,11 +28,11 @@ const Alumni = () => {
     },
   ];
   return (
-    <div className="h-[100vh] overflow-auto w-[80%] mx-auto">
+    <div className="h-full overflow-auto w-[80%] mx-auto">
       <h1 className="font-bold text-center text-4xl font-pacifico my-10">
         Our Respected Alumni's
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {alumnis.map((u) => (
           <AlumniBox
             alumniName={u.alumniName}

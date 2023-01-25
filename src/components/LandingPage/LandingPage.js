@@ -16,6 +16,7 @@ import ToastComponent from "../Shared/ToastComponent/ToastComponent";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
+import ReactImageMagnify from "react-image-magnify";
 const LandingPage = () => {
   const [user, loading] = useAuthState(auth);
   const [sendEmailVerification, sending, error] =
@@ -50,22 +51,22 @@ const LandingPage = () => {
   if (user?.emailVerified) {
     navigate("/home");
   }
-
+  const footerClass = "";
   return (
     <div className="relative">
-      <div className="fixed bottom-5 right-5 bg-[#3c2317] rounded-md z-50 p-5">
-        <div className=" flex  space-x-2 items-center">
-          <div className="text-base  rounded-xl  p-4  text-white   font-bold hover:scale-125 duration-100 px-3">
+      <div className="fixed bottom-2 right-[13%] md:bottom-5 md:right-5 bg-[#628e90] rounded-3xl z-50 p-2 shadow-black shadow-md">
+        <div className="flex flex-row justify-center space-x-2 items-center">
+          <div className="text-base  rounded-xl hover:bg-[#3c2317] py-2 bg-white scale-95 hover:scale-100 hover:text-white text-[#3c2317]   font-bold  duration-200 px-3">
             <HashLink smooth to="/#about">
               About
             </HashLink>
           </div>
-          <div className="text-base  rounded-xl  p-4 text-white   font-bold hover:scale-125 duration-100 px-3">
+          <div className="text-base  rounded-xl hover:bg-[#3c2317] py-2 bg-white scale-95 hover:scale-100 hover:text-white text-[#3c2317]  font-bold  duration-200 px-3">
             <HashLink smooth to="/#location">
               Location
             </HashLink>
           </div>
-          <div className="text-base  rounded-xl  p-4 text-white   font-bold hover:scale-125 duration-100 px-3">
+          <div className="text-base  rounded-xl hover:bg-[#3c2317] py-2 bg-white scale-95 hover:scale-100 hover:text-white text-[#3c2317]  font-bold  duration-200 px-3">
             <HashLink smooth to="/#contact">
               Contact
             </HashLink>
@@ -74,23 +75,11 @@ const LandingPage = () => {
       </div>
       <div className="">
         {verifyError}
-        {/* headerpart */}
-        <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
-          {/* header left side */}
-          <div className="flex items-center">
-            {/* <div>
-              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
-            </div> */}
-            <div className="text-lg text-white font-semibold ml-2">
-              LU Community Forum
-            </div>
-          </div>
-          {/* header Links right side */}
-        </div>
+
         {/* Body part */}
         <div>
           {/* carosel part */}
-          <div className=" bg-white ">
+          <div className=" bg-white p-0">
             <Carousel
               autoPlay
               infiniteLoop
@@ -131,13 +120,13 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
             {/* hero part */}
             <div className="w-5/6 mx-auto">
               <div className="hero py-5 ">
-                <div className="hero-content flex-col lg:flex-row ">
+                <div className="hero-content flex-col-reverse lg:flex-row ">
                   <img
                     src={logo1}
-                    className="max-w-sm rounded-lg shadow-2xl mr-5"
+                    className="md:w-1/3 w-full rounded-lg shadow-2xl md:mr-5"
                   />
-                  <div>
-                    <h1 className="text-5xl font-bold">
+                  <div className="md:w-2/3">
+                    <h1 className="text-3xl mt-10 md:mt-0 md:text-5xl font-bold">
                       One and all social site for you
                     </h1>
                     <p className="py-6">
@@ -145,7 +134,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
                       they are students or teachers. We provide post for
                       individual Departments, Teachers and also for students
                     </p>
-                    <button className="w-32 bg-blue-500 text-white p-3 font-medium tracking-wider rounded-sm hover:bg-[#0cabc7] transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+                    <button className="w-full md:w-1/4 my-2 py-3 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md">
                       <Link to="/register">Explore</Link>
                     </button>
                   </div>
@@ -156,7 +145,7 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
           {/* features card */}
           <div className="w-full mx-auto  py-5 ">
             <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-medium  my-5 text-gray-500">
+              <h3 className="text-2xl lg:text-3xl font-bold my-2 md:my-5 text-[#3c2317]">
                 Website Features
               </h3>
             </div>
@@ -227,20 +216,21 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
           {/* location */}
           <div className="py-10 bg-slate-100" id="location">
             <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-medium  text-gray-500">
+              <h3 className="text-2xl lg:text-3xl font-bold  my-2 md:my-5 text-[#3c2317]">
                 Campus Location
               </h3>
             </div>
             <div className="divider my-8"></div>
-            <img src={map} alt="location" className="mx-auto" />
+            <div className="w-full ">
+              <img src={map} className="w-full" alt="" />
+            </div>
           </div>
           {/* contact form */}
           <div className="bg-white py-5" id="contact">
-            <p className="text-center text-2xl lg:text-3xl font-medium  my-5 text-gray-500">
+            <p className="text-2xl lg:text-3xl font-bold  my-2 md:my-5 text-[#3c2317] text-center">
               Contact Us
             </p>
             <div className="divider pt-5"></div>
-            {/* <hr className="w-20 mx-auto mb-10 border-black" /> */}
             <div className="flex flex-col items-center justify-center mt-8 mb-10">
               <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 mb-4 md:mb-6">
                 <input
@@ -259,15 +249,14 @@ https://www.lus.ac.bd/wp-content/uploads/2019/07/3-745x385.jpg"
                 name=""
                 placeholder="Your Message"
               ></textarea>
-              <button className="w-52 bg-blue-500 text-white p-3 font-medium tracking-wider rounded-sm hover:bg-[#0cabc7] transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none">
+              <button className="px-3 py-2 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md">
                 Send Message
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      <ToastContainer limit={1} />
+      <Footer footerClass={footerClass}></Footer>
     </div>
   );
 };

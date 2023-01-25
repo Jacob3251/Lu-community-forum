@@ -40,10 +40,10 @@ function App() {
   return (
     // inside routes }
     <div
-      className="App relative "
-      style={{
-        backgroundImage: `url("https://images.unsplash.com/photo-1560780552-ba54683cb263?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")`,
-      }}
+      className="App relative bg-slate-200"
+      // style={{
+      //   backgroundImage: `url("https://images.unsplash.com/photo-1560780552-ba54683cb263?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")`,
+      // }}
     >
       <Header className=""></Header>
       <AnimatePresence>
@@ -70,7 +70,10 @@ function App() {
 
           <Route path="/transport" element={<Transport></Transport>}></Route>
           <Route path="/gallery" element={<Gallery></Gallery>}></Route>
-          <Route path="/userProfile/:id" element={<IndividualProfile></IndividualProfile>}></Route>
+          <Route
+            path="/userProfile/:id"
+            element={<IndividualProfile></IndividualProfile>}
+          ></Route>
           <Route
             path="/careerblogs"
             element={<CareerBlogs></CareerBlogs>}

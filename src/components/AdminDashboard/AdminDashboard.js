@@ -19,7 +19,8 @@ import {
 import usePost from "../../hooks/usePost";
 import useAllStats from "../../hooks/useAllStats";
 import CustomPieChart from "./CustomPieChart";
-
+import { FcBusinessman } from "react-icons/fc";
+import { TfiImage } from "react-icons/tfi";
 const AdminDashboard = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -37,71 +38,93 @@ const AdminDashboard = () => {
   //     return navigate("/home");
   //   }
   return (
-    <div className="w-full h-[100vh] overflow-auto">
+    <div className="w-full">
       {/* body start */}
-      <div className="w-[75%] mx-auto mt-20 flex flex-col xl:grid xl:grid-cols-4 xl:gap-2">
+      <div className="w-[90%] mx-auto mt-20 grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
         {/* admin left navigation */}
 
-        <div className=" md:col-span-1 sticky top-2 z-30">
-          <div className="bg-[#628e90]  px-5 mx-2 py-10 rounded-xl">
-            <div className="flex justify-center items-center">
+        <div className=" lg:col-span-2 xl:col-span-2 z-30">
+          <div className="bg-[#628e90]  px-5 mx-2 py-2 rounded-xl">
+            <div
+              className={`flex justify-center items-center ${
+                showOptions ? "flex-row" : "flex-col pb-5"
+              }`}
+            >
               <h3 className="text-center text-white  font-semibold text-2xl my-5">
                 Admin Dashboard
               </h3>
               <button
-                className="text-3xl ml-2 text-white animate-bounce400"
+                className={`text-2xl ml-2 text-white ${
+                  showOptions ? "" : "animate-bounce400"
+                } `}
                 onClick={() => setShowOptions(!showOptions)}
               >
                 {!showOptions ? (
                   <FaAngleDoubleDown></FaAngleDoubleDown>
                 ) : (
-                  <FaAngleDoubleUp></FaAngleDoubleUp>
+                  <p className="rounded-full px-3 py-1 text-lg bg-gray-400 hover:bg-red-600 duration-200 scale-95 font-bold hover:scale-100">
+                    X
+                  </p>
                 )}
               </button>
             </div>
             {showOptions && (
-              <div className="grid grid-cols-1 gap-5  md:grid-cols-1 p-5 md:px-5 items-center justify-center ">
+              <div className="grid grid-cols-1 gap-1  md:grid-cols-1 p-2 md:px-5 items-center justify-center ">
                 <div
-                  className="bg-white flex justify-center items-center rounded-lg py-2 hover:scale-110 duration-200  md:my-2"
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
                   onClick={() => setContent(0)}
                 >
-                  <BiArchive className="mr-3 text-lg"></BiArchive>
-                  Overview
+                  <BiArchive className="mr-3 text-md"></BiArchive>
+                  <p className="text-md font-bold">Overview</p>
                 </div>
                 <div
-                  className="bg-white flex justify-center items-center rounded-lg py-2 hover:scale-110 duration-200  md:my-2 "
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
                   onClick={() => setContent(1)}
                 >
-                  <FaSchool className="mr-3 text-lg"></FaSchool>
-                  University Post
+                  <FaSchool className="mr-3 text-xl"></FaSchool>
+                  <p className="text-md font-bold">University Post</p>
                 </div>
                 <div
-                  className="bg-white flex justify-center items-center rounded-lg py-2 hover:scale-110 duration-200  md:my-2 "
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg px-2 py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
                   onClick={() => setContent(2)}
                 >
-                  <FaSign className="mr-3 text-lg"></FaSign>
-                  Department Post
+                  <FaSign className="mr-3 text-xl"></FaSign>
+                  <p className="text-md font-bold">Department Post</p>
                 </div>
                 <div
-                  className="bg-white flex justify-center items-center rounded-lg py-2 hover:scale-110 duration-200  md:my-2 "
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
                   onClick={() => setContent(3)}
                 >
-                  <FaBus className="mr-3 text-lg"></FaBus>
-                  Transport Notice
+                  <FaBus className="mr-3 text-xl"></FaBus>
+                  <p className="text-md font-bold">Transport Notice</p>
                 </div>
                 <div
-                  className="bg-white flex justify-center items-center rounded-lg py-2 hover:scale-110 duration-200  md:my-2 "
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
                   onClick={() => setContent(4)}
                 >
-                  <FaPencilAlt className="mr-3 text-lg"></FaPencilAlt>
-                  My Posts
+                  <FaPencilAlt className="mr-3 text-xl"></FaPencilAlt>
+                  <p className="text-md font-bold">My posts</p>
+                </div>
+                <div
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
+                  onClick={() => setContent(5)}
+                >
+                  <FcBusinessman className="mr-3 text-xl"></FcBusinessman>
+                  <p className="text-md font-bold">Alumni Posts</p>
+                </div>
+                <div
+                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
+                  onClick={() => setContent(6)}
+                >
+                  <TfiImage className="mr-3 text-lg"></TfiImage>
+                  <p className="text-md font-bold">Gallery Post</p>
                 </div>
               </div>
             )}
           </div>
         </div>
         {/* Main Bodypart */}
-        <div className=" md:col-span-3 ">
+        <div className=" lg:col-span-4  xl:col-span-5">
           {content === 0 && (
             <div className="w-5/6 p-4 mx-auto bg-[#628e90] my-5">
               {loading ? (
@@ -153,12 +176,9 @@ const AdminDashboard = () => {
           {content === 2 && <DepartmentPostManager></DepartmentPostManager>}
           {content === 3 && <TransportNoticeManager></TransportNoticeManager>}
           {content === 4 && <TeacherPostManager></TeacherPostManager>}
+          {content === 5 && <TeacherPostManager></TeacherPostManager>}
+          {content === 6 && <TeacherPostManager></TeacherPostManager>}
         </div>
-
-        {/* right bottom chat bodypart */}
-        {/* <div className="w-1/5 h-14 rounded-2xl fixed flex justify-center items-center bottom-4 right-2 bg-blue-500 px-10 text-xl font-semibold text-white">
-          Context api chat will go here
-        </div> */}
       </div>
     </div>
   );

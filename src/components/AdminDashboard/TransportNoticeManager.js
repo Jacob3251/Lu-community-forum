@@ -41,9 +41,9 @@ const TransportNoticeManager = () => {
   //   const [post] = useUniversityPost();
   return (
     <div>
-      <div className="w-5/6 mx-auto">
-        <h3 className="text-center text-3xl my-5 font-bold text-gray-700 ">
-          Create Transport Post
+      <div className="w-full">
+        <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
+          Transport Notice Submission Form
         </h3>
         <div className="divider"></div>
         <form onSubmit={handleSubmit} ref={postInput} className="w-full">
@@ -51,23 +51,23 @@ const TransportNoticeManager = () => {
             type="text"
             name="title"
             placeholder="Enter Notice Title"
-            className="w-full h-14 bg-gray-200 my-2 pl-8 text-xl"
+            className="w-full py-3 my-2 rounded-md pl-3"
           />
           <input
             type="text"
             name="link"
             placeholder="Enter Link"
-            className="w-full h-14 bg-gray-200 my-2 pl-8 text-xl"
+            className="w-full py-3 my-2 rounded-md pl-3"
           />
           <input
             type="submit"
             value="Submit"
-            className="w-full h-14 text-xl font-semibold text-white bg-blue-600 my-2 hover:translate-y-[-4px] hover:bg-blue-400 duration-700"
+            className="w-full my-2 py-3 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
           />
         </form>
       </div>
-      <div className="w-5/6 mx-auto pt-10">
-        <h3 className="text-center text-3xl my-5 font-bold text-gray-700 ">
+      <div className="w-[85%] px-14 mx-auto pt-10 pb-8 mt-5 rounded-2xl bg-[#628e90]">
+        <h3 className="text-white text-2xl font-bold text-center mb-1 ">
           Manage Transport Posts
         </h3>
         <div className="divider"></div>

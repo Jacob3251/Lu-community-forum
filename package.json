@@ -22,6 +22,7 @@
     "react-firebase-hooks": "^5.0.3",
     "react-gallery-carousel": "^0.3.0",
     "react-icons": "^4.7.1",
+    "react-image-magnify": "^2.7.4",
     "react-loader-spinner": "^5.3.4",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.4.5",

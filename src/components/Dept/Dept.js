@@ -3,14 +3,76 @@ import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 
-const SpecificUniversityPost = ({ title, content, email, type }) => {
+const SpecificUniversityPost = ({
+  title,
+  name,
+  content,
+  email,
+  type,
+  time,
+}) => {
   return (
-    <div className="bg-white my-5">
-      <h3>{title}</h3>
-      <h6>
-        <i>Type:{type}</i>
-      </h6>
-      <p>{content}</p>
+    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
+      <h3 className="font-bold text-2xl">{title}</h3>
+      <div className="flex flex-col my-3">
+        <b className="text-[#3c2317] text-lg">Type:{type}</b>
+        {/* Time will go below here ============================ */}
+        <i className="text-xs">Published at: {time}</i>
+      </div>
+      <p>
+        Published by: <i>{name}</i>
+      </p>
+      <p className="mb-5">{content}</p>
+    </div>
+  );
+};
+const SpecificDepartmentPost = ({
+  id,
+  title,
+  name,
+  dept,
+  content,
+  email,
+  time,
+  type,
+}) => {
+  return (
+    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
+      <h3 className="font-bold text-2xl">{title}</h3>
+      <div className="flex flex-col my-3">
+        <b className="text-[#3c2317] text-lg">Type: {type}</b>
+        {/* Time will go below here ============================ */}
+        <i className="text-xs">Published at: {time}</i>
+      </div>
+      <p className="text-xs">
+        Published By: <i>{name}</i>
+      </p>
+      <p className="mb-5">{content}</p>
+    </div>
+  );
+};
+const SpecificTeacherPost = ({
+  title,
+  name,
+  id,
+  dept,
+  content,
+  email,
+  time,
+  type,
+}) => {
+  return (
+    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
+      <h3 className="font-bold text-2xl">{title}</h3>
+      <div className="flex flex-col my-3">
+        <b className="text-[#3c2317] text-lg">Type:{type}</b>
+        {/* Time will go below here ============================ */}
+        <i className="text-xs">Posted at: {time}</i>
+      </div>
+      <p className="text-xs">
+        Published By: <i>{name}</i>
+      </p>
+      <p className="mb-5">{content}</p>
     </div>
   );
 };
@@ -39,25 +101,37 @@ const Dept = () => {
   }, [newPostUniversity, newPostDepartment, newPostTeacher]);
 
   return (
-    <div className="w-full h-[100vh] overflow-scroll mx-auto">
+    <div className="w-full  mx-auto">
       {/* Toggle Buttons Below */}
       <div className="block md:inline-block  md:ml-[10%]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-4 place-content-center place-items-center">
           <div
             onClick={() => setPostType(1)}
-            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+            className={`py-3 px-2 ${
+              postType === 1
+                ? "bg-[#3c2317] hover:bg-[#628e90]"
+                : "bg-[#628e90] hover:bg-[#3c2317]"
+            }   text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
           >
             University
           </div>
           <div
             onClick={() => setPostType(2)}
-            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+            className={`py-3 px-2 ${
+              postType === 2
+                ? "bg-[#3c2317] hover:bg-[#628e90]"
+                : "bg-[#628e90] hover:bg-[#3c2317]"
+            }  text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
           >
             Department
           </div>
           <div
             onClick={() => setPostType(3)}
-            className="py-3 px-2 bg-[#628e90] hover:bg-[#3c2317] text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md"
+            className={`py-3 px-2 ${
+              postType === 3
+                ? "bg-[#3c2317] hover:bg-[#628e90]"
+                : "bg-[#628e90] hover:bg-[#3c2317]"
+            }  text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
           >
             Teacher
           </div>
@@ -72,9 +146,11 @@ const Dept = () => {
               <SpecificUniversityPost
                 key={u._id}
                 title={u.title}
+                name={u.name ? u.name : null}
                 content={u.content}
                 email={u.email}
                 type={u.type}
+                time={u.time ? u.time : null}
               ></SpecificUniversityPost>
               // <UniversityPost posts={u} key={++x}></UniversityPost>
             ))}
@@ -90,47 +166,25 @@ const Dept = () => {
                 <option value="cse">Department Post</option>
                 <option value="cse">Computer Science</option>
                 <option value="eee">Electrical Enginnering</option>
-                <option value="ce">Civil Enginnering</option>
+                {/* <option value="ce">Civil Enginnering</option>
                 <option value="eng">English</option>
                 <option value="arch">Architecture</option>
-                <option value="bba">Busincess</option>
+                <option value="bba">Busincess</option> */}
               </select>
             </div>
             {newPostDepartment.map((u) => (
               // <p>{u.content}</p>
-              <div
-                className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
+              <SpecificDepartmentPost
                 key={u._id}
-              >
-                <div className="w-5/6 mx-auto text-left pb-5">
-                  <h2 className="pt-8 pb-4 font-bold text-lg">{u.title}</h2>
-                  <div className="">
-                    <p className="text-xs">{u.content}</p>
-                  </div>
-                  <div className=" py-3">
-                    <div className="flex justify-between mb-2">
-                      <div className="text-gray-700">
-                        {" "}
-                        20 Likes . 10 dislikes
-                      </div>
-                      <div className="text-gray-700"> 60 comments</div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex  ">
-                        <button className="btn btn-ghost">
-                          <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
-                        </button>
-                        <button className="btn btn-ghost">
-                          <HandThumbDownIcon className="h-6 w-6 mr-2" /> Dislike
-                        </button>
-                      </div>
-                      <div>
-                        <button className="btn btn-ghost">Comment</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                title={u.title}
+                name={u.name}
+                dept={u.dept}
+                content={u.content}
+                email={u.email}
+                type={u.type}
+                id={u._id}
+                time={u.time ? u.time : null}
+              ></SpecificDepartmentPost>
               // <UniversityPost posts={u} key={++x}></UniversityPost>
             ))}
           </div>
@@ -156,48 +210,17 @@ const Dept = () => {
 
             {newPostTeacher.map((u) => (
               // <p>{u.content}</p>
-              <div
-                className="bg-white shadow-lg rounded-2xl mx-auto my-5  "
+              <SpecificTeacherPost
                 key={u._id}
-              >
-                {/* top part  */}
-                <div className="w-5/6 mx-auto">
-                  <div className="flex pt-6 pb-4">
-                    <div className="">
-                      <div className="font-bold text-lg">{u.teacherName}</div>
-                    </div>
-                  </div>
-                </div>
-                {/* content part */}
-                <div className="w-5/6 mx-auto text-left pb-5">
-                  <h3 className="font-medium text-md">{u.title}</h3>
-                  <div className="mt-4">
-                    <p className="text-xs">{u.content}</p>
-                  </div>
-                  <div className=" py-3">
-                    <div className="flex justify-between mb-2">
-                      <div className="text-gray-700">
-                        {" "}
-                        20 Likes . 10 dislikes
-                      </div>
-                      <div className="text-gray-700"> 60 comments</div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex  ">
-                        <button className="btn btn-ghost">
-                          <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
-                        </button>
-                        <button className="btn btn-ghost">
-                          <HandThumbDownIcon className="h-6 w-6 mr-2" /> Dislike
-                        </button>
-                      </div>
-                      <div>
-                        <button className="btn btn-ghost">Comment</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                name={u.name}
+                title={u.title}
+                id={u._id}
+                dept={u.dept}
+                content={u.content}
+                email={u.email}
+                type={u.type}
+                time={u.time ? u.time : null}
+              ></SpecificTeacherPost>
               // <UniversityPost posts={u} key={++x}></UniversityPost>
             ))}
           </div>
