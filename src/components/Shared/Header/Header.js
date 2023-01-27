@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { FaStream } from "react-icons/fa";
 import "./Header.css";
-import auth from "../../../firebase.init";
+import { auth } from "../../../firebase.init";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
 import ProfileSideMenu from "../../ProfileSideMenu/ProfileSideMenu";

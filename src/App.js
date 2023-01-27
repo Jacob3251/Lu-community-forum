@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LandingPage from "./components/LandingPage/LandingPage";
-import auth from "./firebase.init";
+import { auth } from "./firebase.init";
 import Demo from "./components/Demo/Demo";
 import { AnimatePresence } from "framer-motion";
 import ForgotEmail from "./components/ForgotEmail/ForgotEmail";

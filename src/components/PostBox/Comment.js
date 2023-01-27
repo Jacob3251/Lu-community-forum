@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BsArrowRightCircleFill } from "react-icons/bs";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import SingleComment from "./SingleComment";
 import { v4 } from "uuid";
 const Comment = ({ post }) => {

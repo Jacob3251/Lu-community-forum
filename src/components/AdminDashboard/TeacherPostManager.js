@@ -3,7 +3,7 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import useUniversityPost from "../../hooks/useUniversityPost";
 import { CiPen, CiTrash } from "react-icons/ci";
 const TeacherPostBox = ({

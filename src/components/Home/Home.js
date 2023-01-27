@@ -1,5 +1,5 @@
 import React from "react";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HashLink } from "react-router-hash-link";
 import PostBox from "../PostBox/PostBox";

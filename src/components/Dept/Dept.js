@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 

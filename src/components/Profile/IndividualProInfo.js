@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { SlPencil } from "react-icons/sl";
 import { useParams } from "react-router-dom";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 
 const IndividualProInfo = ({ profile, classes }) => {
   const handleUpdateProfile = () => {

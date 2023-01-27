@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Header1 from "../Shared/Header/Header";
 import { PencilSquareIcon } from "@heroicons/react/24/solid";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ThreeDots } from "react-loader-spinner";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import useCommenter from "../../hooks/useCommenter";
 
 const SingleComment = ({ item, commenter, postId }) => {

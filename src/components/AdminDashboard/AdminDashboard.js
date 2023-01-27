@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UniversityPostManager from "./UniversityPostManager";

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CiPen, CiTrash } from "react-icons/ci";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import useUniversityPost from "../../hooks/useUniversityPost";
 const DepartmentPostBox = ({
   title,

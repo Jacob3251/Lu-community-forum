@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import Modal from "../Modal/Modal";
 const Demo = () => {
   const [user] = useAuthState(auth);

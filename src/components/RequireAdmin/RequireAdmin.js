@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import Spinner from "../Spinner/Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

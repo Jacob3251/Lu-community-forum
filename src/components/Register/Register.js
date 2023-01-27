@@ -12,7 +12,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { HashLink } from "react-router-hash-link";

@@ -13,7 +13,7 @@ import {
   useSendEmailVerification,
 } from "react-firebase-hooks/auth";
 import ToastComponent from "../Shared/ToastComponent/ToastComponent";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import ReactImageMagnify from "react-image-magnify";

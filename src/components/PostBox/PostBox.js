@@ -6,7 +6,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import Comment from "./Comment";
 
 const PostBox = ({ post }) => {
@@ -63,17 +63,17 @@ const PostBox = ({ post }) => {
   const handleDelete = () => {
     const found = window.confirm("Do you want to delete your post?");
     console.log(found);
-    if(found){
+    if (found) {
       fetch(`http://localhost:9000/generalposts/${_id}`, {
-      method: "DELETE", // or 'PUT'
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
+        method: "DELETE", // or 'PUT'
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
   // useEffect(() => {

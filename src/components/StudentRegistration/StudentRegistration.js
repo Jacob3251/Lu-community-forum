@@ -4,7 +4,7 @@ import {
   useSendEmailVerification,
 } from "react-firebase-hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
-import auth from "../../firebase.init";
+import { auth } from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
 const StudentRegistration = ({ email, password, userType }) => {
   const [phoneNumber, setPhoneNumber] = useState("");

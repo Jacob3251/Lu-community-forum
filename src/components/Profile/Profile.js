@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import { auth, storage } from "../../firebase.init";
 import { BsCameraFill, BsFillCameraFill } from "react-icons/bs";
 import Footer from "../Footer/Footer";
 import useSingleUser from "../../hooks/useSingleUser";
@@ -11,6 +11,9 @@ import ProfileBio from "./ProfileBio";
 import useSingleUserAllPost from "../../hooks/useSingleUserAllPost";
 import PostBox from "../PostBox/PostBox";
 import { RotatingSquare } from "react-loader-spinner";
+import { FaUpload } from "react-icons/fa";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
 const Profile = () => {
   const [userArray, setUserArray] = useState([]);
   // const [profile, setProfile] = useState({});
@@ -18,6 +21,50 @@ const Profile = () => {
   const profile = useSingleUser(user?.email);
   const ap = useSingleUserAllPost(user?.email);
   const [teacherData, setTeacherData] = useState(null);
+
+  // Profile Picture File
+  const [profilePictureFile, setProfilePictureFile] = useState(null);
+  const [imglinkProfilePic, setimglinkProfilePic] = useState("");
+  const uploadprofilefile = () => {
+    console.log(profile);
+    if (profilePictureFile == null) return;
+    console.log("func ran");
+    const fileRef = ref(
+      storage,
+      `profilePictureImages/${
+        profile[0]?.email + "===" + profilePictureFile.name + v4()
+      }`
+    ); //folder in firebase storage for uploded image
+    uploadBytes(fileRef, profilePictureFile).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        alert("img added");
+        setimglinkProfilePic(url);
+      });
+    });
+  };
+
+  // Cover Picture File
+
+  const [coverPictureFile, setCoverPictureFile] = useState(null);
+  const [imglinkCoverPic, setimglinkCoverPic] = useState("");
+  const uploadcoverfile = () => {
+    console.log(profile);
+    if (coverPictureFile == null) return;
+    console.log("func ran");
+    const fileRef = ref(
+      storage,
+      `coverPictureImages/${
+        profile[0]?.email + "===" + coverPictureFile.name + v4()
+      }`
+    ); //folder in firebase storage for uploded image
+    uploadBytes(fileRef, coverPictureFile).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        alert("img added");
+        setimglinkCoverPic(url);
+      });
+    });
+  };
+
   // const email = user?.email;
   const footerClass = " w-full";
   // console.log(userArray[1]);
@@ -40,13 +87,16 @@ const Profile = () => {
             {/* edit cover img button below */}
             <div className=" absolute bottom-[5%] right-[12%]">
               <div className="bg-[#FFFDD0] p-2 rounded-md text-xl inline-block">
-                <button className="flex justify-center items-center">
+                <label
+                  htmlFor="coverpic-modal"
+                  className="flex justify-center items-center"
+                >
                   <BsCameraFill className="lg:mr-2"></BsCameraFill>
                   <span className="lg:inline-block hidden">Edit cover pic</span>
-                </button>
+                </label>
               </div>
             </div>
-            {/* Info part holder */}
+            {/* Info part holder where profile pic resides*/}
             <div className="absolute bottom-[-18%] md:bottom-[-42%] left-[31%]  sm:left-[40%] md:left-[10%] ">
               {/* profile image */}
               <div className="flex md:flex-row flex-col justify-center items-center">
@@ -56,9 +106,13 @@ const Profile = () => {
                     className="w-full h-full rounded-full"
                     alt="profile picture"
                   />
-                  <button className="bg-white text-black p-1 rounded-full text-3xl absolute bottom-2 right-1">
+
+                  <label
+                    htmlFor="profilepic-modal"
+                    className="bg-white text-black p-1 rounded-full text-3xl absolute bottom-2 right-1"
+                  >
                     <BsFillCameraFill></BsFillCameraFill>
-                  </button>
+                  </label>
                 </div>
                 <div className="ml-5 hidden md:block">
                   <h3 className=" text-2xl font-bold text-black">
@@ -128,7 +182,62 @@ const Profile = () => {
           )}
         </div>
       </div>
+      {/* Modal for updating profile pic */}
+      <input type="checkbox" id="profilepic-modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="profilepic-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Upload New Profile Picture</h3>
+          <div className="flex flex-col justify-start">
+            <input
+              type="file"
+              onChange={(e) => setProfilePictureFile(e.target.files[0])}
+              className=" w-full mt-2"
+              // style={{ visibility: "hidden" }}
+            />
 
+            <button
+              onClick={uploadprofilefile}
+              className="w-full text-blue-300 rounded-md  bg-slate-100 font-bold hover:bg-slate-200 my-3 text-lg py-3 scale-95 hover:scale-100 duration-200 hover:text-blue-500"
+            >
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Modal for updating cover pic */}
+      <input type="checkbox" id="coverpic-modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="coverpic-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Upload New Cover Picture</h3>
+          <div className="flex flex-col justify-start">
+            <input
+              type="file"
+              onChange={(e) => setCoverPictureFile(e.target.files[0])}
+              className=" w-full mt-2"
+              // style={{ visibility: "hidden" }}
+            />
+
+            <button
+              onClick={uploadcoverfile}
+              className="w-full text-blue-300 rounded-md  bg-slate-100 font-bold hover:bg-slate-200 my-3 text-lg py-3 scale-95 hover:scale-100 duration-200 hover:text-blue-500"
+            >
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
       <Footer footerClass={footerClass}></Footer>
     </div>
   );
