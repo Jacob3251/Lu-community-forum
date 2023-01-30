@@ -1,17 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
 import { SlPencil } from "react-icons/sl";
+import SubscribedTeacher from "./SubscribedTeacher";
 const ProfileBio = ({ profile, classes, subscribedData }) => {
-  const [updater, setUpdater] = useState(false);
+  const [updaterBio, setUpdaterBio] = useState(false);
   const [bio, setBio] = useState("");
-  console.log(subscribedData);
+
+  const [teacherData, setTeacherData] = useState([]);
+
+  // teacher subcription handled below
+  const [selectedSubscribedTeacher, setSelectedSubscribedTeacher] = useState(
+    []
+  );
+  // console.log(subscribedData);
   const updateBio = (e) => {
     e.preventDefault();
-    alert("ola");
-    console.log(e.target.msg.value);
     setBio(e.target.msg.value);
-    setUpdater(!updater);
+    setUpdaterBio(!updaterBio);
+    const newObj = {
+      profileData: profile,
+      bio: e.target.msg.value,
+    };
+    console.log("New Obj", newObj);
+    fetch("http://localhost:9000/profilebio", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newObj),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Succesfully updated bio", data);
+        window.location.reload();
+      });
   };
+
+  const handleSelectedSubscribedTeachers = (info) => {
+    // if (selectedSubscribedTeacher.length !== 0) {
+    //   const found = selectedSubscribedTeacher.find((u) => u.id === info.id);
+    //   if (!found) {
+    //     setSelectedSubscribedTeacher((prev) => [...prev, info]);
+    //   }
+    //   let tempArr = [];
+    //   for (let i = 0; i < selectedSubscribedTeacher.length; i++) {
+    //     const found = teacherData.find(
+    //       (data) => data.id === selectedSubscribedTeacher[i].id
+    //     );
+    //     tempArr.push(found);
+    //   }
+    //   setTeacherData(tempArr);
+    // }
+    // if (selectedSubscribedTeacher.length === 0) {
+    //   setSelectedSubscribedTeacher((prev) => [...prev, info]);
+    //   const notSelected = teacherData.filter((u) => u.id !== info.id);
+    //   console.log("selected Subcribed Teacher", [info]);
+    //   setTeacherData(notSelected);
+    //   console.log("not selected Subcribed Teacher", notSelected);
+    // }
+  };
+  useEffect(() => {
+    fetch("http://localhost:9000/selectedTech/cse_1832020032@lus.ac.bd")
+      .then((res) => res.json())
+      .then((data) => setTeacherData(data));
+  }, []);
   return (
     <div>
       <div className={`${classes} relative`}>
@@ -19,18 +71,20 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
           About Me
         </h3>
 
-        <p className="font-mono mb-5">{bio === "" ? "Update your bio" : bio}</p>
-        {updater && (
+        <p className="font-mono mb-5">
+          {profile.bio ? profile.bio : "Update your bio"}
+        </p>
+        {updaterBio && (
           <button
-            onClick={() => setUpdater(!updater)}
+            onClick={() => setUpdaterBio(!updaterBio)}
             className="rounded-full px-3 py-1 absolute -top-3 right-2 hover:scale-110 duration-200 text-lg font-bold hover:text-white bg-[#FFF5EE] hover:bg-red-500 "
           >
             X
           </button>
         )}
-        {updater !== true ? (
+        {updaterBio !== true ? (
           <button
-            onClick={() => setUpdater(!updater)}
+            onClick={() => setUpdaterBio(!updaterBio)}
             className="bg-[#FFF5EE]  rounded-full text-3xl hover:bg-[#FFFFF0] hover:scale-110 duration-200 hover:text-black p-2 absolute bottom-[-18px] right-2"
           >
             <FaPencilAlt></FaPencilAlt>
@@ -38,7 +92,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
         ) : (
           <div></div>
         )}
-        {updater && (
+        {updaterBio && (
           <form
             className=" bg-gray-200 p-2 my-5 rounded-md"
             onSubmit={updateBio}
@@ -87,22 +141,35 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
 
             {/* checkbox for dept */}
 
+            <h3>Not Selected Teachers</h3>
             <div className="grid grid-cols-2 gap-5  overflow-auto">
-              {subscribedData?.notSubcribed.map((u) => (
-                <div
+              {teacherData.map((u) => (
+                <SubscribedTeacher
                   key={u.id}
-                  className="flex flex-col rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200"
-                >
-                  <img
-                    className="w-[80%] h-[60%] mx-auto"
-                    alt="img"
-                    src={u.photoURL}
-                  ></img>
-                  <h3 className="text-center text-md font-bold ">{u.name}</h3>
-                  <h5 className="text-center text-sm"> {u.designation}</h5>
-                </div>
+                  info={u}
+                  handleSelected={handleSelectedSubscribedTeachers}
+                ></SubscribedTeacher>
               ))}
             </div>
+
+            <h3>Selected Teachers</h3>
+            {selectedSubscribedTeacher.map((u) => (
+              <h3>Selected Teacher ID: {u.name}</h3>
+            ))}
+
+            <button
+              onClick={() => {
+                console.log(
+                  "selectedSubscribedTeachers ",
+                  selectedSubscribedTeacher,
+                  "Not selected",
+                  teacherData
+                );
+              }}
+              className="w-full bg-slate-100 scale-95 hover:scale-100 duration-200 text-blue-300 hover:text-blue-500 hover:bg-slate-200 py-3 rounded-lg text-lg font-bold"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
