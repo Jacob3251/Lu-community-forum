@@ -1,10 +1,10 @@
 import React from "react";
 
-const SubscribedTeacher = ({ info, handleSelected }) => {
+const SubscribedTeacher = ({ info }) => {
   const { id, photoURL, name, designation } = info;
   return (
     <div
-      onClick={() => handleSelected(info)}
+      // onClick={() => handleSelected(id)}
       className={`flex flex-col rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200`}
     >
       <img className="w-[80%] h-[60%] mx-auto" alt="img" src={photoURL}></img>
