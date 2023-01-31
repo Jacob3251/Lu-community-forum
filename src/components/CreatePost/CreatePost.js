@@ -90,13 +90,17 @@ const CreatePost = () => {
           <div className="w-12 h-12 rounded-full ring ring-transparent ring-offset-base-100 ring-offset-2">
             <img
               className="w-full h-full rounded-full"
-              src="https://stat4.bollywoodhungama.in/wp-content/uploads/2020/08/Emraan-Hashmi.jpeg"
+              src={
+                userdata?.profileImgLink
+                  ? userdata?.profileImgLink
+                  : "https://stat4.bollywoodhungama.in/wp-content/uploads/2020/08/Emraan-Hashmi.jpeg"
+              }
               alt=""
             />
           </div>
           <div className=" ">
             <h3 className="text-white font-bold">
-              What's on your mind, UserName ?
+              What's on your mind, {userdata.name} ?
             </h3>
           </div>
         </div>

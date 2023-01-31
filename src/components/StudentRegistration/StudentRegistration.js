@@ -84,7 +84,7 @@ const StudentRegistration = ({ email, password, userType }) => {
   };
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="flex justify-evenly">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Select your username</span>
@@ -129,8 +129,6 @@ const StudentRegistration = ({ email, password, userType }) => {
             className="input rounded-none w-full max-w-xs"
           />
         </div>
-      </div>
-      <div className="flex justify-evenly">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Select your BloodGroup</span>
@@ -169,19 +167,9 @@ const StudentRegistration = ({ email, password, userType }) => {
             <option value="bba">Business Administration</option>
           </select>
         </div>
-        {/*<div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">Confirm your Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-        </div> */}
       </div>
       <div className="text-center mt-10">
-        <button className="btn bg-blue-400 h-14 hover:translate-y-[2px] hover:bg-blue-500 border-none font-bold text-white text-lg rounded-none">
+        <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317] text-lg font-bold">
           <input type="submit" value="Submit Form" />
         </button>
       </div>

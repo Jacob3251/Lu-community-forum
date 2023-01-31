@@ -77,7 +77,7 @@ const Register = () => {
       setPass(userRepass);
       setErtext("");
     } else {
-      setErtext("Password and confirm pass didnot match");
+      setErtext("Password and confirm password did not match");
     }
   };
   // Firebase Email Pass user creation below--
@@ -105,34 +105,12 @@ const Register = () => {
 
   return (
     <div>
-      <div className="w-full bg-blue-500 flex justify-between items-center py-3 px-5">
-        {/* header left side */}
-        <div className="flex items-center">
-          {/* <div>
-              <img src={logo} alt="Varsity logo" className="w-10 h-10" />
-            </div> */}
-          <div className="text-lg text-white font-semibold ml-2">
-            <Link to="/">LU Community Forum</Link>
-          </div>
-        </div>
-        {/* header Links right side */}
-        <div className="flex space-x-2 items-center">
-          <div className="text-base text-black-400 font-medium bg-white font-serif px-5 py-1">
-            <label htmlFor="my-modal-3" className="modal-button">
-              Login
-            </label>
-          </div>
-          <div className="text-base text-white font-medium bg-green-400 font-serif px-5 py-1">
-            <Link to="/">Back to home</Link>
-          </div>
-        </div>
-      </div>
-      <div className="w-4/5 mx-auto py-14 px-10 my-10 bg-slate-200 h-[80vh]">
+      <div className="w-4/5 mx-auto py-14 px-10 my-10 ">
         {/* <Header></Header> */}
-        <h3 className="text-4xl">Register Now</h3>
+        <h3 className="text-3xl text-center font-bold">Register Now</h3>
         <div className="divider"></div>
         {/* Student-Teacher checkbox */}
-        <div className="flex my-2">
+        <div className="flex flex-col md:flex-row my-2">
           <div className="form-control">
             <label className="label cursor-pointer">
               <span className="label-text mr-2">Student</span>
@@ -157,30 +135,35 @@ const Register = () => {
           </div>
         </div>
         {/* Student-teacher checkbox complete email validation below-------*/}
-        <form onSubmit={handleEmailVerification} className="flex my-4">
+        <form
+          onSubmit={handleEmailVerification}
+          className="flex bg-slate-100 flex-col justify-center items-center w-[85%] mx-auto my-4 p-5"
+        >
           <input
             type="text"
             placeholder="Enter university email"
-            className="input input-bordered w-full max-w-xs mr-2 rounded-none h-14"
+            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
             onBlur={handleEmail}
           />
           <input
             type="password"
             placeholder="Enter password"
-            className="input input-bordered w-full max-w-xs mr-2 rounded-none h-14"
+            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
             onBlur={handlePass}
           />
           <input
             type="password"
             placeholder="Type password again"
-            className="input input-bordered w-full max-w-xs rounded-none h-14"
+            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
             onChange={handleRePass}
           />
-          <button className="btn ml-5 bg-blue-400 h-14 hover:translate-y-[2px] hover:bg-blue-500 border-none  text-white text-md rounded-none">
+          <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317]">
             <input type="submit" value="Submit" className="text-lg font-bold" />
           </button>
         </form>
-        {ertext !== null && <p>{ertext}</p>}
+        {ertext !== null && (
+          <p className="text-red-600 text-center font-bold">{ertext}</p>
+        )}
         {/* {user && `<p>${user?.email}</p>`} */}
         {/* Email validation done */}
         {userType === 1 && registered === true && (
@@ -204,7 +187,7 @@ const Register = () => {
       {userType === 2 &&
         registered === true(<TeacherRegistration></TeacherRegistration>)} */}
       </div>
-      <Footer className="h-[10vh] absolute bottom-0"></Footer>
+      <Footer className=""></Footer>
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">

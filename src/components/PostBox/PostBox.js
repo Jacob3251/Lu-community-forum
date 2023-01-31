@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase.init";
 import Comment from "./Comment";
+import useSingleUser from "../../hooks/useSingleUser";
+import { Puff } from "react-loader-spinner";
 
 const PostBox = ({ post }) => {
   const [showComment, setShowComment] = useState(false);
@@ -17,6 +19,7 @@ const PostBox = ({ post }) => {
 
   // const [userdata, setUserdata] = useState({});
   const [user] = useAuthState(auth);
+  const profile = useSingleUser(email);
   // console.log(name);
   const handleLiked = () => {
     setLikeColor(!likeColor);
@@ -85,98 +88,125 @@ const PostBox = ({ post }) => {
   // }, []);
   return (
     <div className="w-[80%] mx-auto">
-      <div className="bg-[#628E90]  rounded-2xl mx-auto my-5 shadow-lg">
-        {/* top part  */}
-        <div
-          className={`w-full flex md:flex-row items-center justify-between px-5 mx-auto  pt-1  ${
-            showOptions && "flex-col"
-          }`}
-        >
-          <div className="flex pt-6 pb-2 ">
-            <div>
-              <div className="avatar">
-                <div className="w-12 rounded-full ring ring-transparent ring-offset-base-100 ring-offset-2">
-                  <img src="https://placeimg.com/192/192/people" />
+      <>
+        {profile[1] ? (
+          <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+            <Puff
+              height="80"
+              width="80"
+              radius={1}
+              color="#3c2317"
+              ariaLabel="puff-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+            <h3 className="animate-bounce400 font-bold text-lg mt-2">
+              Loading
+            </h3>
+          </div>
+        ) : (
+          <div className="bg-[#628E90]  rounded-2xl mx-auto my-5 shadow-lg">
+            {/* top part  */}
+            <div
+              className={`w-full flex md:flex-row items-center justify-between px-5 mx-auto  pt-1  ${
+                showOptions && "flex-col"
+              }`}
+            >
+              <div className="flex pt-6 pb-2 ">
+                <div>
+                  <div className="avatar">
+                    <div className="w-12 rounded-full ring ring-transparent ring-offset-base-100 ring-offset-2">
+                      <img
+                        onClick={() => alert(profile[0]?.profileImgLink)}
+                        src={
+                          profile[0]?.profileImgLink
+                            ? profile[0]?.profileImgLink
+                            : "https://placeimg.com/192/192/people"
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="ml-4">
+                  <div className="font-medium text-md text-[#F5EFE6] ">
+                    {name !== undefined ? name : "No name"}
+                  </div>
+                  <div className="font-normal text-[#F5EFE6] italic text-sm">
+                    {time}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="ml-4">
-              <div className="font-medium text-md text-[#F5EFE6] ">
-                {name !== undefined ? name : "No name"}
-              </div>
-              <div className="font-normal text-[#F5EFE6] italic text-sm">
-                {time}
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row space-x-2 ">
-            <button
-              className="btn btn-ghost text-[#F5EFE6]"
-              onClick={() => setShowOptions(!showOptions)}
-            >
-              <HiDotsVertical className="h-5 w-5 mr-2"></HiDotsVertical>
-            </button>
-            {showOptions && (
-              <div>
-                {email !== user?.email && (
-                  <button
-                    onClick={handleReport}
-                    className="btn bg-orange-500 border-0 text-white"
-                  >
-                    <FaExclamationTriangle></FaExclamationTriangle>
-                  </button>
-                )}
-                {email === user?.email && (
-                  <button
-                    onClick={handleDelete}
-                    className="btn bg-red-500 border-0 text-white"
-                  >
-                    <FaTrash></FaTrash>
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-        {/* content part */}
-        <div className="w-full px-6 mx-auto text-left pb-2 ">
-          <h3 className="text-[#3C2317] font-bold">{title}</h3>
-          <div className="mt-1 ">
-            <p className="text-base text-[#F5EFE6]">{content}</p>
-          </div>
-          <div className=" py-3">
-            <div className="flex justify-between mb-2">
-              <div className="text-[#F5EFE6]">
-                {" "}
-                {likes.length} Likes . {comments.length} Comments
-              </div>
-              {/* <div className="text-[#F5EFE6]"> 60 comments</div> */}
-            </div>
-            <hr />
-            <div className="flex justify-between">
-              <div className="flex  ">
-                <button
-                  className={`btn btn-ghost ${
-                    likes.find((u) => u === user?.email)
-                      ? "text-yellow-500"
-                      : "text-[#F5EFE6]"
-                  }`}
-                  onClick={handleLiked}
-                >
-                  <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
-                </button>
+              <div className="flex flex-row space-x-2 ">
                 <button
                   className="btn btn-ghost text-[#F5EFE6]"
-                  onClick={() => setShowComment(!showComment)}
+                  onClick={() => setShowOptions(!showOptions)}
                 >
-                  Comment
+                  <HiDotsVertical className="h-5 w-5 mr-2"></HiDotsVertical>
                 </button>
+                {showOptions && (
+                  <div>
+                    {email !== user?.email && (
+                      <button
+                        onClick={handleReport}
+                        className="btn bg-orange-500 border-0 text-white"
+                      >
+                        <FaExclamationTriangle></FaExclamationTriangle>
+                      </button>
+                    )}
+                    {email === user?.email && (
+                      <button
+                        onClick={handleDelete}
+                        className="btn bg-red-500 border-0 text-white"
+                      >
+                        <FaTrash></FaTrash>
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
-            {showComment && <Comment post={post}></Comment>}
+            {/* content part */}
+            <div className="w-full px-6 mx-auto text-left pb-2 ">
+              <h3 className="text-[#3C2317] font-bold">{title}</h3>
+              <div className="mt-1 ">
+                <p className="text-base text-[#F5EFE6]">{content}</p>
+              </div>
+              <div className=" py-3">
+                <div className="flex justify-between mb-2">
+                  <div className="text-[#F5EFE6]">
+                    {" "}
+                    {likes.length} Likes . {comments.length} Comments
+                  </div>
+                  {/* <div className="text-[#F5EFE6]"> 60 comments</div> */}
+                </div>
+                <hr />
+                <div className="flex justify-between">
+                  <div className="flex  ">
+                    <button
+                      className={`btn btn-ghost ${
+                        likes.find((u) => u === user?.email)
+                          ? "text-yellow-500"
+                          : "text-[#F5EFE6]"
+                      }`}
+                      onClick={handleLiked}
+                    >
+                      <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
+                    </button>
+                    <button
+                      className="btn btn-ghost text-[#F5EFE6]"
+                      onClick={() => setShowComment(!showComment)}
+                    >
+                      Comment
+                    </button>
+                  </div>
+                </div>
+                {showComment && <Comment post={post}></Comment>}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </>
     </div>
   );
 };

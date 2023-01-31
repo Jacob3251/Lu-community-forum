@@ -39,7 +39,11 @@ const SingleComment = ({ item, commenter, postId }) => {
         <div className="w-[50px] h-[50px] mr-2 ">
           <img
             className="w-full h-full rounded-full"
-            src="https://scontent.fdac31-1.fna.fbcdn.net/v/t39.30808-6/322606456_1100683150600547_1204415821701307778_n.jpg?stp=dst-jpg_p526x296&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeF_VuH_XOTCkOWSZcyjAq4jQ9_MZb6ylNdD38xlvrKU17zAjE837BtO281MsVFG3IjB_4AMrfLfeHhPUtEcZLqk&_nc_ohc=yIp53cA6WpUAX8xBom1&tn=yOMv844MwfJ9HCmZ&_nc_ht=scontent.fdac31-1.fna&oh=00_AfD5JD5vcUa2lsjMctK7ZEIu97E-PVU6oRUsgVE4U2aU2g&oe=63B8031B"
+            src={
+              commenterInfo?.profileImgLink
+                ? commenterInfo?.profileImgLink
+                : "https://scontent.fdac31-1.fna.fbcdn.net/v/t39.30808-6/322606456_1100683150600547_1204415821701307778_n.jpg?stp=dst-jpg_p526x296&_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeF_VuH_XOTCkOWSZcyjAq4jQ9_MZb6ylNdD38xlvrKU17zAjE837BtO281MsVFG3IjB_4AMrfLfeHhPUtEcZLqk&_nc_ohc=yIp53cA6WpUAX8xBom1&tn=yOMv844MwfJ9HCmZ&_nc_ht=scontent.fdac31-1.fna&oh=00_AfD5JD5vcUa2lsjMctK7ZEIu97E-PVU6oRUsgVE4U2aU2g&oe=63B8031B"
+            }
             alt=""
           />
         </div>

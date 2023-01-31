@@ -5,9 +5,9 @@ import { auth } from "../firebase.init";
 const useSingleUser = (email) => {
   const [profile, setProfile] = useState({});
   const [profileLoading, setProfileLoading] = useState(true);
-  const [user, loading] = useAuthState(auth);
+  // const [user, loading] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:9000/users/${user?.email}`)
+    fetch(`http://localhost:9000/users/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setProfile(data);

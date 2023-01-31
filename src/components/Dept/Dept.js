@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
+import useSingleUser from "../../hooks/useSingleUser";
+import Footer from "../Footer/Footer";
 
 const SpecificUniversityPost = ({
   title,
@@ -79,11 +81,13 @@ const SpecificTeacherPost = ({
 
 const Dept = () => {
   const [user] = useAuthState(auth);
+  const profile = useSingleUser(user?.email);
   const [postType, setPostType] = useState(1);
   const [newPostUniversity, setNewPostUniversity] = useState([]);
   const [newPostDepartment, setNewPostDepartment] = useState([]);
   const [newPostTeacher, setNewPostTeacher] = useState([]);
   const [teacher, setTeacher] = useState([]);
+  const [teacherPostToggler, setTeacherPostToggler] = useState(0);
   // const uniArray = newPostUniversity[0];
   // const deptArray = newPostDepartment[0];
   // const techArray = newPostTeacher[0];
@@ -100,8 +104,18 @@ const Dept = () => {
       });
   }, [newPostUniversity, newPostDepartment, newPostTeacher]);
 
+  useEffect(() => {
+    fetch(
+      `http://localhost:9000/subscribedteachers/${
+        user?.email + "***" + profile[0]?.userType
+      }`
+    )
+      .then((res) => res.json())
+      .then((data) => setTeacher(data));
+  }, []);
+
   return (
-    <div className="w-full  mx-auto">
+    <div className="w-full ">
       {/* Toggle Buttons Below */}
       <div className="block md:inline-block  md:ml-[10%]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-4 place-content-center place-items-center">
@@ -191,8 +205,8 @@ const Dept = () => {
         )}
         {postType === 3 && (
           <div>
-            <div className="form-control w-full ">
-              <select
+            <div className="w-full bg-slate-300 rounded-lg my-5 flex flex-col md:flex-row justify-center lg:justify-start items-center space-x-4 py-3 pl-5">
+              {/* <select
                 onChange={(event) => {
                   const value = event.target.value;
                   setTeacher(value);
@@ -205,27 +219,84 @@ const Dept = () => {
                 <option value="not">Select teacher</option>
                 <option value="aac">Adil Ahmed Chowdhury</option>
                 <option value="prb">Prithwiraj Bhattacharjee</option>
-              </select>
+              </select> */}
+              {profile[0].userType === 1 && (
+                <button
+                  onClick={() => setTeacherPostToggler(1)}
+                  className="bg-white py-2 px-2 scale-95 my-2 hover:scale-100 duration-200 text-lg font-semibold rounded-md hover:bg-slate-100"
+                >
+                  Subscribed Teacher's Post
+                </button>
+              )}
+              <button
+                onClick={() => setTeacherPostToggler(0)}
+                className="bg-white py-2 px-2 scale-95 my-2 hover:scale-100 duration-200 text-lg font-semibold rounded-md hover:bg-slate-100"
+              >
+                All Teacher's Posts
+              </button>
             </div>
 
-            {newPostTeacher.map((u) => (
-              // <p>{u.content}</p>
-              <SpecificTeacherPost
-                key={u._id}
-                name={u.name}
-                title={u.title}
-                id={u._id}
-                dept={u.dept}
-                content={u.content}
-                email={u.email}
-                type={u.type}
-                time={u.time ? u.time : null}
-              ></SpecificTeacherPost>
-              // <UniversityPost posts={u} key={++x}></UniversityPost>
-            ))}
+            {teacherPostToggler === 0 &&
+              newPostTeacher.map((u) => (
+                // <p>{u.content}</p>
+                <SpecificTeacherPost
+                  key={u._id}
+                  name={u.name}
+                  title={u.title}
+                  id={u._id}
+                  dept={u.dept}
+                  content={u.content}
+                  email={u.email}
+                  type={u.type}
+                  time={u.time ? u.time : null}
+                ></SpecificTeacherPost>
+                // <UniversityPost posts={u} key={++x}></UniversityPost>
+              ))}
+            {teacherPostToggler === 1 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-[80%] mx-auto">
+                {teacher.subscribed.map((u) => (
+                  <div className="flex flex-col w-[80%] mx-auto rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200">
+                    <img
+                      src={u?.photoURL}
+                      className="w-[80%] h-[60%] mx-auto"
+                      alt={u?.name}
+                    />
+                    <h3 className="text-center text-base md:text-lg font-bold my-2">
+                      {u?.name}
+                    </h3>
+                    <p className="text-center text-base mb-2 md:text-md font-semibold">
+                      {u?.designation}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {teacherPostToggler === 1 && (
+              <div>
+                <h3 className="mt-[150px] bg-white py-2 rounded-md text-lg md:text-2xl text-center font-bold">
+                  Subscribed Teacher's Posts
+                </h3>
+                {newPostTeacher.map((u) => (
+                  // <p>{u.content}</p>
+                  <SpecificTeacherPost
+                    key={u._id}
+                    name={u.name}
+                    title={u.title}
+                    id={u._id}
+                    dept={u.dept}
+                    content={u.content}
+                    email={u.email}
+                    type={u.type}
+                    time={u.time ? u.time : null}
+                  ></SpecificTeacherPost>
+                  // <UniversityPost posts={u} key={++x}></UniversityPost>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
+      <Footer></Footer>
     </div>
   );
 };

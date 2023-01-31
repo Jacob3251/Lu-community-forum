@@ -83,7 +83,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="flex justify-evenly my-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Select your username</span>
@@ -137,8 +137,6 @@ const TeacherRegistration = ({ email, password, userType }) => {
             className="input rounded-none w-full max-w-xs"
           />
         </div>
-      </div>
-      <div className="flex justify-evenly my-5">
         <div className="form-control w-full max-w-xs">
           <label className="label">
             <span className="label-text">Select your BloodGroup</span>
@@ -179,9 +177,14 @@ const TeacherRegistration = ({ email, password, userType }) => {
           </div>
         </div>
       </div>
+
       <div className="text-center mt-10">
-        <button className="btn bg-blue-400 h-14 hover:translate-y-[2px] hover:bg-blue-500 border-none  text-white text-lg font-bold rounded-none">
-          <input type="submit" value="Submit Form" />
+        <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317]">
+          <input
+            type="submit"
+            value="Submit Form"
+            className="text-lg font-bold"
+          />
         </button>
       </div>
     </form>

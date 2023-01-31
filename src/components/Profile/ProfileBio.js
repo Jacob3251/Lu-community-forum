@@ -92,9 +92,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
         ) : (
           <>
             <div className={`${classes} relative`}>
-              <h3 className="my-5 underline text-2xl font-bold text-white font-pacifico">
-                About Me
-              </h3>
+              <h3 className="my-5  text-2xl font-bold text-white">About Me</h3>
 
               <p className="font-mono mb-5">
                 {profile.bio ? profile.bio : "Update your bio"}
@@ -174,6 +172,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                       {teacherData?.notsubscribed.map((u) => (
                         <div
                           onClick={() => handleAddSelectedTeacher(u.id)}
+                          key={u.id}
                           className={`flex flex-col rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200`}
                         >
                           <img
@@ -198,6 +197,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                     <div className="grid grid-cols-2 gap-5  overflow-auto">
                       {teacherData?.subscribed.map((u) => (
                         <div
+                          key={u.id}
                           onClick={() => handleSubtractSelectedTeacher(u.id)}
                           className={`flex flex-col rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200`}
                         >
@@ -218,14 +218,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                     </div>
 
                     <button
-                      onClick={() => {
-                        console.log(
-                          "selectedSubscribedTeachers ",
-                          selectedSubscribedTeacher,
-                          "Not selected",
-                          teacherData
-                        );
-                      }}
+                      onClick={() => {}}
                       className="w-full bg-slate-100 scale-95 hover:scale-100 duration-200 text-blue-300 hover:text-blue-500 hover:bg-slate-200 py-3 rounded-lg text-lg font-bold"
                     >
                       Submit
