@@ -21,6 +21,7 @@ import useAllStats from "../../hooks/useAllStats";
 import CustomPieChart from "./CustomPieChart";
 import { FcBusinessman } from "react-icons/fc";
 import { TfiImage } from "react-icons/tfi";
+import GalleryPostManager from "./GalleryPostManager";
 const AdminDashboard = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -177,7 +178,7 @@ const AdminDashboard = () => {
           {content === 3 && <TransportNoticeManager></TransportNoticeManager>}
           {content === 4 && <TeacherPostManager></TeacherPostManager>}
           {content === 5 && <TeacherPostManager></TeacherPostManager>}
-          {content === 6 && <TeacherPostManager></TeacherPostManager>}
+          {content === 6 && <GalleryPostManager></GalleryPostManager>}
         </div>
       </div>
     </div>

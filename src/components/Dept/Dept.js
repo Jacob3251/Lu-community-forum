@@ -206,20 +206,6 @@ const Dept = () => {
         {postType === 3 && (
           <div>
             <div className="w-full bg-slate-300 rounded-lg my-5 flex flex-col md:flex-row justify-center lg:justify-start items-center space-x-4 py-3 pl-5">
-              {/* <select
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setTeacher(value);
-
-                  console.log(value);
-                }}
-                tabIndex="0"
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-10 hover:bg-gray-200 "
-              >
-                <option value="not">Select teacher</option>
-                <option value="aac">Adil Ahmed Chowdhury</option>
-                <option value="prb">Prithwiraj Bhattacharjee</option>
-              </select> */}
               {profile[0].userType === 1 && (
                 <button
                   onClick={() => setTeacherPostToggler(1)}
@@ -255,7 +241,10 @@ const Dept = () => {
             {teacherPostToggler === 1 && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-[80%] mx-auto">
                 {teacher.subscribed.map((u) => (
-                  <div className="flex flex-col w-[80%] mx-auto rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200">
+                  <div
+                    key={u?.id}
+                    className="flex flex-col w-[80%] mx-auto rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200"
+                  >
                     <img
                       src={u?.photoURL}
                       className="w-[80%] h-[60%] mx-auto"

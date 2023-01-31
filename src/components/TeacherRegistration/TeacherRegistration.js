@@ -83,10 +83,12 @@ const TeacherRegistration = ({ email, password, userType }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
+      <div className="grid grid-cols-1 place-items-center place-content-center md:grid-cols-3 gap-5 ">
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Select your username</span>
+            <span className="label-text font-bold text-lg">
+              Select your username
+            </span>
           </label>
           <input
             type="text"
@@ -97,7 +99,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Write your Teacher ID</span>
+            <span className="label-text font-bold text-lg">
+              Write your Teacher ID
+            </span>
           </label>
           <input
             type="text"
@@ -109,7 +113,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
         <div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Pick your Designation</span>
+              <span className="label-text font-bold text-lg">
+                Pick your Designation
+              </span>
             </label>
             <select
               onChange={handleDesignation}
@@ -128,7 +134,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
 
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Write your Phone Number</span>
+            <span className="label-text font-bold text-lg">
+              Write your Phone Number
+            </span>
           </label>
           <input
             type="number"
@@ -139,7 +147,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Select your BloodGroup</span>
+            <span className="label-text font-bold text-lg">
+              Select your BloodGroup
+            </span>
           </label>
           <input
             type="text"
@@ -150,7 +160,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text">Write your address</span>
+            <span className="label-text font-bold text-lg">
+              Write your address
+            </span>
           </label>
           <input
             type="text"
@@ -163,7 +175,9 @@ const TeacherRegistration = ({ email, password, userType }) => {
         <div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Pick your Department</span>
+              <span className="label-text font-bold text-lg">
+                Pick your Department
+              </span>
             </label>
             <select className="select rounded-none" onChange={handleDeptSelect}>
               <option value="not">Select Department</option>
