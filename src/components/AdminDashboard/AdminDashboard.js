@@ -22,6 +22,8 @@ import CustomPieChart from "./CustomPieChart";
 import { FcBusinessman } from "react-icons/fc";
 import { TfiImage } from "react-icons/tfi";
 import GalleryPostManager from "./GalleryPostManager";
+import Footer from "../Footer/Footer";
+import AlumniPostManager from "./AlumniPostManager";
 const AdminDashboard = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -39,9 +41,9 @@ const AdminDashboard = () => {
   //     return navigate("/home");
   //   }
   return (
-    <div className="w-full">
+    <div className="w-full h-[100vh] relative ">
       {/* body start */}
-      <div className="w-[90%] mx-auto mt-20 grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
+      <div className="w-[90%] mx-auto mt-20  grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
         {/* admin left navigation */}
 
         <div className=" lg:col-span-2 xl:col-span-2 z-30">
@@ -125,7 +127,7 @@ const AdminDashboard = () => {
           </div>
         </div>
         {/* Main Bodypart */}
-        <div className=" lg:col-span-4  xl:col-span-5">
+        <div className="lg:col-span-4  xl:col-span-5">
           {content === 0 && (
             <div className="w-5/6 p-4 mx-auto bg-[#628e90] my-5">
               {loading ? (
@@ -177,10 +179,11 @@ const AdminDashboard = () => {
           {content === 2 && <DepartmentPostManager></DepartmentPostManager>}
           {content === 3 && <TransportNoticeManager></TransportNoticeManager>}
           {content === 4 && <TeacherPostManager></TeacherPostManager>}
-          {content === 5 && <TeacherPostManager></TeacherPostManager>}
+          {content === 5 && <AlumniPostManager></AlumniPostManager>}
           {content === 6 && <GalleryPostManager></GalleryPostManager>}
         </div>
       </div>
+      <Footer footerClass={"w-full bottom-0 absolute "}></Footer>
     </div>
   );
 };

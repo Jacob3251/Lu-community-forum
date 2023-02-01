@@ -4,7 +4,11 @@ import { useEffect } from "react";
 const useUniversityPost = () => {
   const [post, setPost] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost")
+    fetch(
+      `http://localhost:9000/selectedpost/${
+        user?.email + "***" + profile[0]?.userType
+      }`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data[0]);

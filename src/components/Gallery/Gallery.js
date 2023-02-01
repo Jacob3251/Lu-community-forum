@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../Footer/Footer";
 import GalleryPostObj from "./GalleryPostObj";
 import cmc1 from "../../images/club/Computer club/1.jpg";
@@ -17,7 +17,9 @@ import ss1 from "../../images/club/social club/1.jpg";
 import ss2 from "../../images/club/social club/2.jpg";
 import ss3 from "../../images/club/social club/3.jpg";
 import ss4 from "../../images/club/social club/4.jpg";
+import { useEffect } from "react";
 const Gallery = () => {
+  const [galleryData, setGalleryData] = useState([]);
   const images1 = [
     {
       src: cmc1,
@@ -80,21 +82,39 @@ const Gallery = () => {
       sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
     },
   ];
+  const CustomFormatter = (arr) => {
+    let x = [];
+    for (let i = 0; i < arr.length; i++) {
+      const y = {
+        src: arr[i],
+        sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
+      };
+      x.push(y);
+    }
+    return x;
+  };
+  useEffect(() => {
+    fetch("http://localhost:9000/gallerypost")
+      .then((res) => res.json())
+      .then((data) => setGalleryData(data));
+  }, []);
   return (
-    <div className="h-[100%]">
-      <h3 className="text-center font-pacifico font-bold text-4xl my-8">
+    <div className="">
+      <h3 className="text-center font-mono font-bold text-lg md:text-2xl lg:text-4xl my-8">
         Gallery de Memorial
       </h3>
       {/* Gallery Posts container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-10 w-[80%] mx-auto place-content-center place-items-center pb-10 mb-10 bg-white bg-opacity-40 rounded-xl">
-        <GalleryPostObj images={images1} title="Computer Club"></GalleryPostObj>
-        <GalleryPostObj images={images2} title="Cultural Club"></GalleryPostObj>
-        <GalleryPostObj
-          images={images3}
-          title="Social Services Club"
-        ></GalleryPostObj>
+      <div className="md:grid flex flex-col md:grid-cols-2 gap-5  w-[80%] mx-auto place-content-center place-items-center p-14 mb-10 bg-white bg-opacity-40 rounded-xl">
+        {galleryData.length !== 0 &&
+          galleryData.map((obj) => (
+            <GalleryPostObj
+              key={obj?._id}
+              images={CustomFormatter(obj?.links)}
+              title={obj?.title}
+            ></GalleryPostObj>
+          ))}
       </div>
-      <Footer></Footer>
+      <Footer footerClass={"w-[100vw]"}></Footer>
     </div>
   );
 };

@@ -103,11 +103,16 @@ const DepartmentPostManager = () => {
       postType: 1,
     };
     console.log();
-    fetch("http://localhost:9000/selectedpost", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(postObject),
-    })
+    fetch(
+      `http://localhost:9000/selectedpost/${
+        user?.email + "***" + profile[0]?.userType
+      }`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(postObject),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);

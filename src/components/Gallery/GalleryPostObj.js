@@ -4,8 +4,8 @@ import "react-gallery-carousel/dist/index.css";
 import "./Gallery.css";
 const GalleryPostObj = ({ images, title }) => {
   return (
-    <div className="bg-[#FFFFF0] px-2 py-5">
-      <div className="h-[300px] ">
+    <div className="bg-[#FFFFF0] px-2 py-5 w-full">
+      <div className="h-[250px] lg:h-[300px] ">
         <Carousel
           className="framed-carousel"
           hasTransition={true}
@@ -29,7 +29,7 @@ const GalleryPostObj = ({ images, title }) => {
         ></Carousel>
       </div>
       <h3 className="font-bold mt-5 text-md pl-3 text-start  overflow-hidden">
-        Recent {title} Images
+        {title}
       </h3>
     </div>
   );

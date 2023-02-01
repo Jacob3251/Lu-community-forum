@@ -27,6 +27,8 @@ import CareerBlogs from "./components/CareerBlogs/CareerBlogs";
 import Research from "./components/Research/Research";
 import Alumni from "./components/Alumni/Alumni";
 import IndividualProfile from "./components/Profile/IndividualProfile";
+import CoverPictureView from "./components/Profile/CoverPictureView";
+import ProfilePictureView from "./components/Profile/ProfilePictureView";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -83,6 +85,14 @@ function App() {
           <Route path="/alumni" element={<Alumni></Alumni>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route
+            path="/profile-cover/coverpic"
+            element={<CoverPictureView></CoverPictureView>}
+          ></Route>
+          <Route
+            path="/profile-cover/profilepic"
+            element={<ProfilePictureView></ProfilePictureView>}
+          ></Route>
           <Route path="/blogs" element={<Profile></Profile>}></Route>
           <Route
             path="/:imageId"

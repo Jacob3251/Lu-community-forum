@@ -120,16 +120,18 @@ const Header = () => {
               </NavLink>
             </li>
 
-            <li className="header-text">
-              <NavLink
-                to="research"
-                className={({ isActive }) =>
-                  isActive ? activeDesign : "header-text text-[#F5EFE6]"
-                }
-              >
-                Research
-              </NavLink>
-            </li>
+            {user?.emailVerified && (
+              <li className="header-text">
+                <NavLink
+                  to="dept"
+                  className={({ isActive }) =>
+                    isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                  }
+                >
+                  Official Posts
+                </NavLink>
+              </li>
+            )}
             <li className="header-text">
               <NavLink
                 to="alumni"

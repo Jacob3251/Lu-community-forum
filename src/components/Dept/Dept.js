@@ -86,7 +86,7 @@ const Dept = () => {
   const [newPostUniversity, setNewPostUniversity] = useState([]);
   const [newPostDepartment, setNewPostDepartment] = useState([]);
   const [newPostTeacher, setNewPostTeacher] = useState([]);
-  const [teacher, setTeacher] = useState([]);
+  // const [teacher, setTeacher] = useState([]);
   const [teacherPostToggler, setTeacherPostToggler] = useState(0);
   // const uniArray = newPostUniversity[0];
   // const deptArray = newPostDepartment[0];
@@ -103,16 +103,6 @@ const Dept = () => {
         setNewPostTeacher(data[2]);
       });
   }, [newPostUniversity, newPostDepartment, newPostTeacher]);
-
-  useEffect(() => {
-    fetch(
-      `http://localhost:9000/subscribedteachers/${
-        user?.email + "***" + profile[0]?.userType
-      }`
-    )
-      .then((res) => res.json())
-      .then((data) => setTeacher(data));
-  }, []);
 
   return (
     <div className="w-full ">
@@ -155,7 +145,7 @@ const Dept = () => {
       <div className=" my-6 rounded-2xl p-2 w-4/5 mx-auto">
         {postType === 1 && (
           <div>
-            {newPostUniversity.reverse().map((u) => (
+            {newPostUniversity.map((u) => (
               // <p>{u.content}</p>
               <SpecificUniversityPost
                 key={u._id}
@@ -205,7 +195,7 @@ const Dept = () => {
         )}
         {postType === 3 && (
           <div>
-            <div className="w-full bg-slate-300 rounded-lg my-5 flex flex-col md:flex-row justify-center lg:justify-start items-center space-x-4 py-3 pl-5">
+            {/* <div className="w-full bg-slate-300 rounded-lg my-5 flex flex-col md:flex-row justify-center lg:justify-start items-center space-x-4 py-3 pl-5">
               {profile[0].userType === 1 && (
                 <button
                   onClick={() => setTeacherPostToggler(1)}
@@ -220,27 +210,27 @@ const Dept = () => {
               >
                 All Teacher's Posts
               </button>
-            </div>
+            </div> */}
+            <h3>subscribed teacher post</h3>
+            {newPostTeacher.map((u) => (
+              // <p>{u.content}</p>
+              <SpecificTeacherPost
+                key={u._id}
+                name={u.name}
+                title={u.title}
+                id={u._id}
+                dept={u.dept}
+                content={u.content}
+                email={u.email}
+                type={u.type}
+                time={u.time ? u.time : null}
+              ></SpecificTeacherPost>
+              // <UniversityPost posts={u} key={++x}></UniversityPost>
+            ))}
 
-            {teacherPostToggler === 0 &&
-              newPostTeacher.map((u) => (
-                // <p>{u.content}</p>
-                <SpecificTeacherPost
-                  key={u._id}
-                  name={u.name}
-                  title={u.title}
-                  id={u._id}
-                  dept={u.dept}
-                  content={u.content}
-                  email={u.email}
-                  type={u.type}
-                  time={u.time ? u.time : null}
-                ></SpecificTeacherPost>
-                // <UniversityPost posts={u} key={++x}></UniversityPost>
-              ))}
-            {teacherPostToggler === 1 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-[80%] mx-auto">
-                {teacher.subscribed.map((u) => (
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-[80%] mx-auto">
+              {teacher.length !== 0 &&
+                teacher?.subscribed.map((u) => (
                   <div
                     key={u?.id}
                     className="flex flex-col w-[80%] mx-auto rounded-lg justify-center items-center bg-white scale-90 hover:scale-100 duration-200"
@@ -258,9 +248,16 @@ const Dept = () => {
                     </p>
                   </div>
                 ))}
-              </div>
-            )}
-            {teacherPostToggler === 1 && (
+            </div> */}
+            {/* <button
+              onClick={() => {
+                console.log(teacher);
+              }}
+            >
+              press me
+            </button> */}
+
+            {/* {teacherPostToggler === 1 && (
               <div>
                 <h3 className="mt-[150px] bg-white py-2 rounded-md text-lg md:text-2xl text-center font-bold">
                   Subscribed Teacher's Posts
@@ -281,7 +278,7 @@ const Dept = () => {
                   // <UniversityPost posts={u} key={++x}></UniversityPost>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
         )}
       </div>

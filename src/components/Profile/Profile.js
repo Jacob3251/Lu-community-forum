@@ -14,13 +14,14 @@ import { Puff, RotatingSquare } from "react-loader-spinner";
 import { FaUpload } from "react-icons/fa";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const [userArray, setUserArray] = useState([]);
   // const [profile, setProfile] = useState({});
   const [user, loading] = useAuthState(auth);
   const profile = useSingleUser(user?.email);
   const ap = useSingleUserAllPost(user?.email);
-
+  const navigate = useNavigate();
   // Profile Picture File
   const [profilePictureFile, setProfilePictureFile] = useState(null);
   const [imglinkProfilePic, setimglinkProfilePic] = useState("");
@@ -113,9 +114,31 @@ const Profile = () => {
       });
     window.location.reload();
   };
+  const handleEnlargeCoverPic = () => {
+    let link;
+    if (profile[0]?.coverImgLink) {
+      link = profile[0]?.coverImgLink;
+    } else {
+      link = cover;
+    }
+    navigate(`/profile-cover/coverpic`, {
+      state: { link: link },
+    });
+  };
+  const handleEnlargeProfilePic = () => {
+    let link;
+    if (profile[0]?.profileImgLink) {
+      link = profile[0]?.profileImgLink;
+    } else {
+      link = profilepic;
+    }
+    navigate(`/profile-cover/profilepic`, {
+      state: { link: link },
+    });
+  };
 
   // const email = user?.email;
-  const footerClass = " w-full";
+  const footerClass = "w-full";
   // console.log(userArray[1]);
   if (loading && Object.keys(profile).length === 0) {
     <div>Loading</div>;
@@ -125,7 +148,7 @@ const Profile = () => {
   }
 
   return (
-    <div className=" w-full  ">
+    <div className=" w-full">
       {profile[1] ? (
         <div className="h-[90vh] w-full flex flex-col justify-center items-center">
           <Puff
@@ -141,13 +164,14 @@ const Profile = () => {
           <h3 className="animate-bounce400 font-bold text-lg mt-2">Loading</h3>
         </div>
       ) : (
-        <div className="w-full md:w-[75%]  mx-auto">
+        <div className="w-full  md:w-[75%]  mx-auto">
           {/* profile box */}
           <div className="">
             {/* cover pic holder */}
             <div className="h-[270px] md:h-[350px] w-full mx-auto relative">
               <img
-                className="w-full h-full"
+                onClick={handleEnlargeCoverPic}
+                className="w-full h-full object-cover"
                 src={profile[0].coverImgLink ? profile[0].coverImgLink : cover}
                 alt="cover-img"
               />
@@ -171,8 +195,9 @@ const Profile = () => {
                 <div className="flex md:flex-row flex-col justify-center items-center">
                   <div className="h-[140px] w-[140px] p-1 bg-white rounded-full relative">
                     <img
+                      onClick={handleEnlargeProfilePic}
                       src={
-                        profile[0].coverImgLink
+                        profile[0].profileImgLink
                           ? profile[0].profileImgLink
                           : profilepic
                       }
@@ -220,7 +245,7 @@ const Profile = () => {
                 ></ProfileInfo>
                 <ProfileBio
                   profile={profile[0]}
-                  classes="p-5 bg-[#628e90] bg-opacity-70 rounded-xl"
+                  classes="p-5 bg-[#628e90] hover:bg-[#3c2317] bg-opacity-70 rounded-xl"
                 ></ProfileBio>
               </div>
             ) : (

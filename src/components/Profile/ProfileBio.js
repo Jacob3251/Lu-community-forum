@@ -94,7 +94,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
             <div className={`${classes} relative`}>
               <h3 className="my-5  text-2xl font-bold text-white">About Me</h3>
 
-              <p className="font-mono mb-5">
+              <p className="font-mono text-white mb-5">
                 {profile.bio ? profile.bio : "Update your bio"}
               </p>
               {updaterBio && (
@@ -136,7 +136,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
               )}
             </div>
             <div
-              className={`${classes} mt-11 w-[80%] mx-auto font-pacifico text-white text-2xl font-bold hover:scale-105 duration-200 overflow-auto`}
+              className={`${classes} mt-11 w-[80%] mx-auto font-mono text-white text-2xl font-bold hover:scale-105 duration-200 overflow-auto`}
             >
               <label
                 htmlFor="my-modal1"

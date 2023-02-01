@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CiPen, CiTrash } from "react-icons/ci";
 import { auth } from "../../firebase.init";
+import useSingleUser from "../../hooks/useSingleUser";
 import useUniversityPost from "../../hooks/useUniversityPost";
 import UniversityPostBox from "./UniversityPostBox";
 
@@ -62,6 +63,7 @@ const UniversityPostManager = () => {
   const postInput = useRef();
   const [user] = useAuthState(auth);
   const [normalPosts, setNormalPosts] = useState([]);
+  const profile = useSingleUser(user?.email);
   const [uniNormalPostLoading, setUniNormalPostLoading] = useState(true);
   useEffect(() => {
     fetch("http://localhost:9000/selectedpost/unipost")
@@ -87,11 +89,16 @@ const UniversityPostManager = () => {
       postType: 0,
     };
     console.log(postInput);
-    fetch("http://localhost:9000/selectedpost", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(postObject),
-    })
+    fetch(
+      `http://localhost:9000/selectedpost/${
+        user?.email + "***" + profile[0]?.userType
+      }`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(postObject),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);
@@ -100,7 +107,7 @@ const UniversityPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div>
+    <div className="h-full">
       <div className="w-full bg-gray-200 px-5  rounded-lg ">
         <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
           University Post Submission Form
@@ -132,10 +139,10 @@ const UniversityPostManager = () => {
           />
         </form>
       </div>
-      <div className="my-16">
-        <h2 className="text-[#3c2317] text-2xl font-bold text-center mb-10">
-          Manage University Posts
-        </h2>
+      <h2 className="text-[#3c2317] text-2xl font-bold text-center my-10">
+        Manage University Posts
+      </h2>
+      <div className="mb-16 h-[50vh] overflow-auto">
         {normalPosts.map((post) => (
           <UniversitySpecificPostBox
             key={post._id}
