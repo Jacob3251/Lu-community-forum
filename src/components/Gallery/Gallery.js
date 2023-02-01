@@ -18,8 +18,10 @@ import ss2 from "../../images/club/social club/2.jpg";
 import ss3 from "../../images/club/social club/3.jpg";
 import ss4 from "../../images/club/social club/4.jpg";
 import { useEffect } from "react";
+import { Puff } from "react-loader-spinner";
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
+  const [galleryDataLoader, setGalleryDataLoader] = useState(true);
   const images1 = [
     {
       src: cmc1,
@@ -96,7 +98,10 @@ const Gallery = () => {
   useEffect(() => {
     fetch("http://localhost:9000/gallerypost")
       .then((res) => res.json())
-      .then((data) => setGalleryData(data));
+      .then((data) => {
+        setGalleryData(data);
+        setGalleryDataLoader(false);
+      });
   }, []);
   return (
     <div className="">
@@ -104,16 +109,32 @@ const Gallery = () => {
         Gallery de Memorial
       </h3>
       {/* Gallery Posts container */}
-      <div className="md:grid flex flex-col md:grid-cols-2 gap-5  w-[80%] mx-auto place-content-center place-items-center p-14 mb-10 bg-white bg-opacity-40 rounded-xl">
-        {galleryData.length !== 0 &&
-          galleryData.map((obj) => (
-            <GalleryPostObj
-              key={obj?._id}
-              images={CustomFormatter(obj?.links)}
-              title={obj?.title}
-            ></GalleryPostObj>
-          ))}
-      </div>
+      {galleryDataLoader ? (
+        <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+          <Puff
+            height="80"
+            width="80"
+            radius={1}
+            color="#3c2317"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+          <h3 className="animate-bounce400 font-bold text-lg mt-2">Loading</h3>
+        </div>
+      ) : (
+        <div className="md:grid flex flex-col md:grid-cols-2 gap-5  w-[80%] mx-auto place-content-center place-items-center p-14 mb-10 bg-white bg-opacity-40 rounded-xl">
+          {galleryData.length !== 0 &&
+            galleryData.map((obj) => (
+              <GalleryPostObj
+                key={obj?._id}
+                images={CustomFormatter(obj?.links)}
+                title={obj?.title}
+              ></GalleryPostObj>
+            ))}
+        </div>
+      )}
       <Footer footerClass={"w-[100vw]"}></Footer>
     </div>
   );

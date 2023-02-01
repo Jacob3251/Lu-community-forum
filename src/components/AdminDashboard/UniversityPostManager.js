@@ -142,7 +142,7 @@ const UniversityPostManager = () => {
       <h2 className="text-[#3c2317] text-2xl font-bold text-center my-10">
         Manage University Posts
       </h2>
-      <div className="mb-16 h-[50vh] overflow-auto">
+      <div className="mb-16">
         {normalPosts.map((post) => (
           <UniversitySpecificPostBox
             key={post._id}

@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase.init";
+import useSingleUser from "./useSingleUser";
 
 const useUniversityPost = () => {
   const [post, setPost] = useState([]);
+  const [user] = useAuthState(auth);
+  const profile = useSingleUser(user?.email);
   useEffect(() => {
     fetch(
       `http://localhost:9000/selectedpost/${

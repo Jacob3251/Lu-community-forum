@@ -24,6 +24,7 @@ import { TfiImage } from "react-icons/tfi";
 import GalleryPostManager from "./GalleryPostManager";
 import Footer from "../Footer/Footer";
 import AlumniPostManager from "./AlumniPostManager";
+import { Puff } from "react-loader-spinner";
 const AdminDashboard = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
   //     return navigate("/home");
   //   }
   return (
-    <div className="w-full h-[100vh] relative ">
+    <div className="w-full">
       {/* body start */}
       <div className="w-[90%] mx-auto mt-20  grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
         {/* admin left navigation */}
@@ -131,7 +132,21 @@ const AdminDashboard = () => {
           {content === 0 && (
             <div className="w-5/6 p-4 mx-auto bg-[#628e90] my-5">
               {loading ? (
-                <div>Loading</div>
+                <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+                  <Puff
+                    height="80"
+                    width="80"
+                    radius={1}
+                    color="#3c2317"
+                    ariaLabel="puff-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                  <h3 className="animate-bounce400 font-bold text-lg mt-2">
+                    Loading
+                  </h3>
+                </div>
               ) : (
                 <div className=" ">
                   {/* Here all the stats will be shown */}
@@ -183,7 +198,7 @@ const AdminDashboard = () => {
           {content === 6 && <GalleryPostManager></GalleryPostManager>}
         </div>
       </div>
-      <Footer footerClass={"w-full bottom-0 absolute "}></Footer>
+      <Footer footerClass={"w-full"}></Footer>
     </div>
   );
 };

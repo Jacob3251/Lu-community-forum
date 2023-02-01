@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CiPen, CiTrash } from "react-icons/ci";
+import { Puff } from "react-loader-spinner";
 import { auth } from "../../firebase.init";
 import useUniversityPost from "../../hooks/useUniversityPost";
 const DepartmentPostBox = ({
@@ -167,7 +168,19 @@ const DepartmentPostManager = () => {
         />
       </form>
       {deptNormalPostLoading ? (
-        <div>Loading Teacher Posts</div>
+        <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+          <Puff
+            height="80"
+            width="80"
+            radius={1}
+            color="#3c2317"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+          <h3 className="animate-bounce400 font-bold text-lg mt-2">Loading</h3>
+        </div>
       ) : (
         <div className=" my-16">
           <h2 className="text-[#3c2317] text-2xl font-bold text-center mb-10">

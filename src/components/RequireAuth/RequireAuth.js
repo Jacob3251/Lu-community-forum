@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Puff } from "react-loader-spinner";
 import { Navigate, useLocation } from "react-router-dom";
 import { auth } from "../../firebase.init";
 const RequireAuth = ({ children }) => {
@@ -8,11 +9,18 @@ const RequireAuth = ({ children }) => {
   // console.log("from require auth 88888888888", user);
   if (loading) {
     return (
-      <p>
-        Loading...
-        <br />
-        Please kindly wait
-      </p>
+      <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+        <Puff
+          height="80"
+          width="80"
+          radius={1}
+          color="#3c2317"
+          ariaLabel="puff-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
     );
   }
   if (!user) {
