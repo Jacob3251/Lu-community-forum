@@ -30,18 +30,28 @@ const TransportNoticeManager = () => {
     fetch("http://localhost:9000/transportnotice", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(postObject),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("success", data);
-        e.target.reset();
-      });
+    });
   };
   //   const [post] = useUniversityPost();
   return (
-    <div>
-      <div className="w-full">
+    <div className="mb-20 grid grid-cols-3 gap-6  ">
+      <div className="w-full col-span-2 px-14 mx-auto pt-10 pb-8 mt-5 rounded-2xl bg-[#628e90]">
+        <h3 className="text-white text-2xl font-bold text-center mb-1 ">
+          Manage Transport Posts
+        </h3>
+        <div className="divider"></div>
+
+        {notices.map((u) => (
+          <NoticeBox
+            key={u._id}
+            number={++x}
+            title={u.title}
+            link={u.link}
+            id={u._id}
+          ></NoticeBox>
+        ))}
+      </div>
+      <div className="w-full col-span-1">
         <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
           Transport Notice Submission Form
         </h3>
@@ -62,26 +72,11 @@ const TransportNoticeManager = () => {
           <input
             type="submit"
             value="Submit"
-            className="w-full my-2 py-3 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
+            className="w-full my-2 py-3 bg-[#ffffff] hover:bg-[#dc4734] text-black hover:text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
           />
         </form>
       </div>
-      <div className="w-[85%] px-14 mx-auto pt-10 pb-8 mt-5 rounded-2xl bg-[#628e90]">
-        <h3 className="text-white text-2xl font-bold text-center mb-1 ">
-          Manage Transport Posts
-        </h3>
-        <div className="divider"></div>
 
-        {notices.map((u) => (
-          <NoticeBox
-            key={u._id}
-            number={++x}
-            title={u.title}
-            link={u.link}
-            id={u._id}
-          ></NoticeBox>
-        ))}
-      </div>
       {/* <button onClick={handleSubmit}>Add post university</button> */}
     </div>
   );
