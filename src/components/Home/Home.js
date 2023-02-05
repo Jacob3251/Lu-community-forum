@@ -38,11 +38,11 @@ const Home = () => {
       {/* <Header></Header> */}
       {/* body part */}
       <div className="w-full md:w-[75%] mx-auto relative" id="top">
-        <div className="grid grid-cols-1  xl:grid-cols-9  gap-x-5 px-5 place-content-between  xl:pt-10  ">
-          <div className="col-span-6 xl:col-span-3  ">
+        <div className="grid grid-cols-1  gap-y-5  gap-x-5 px-5 place-content-between  xl:pt-10  ">
+          <div className=" ">
             <CreatePost></CreatePost>
           </div>
-          <div className="col-span-6  xl:col-span-5 ">
+          <div className="">
             {posts.length === 0 ? (
               <div className="flex justify-center items-center h-[57vh]">
                 <h3>No posts yet</h3>

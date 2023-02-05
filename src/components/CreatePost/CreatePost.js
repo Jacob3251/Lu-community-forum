@@ -108,7 +108,7 @@ const CreatePost = () => {
 
   return (
     <div className=" bg-white w-full  duration-300 p-5 my-5 xl:my-0  mx-auto text-center ">
-      <div className="flex flex-row space-y-2 md:flex md:space-y-0 items-center justify-start ">
+      <div className="flex flex-row md:flex  items-center justify-start ">
         {/* users profile image link will go here */}
         <div className="flex items-center justify-center space-x-2">
           <div className="w-12 h-12 rounded-full ring ring-transparent ring-offset-[#dc4734]  ring-offset-2">

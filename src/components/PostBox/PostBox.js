@@ -10,13 +10,14 @@ import { auth } from "../../firebase.init";
 import Comment from "./Comment";
 import useSingleUser from "../../hooks/useSingleUser";
 import { Puff } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const PostBox = ({ post }) => {
   const [showComment, setShowComment] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [likeColor, setLikeColor] = useState(false);
   const { _id, name, title, content, email, likes, comments, time } = post;
-
+  const navigate = useNavigate();
   // const [userdata, setUserdata] = useState({});
   const [user] = useAuthState(auth);
   const profile = useSingleUser(email);
@@ -79,6 +80,15 @@ const PostBox = ({ post }) => {
         });
     }
   };
+
+  const handleNav = () => {
+    if (user?.email === email) {
+      navigate("/profile");
+    } else {
+      navigate(`/userprofile/${email}`);
+    }
+  };
+
   // useEffect(() => {
   //   fetch(`http://localhost:9000/users/${user?.email}`)
   //     .then((res) => res.json())
@@ -106,7 +116,10 @@ const PostBox = ({ post }) => {
             </h3>
           </div>
         ) : (
-          <div className="bg-[#628E90]  rounded-2xl mx-auto mb-5 shadow-lg">
+          <div
+            className="bg-white  mx-auto mb-5 "
+            style={{ boxShadow: "0px 1px 15px 0px rgb(51 51 51 / 20%)" }}
+          >
             {/* top part  */}
             <div
               className={`w-full flex md:flex-row items-center justify-between px-5 mx-auto  pt-1  ${
@@ -129,10 +142,13 @@ const PostBox = ({ post }) => {
                   </div>
                 </div>
                 <div className="ml-4">
-                  <div className="font-medium text-md text-[#F5EFE6] ">
+                  <div
+                    className="font-bold text-[14px] text-[#333333] hover:underline hover:text-[#DC4734] duration-200"
+                    onClick={handleNav}
+                  >
                     {name !== undefined ? name : "No name"}
                   </div>
-                  <div className="font-normal text-[#F5EFE6] italic text-sm">
+                  <div className="font-normal text-[#515860] italic text-[10px]">
                     {time}
                   </div>
                 </div>
@@ -168,33 +184,33 @@ const PostBox = ({ post }) => {
             </div>
             {/* content part */}
             <div className="w-full px-6 mx-auto text-left pb-2 ">
-              <h3 className="text-[#3C2317] font-bold">{title}</h3>
+              <h3 className="text-black text-[10px] font-bold">#{title}</h3>
               <div className="mt-1 ">
-                <p className="text-base text-[#F5EFE6]">{content}</p>
+                <p className=" text-[#333333] text-[14px]">{content}</p>
               </div>
               <div className=" py-3">
                 <div className="flex justify-between mb-2">
-                  <div className="text-[#F5EFE6]">
+                  <div className="text-[#646f7c] text-[14px]">
                     {" "}
                     {likes.length} Likes . {comments.length} Comments
                   </div>
                   {/* <div className="text-[#F5EFE6]"> 60 comments</div> */}
                 </div>
                 <hr />
-                <div className="flex justify-between">
+                <div className="flex justify-between mt-2">
                   <div className="flex  ">
                     <button
-                      className={`btn btn-ghost ${
+                      className={`btn btn-ghost hover:bg-[#DC4734] hover:text-white ${
                         likes.find((u) => u === user?.email)
-                          ? "text-yellow-500"
-                          : "text-[#F5EFE6]"
+                          ? "text-[#DC4734]"
+                          : "text-[#333333]"
                       }`}
                       onClick={handleLiked}
                     >
                       <HandThumbUpIcon className="h-6 w-6 mr-2" /> Like
                     </button>
                     <button
-                      className="btn btn-ghost text-[#F5EFE6]"
+                      className="btn text-[#333333] btn-ghost hover:text-white hover:bg-[#Dc4734] text-[14px]"
                       onClick={() => setShowComment(!showComment)}
                     >
                       Comment
