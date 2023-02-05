@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useAsyncError } from "react-router-dom";
 import RequireAdmin from "../RequireAdmin/RequireAdmin";
+import { FaUserAlt } from "react-icons/fa";
 
 const ProfileSideMenu = () => {
   const [user, loading] = useAuthState(auth);
@@ -32,19 +33,19 @@ const ProfileSideMenu = () => {
   // const admin = FindAdmin(user?.email);
   return (
     <div className="">
-      <div className="dropdown dropdown-end ">
+      <div className="dropdown dropdown-end">
         {/* <label tabIndex="0" className="btn m-1">
           Click
         </label> */}
 
-        <FontAwesomeIcon
+        <FaUserAlt
           tabIndex="0"
           icon={faUserCircle}
-          className="w-8 h-8 text-white mask "
-        ></FontAwesomeIcon>
+          className="text-lg text-black hover:text-[#dc4734] mask "
+        ></FaUserAlt>
         <ul
           tabIndex="0"
-          className="dropdown-content p-2 bg-[#628e90] hover:border-white border-2 shadow-md hover:shadow-gray-700 rounded-md space-y-2 w-52"
+          className="dropdown-content p-2 z-50 bg-[#628e90] hover:border-white border-2 shadow-md hover:shadow-gray-700 rounded-md space-y-2 w-52"
         >
           <div className="h-24 mt-5 rounded mx-auto">
             <div className="text-center">

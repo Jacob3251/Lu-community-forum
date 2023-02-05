@@ -12,7 +12,7 @@ const GalleryPostManager = () => {
   const uploadGalleryFileInFirebase = () => {
     // console.log(profile);
     if (galleryPictureFile == null) return;
-    console.log("func ran");
+    console.log(galleryPictureFile);
     for (let i = 0; i < galleryPictureFile.length; i++) {
       const fileRef = ref(
         storage,

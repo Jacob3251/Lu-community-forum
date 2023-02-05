@@ -87,7 +87,7 @@ const PostBox = ({ post }) => {
   //     });
   // }, []);
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="w-full mx-auto z-0">
       <>
         {profile[1] ? (
           <div className="h-[90vh] w-full flex flex-col justify-center items-center">
@@ -106,7 +106,7 @@ const PostBox = ({ post }) => {
             </h3>
           </div>
         ) : (
-          <div className="bg-[#628E90]  rounded-2xl mx-auto my-5 shadow-lg">
+          <div className="bg-[#628E90]  rounded-2xl mx-auto mb-5 shadow-lg">
             {/* top part  */}
             <div
               className={`w-full flex md:flex-row items-center justify-between px-5 mx-auto  pt-1  ${

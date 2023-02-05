@@ -37,8 +37,26 @@ const Home = () => {
       {/* <Header></Header> */}
       {/* <Header></Header> */}
       {/* body part */}
-      <div className="w-5/6 mx-auto relative" id="top">
-        <CreatePost></CreatePost>
+      <div className="w-full md:w-[75%] mx-auto relative" id="top">
+        <div className="grid grid-cols-1  xl:grid-cols-9  gap-x-5 px-5 place-content-between  xl:pt-10  ">
+          <div className="col-span-6 xl:col-span-3  ">
+            <CreatePost></CreatePost>
+          </div>
+          <div className="col-span-6  xl:col-span-5 ">
+            {posts.length === 0 ? (
+              <div className="flex justify-center items-center h-[57vh]">
+                <h3>No posts yet</h3>
+              </div>
+            ) : (
+              reversed.map((singlePostData) => (
+                <PostBox
+                  post={singlePostData}
+                  key={singlePostData._id}
+                ></PostBox>
+              ))
+            )}
+          </div>
+        </div>
         {/* <ImageBox links={links1}></ImageBox>
         <ImageBox links={links2}></ImageBox>
         <ImageBox links={links}></ImageBox> */}
@@ -47,15 +65,6 @@ const Home = () => {
             className={`fixed shadow-md animate-bounce400 shadow-white bottom-[5%] right-[8%] md:right-[48%] h-[50px] hover:text-[#628E90] hover:bg-white hover:scale-125  bg-[#628E90] text-white rounded-full text-[50px]`}
           ></CgArrowUpO>
         </HashLink>
-        {posts.length === 0 ? (
-          <div className="flex justify-center items-center h-[57vh]">
-            <h3>No posts yet</h3>
-          </div>
-        ) : (
-          reversed.map((singlePostData) => (
-            <PostBox post={singlePostData} key={singlePostData._id}></PostBox>
-          ))
-        )}
       </div>
 
       <Footer footerClass={footerClass}></Footer>

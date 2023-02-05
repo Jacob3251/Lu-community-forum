@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { FaStream } from "react-icons/fa";
+import { FaSearch, FaStream } from "react-icons/fa";
 import "./Header.css";
 import { auth } from "../../../firebase.init";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
@@ -14,7 +14,7 @@ import { useRef } from "react";
 const Header = () => {
   const [user] = useAuthState(auth);
   // const [signOut, loading, error] = useSignOut(auth);
-  const activeDesign = "text-[#3c2317] text-underline scale-125 header-text";
+  const activeDesign = "text-[#dc4734] text-xl scale-125 header-text";
   const [activeSide, setActiveSide] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [showSearchSubmit, setShowSearchSubmit] = useState(false);
@@ -40,7 +40,26 @@ const Header = () => {
       setSearchedUsers([]);
     }
   };
-  const handleSearchUser = () => {
+  const handleSearchUser = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.searchName.value;
+
+    const found = allUsersProfile.filter(
+      (u) =>
+        u.name.toUpperCase() === searchValue.toUpperCase() ||
+        u.email === searchValue
+    );
+    if (found) {
+      setSearchedUsers(found);
+      e.target.reset();
+    }
+    console.log(found);
+    setShowSearchSubmit(!showSearchSubmit);
+    // if(allUsersProfile.length !== 0){
+
+    // }
+  };
+  const handleSearchUserbtn = () => {
     const searchValue = searchRef.current.value;
 
     const found = allUsersProfile.filter(
@@ -59,61 +78,67 @@ const Header = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="bg-[#628e90]">
-      <div className="main-header flex justify-between   items-center px-[8.5%] py-2 rounded-sm hover:shadow-lg hover:shadow-[#3c2317] duration-150">
+    <div className="bg-white drop-shadow-lg">
+      <div className="main-header w-full md:w-[75%] mx-auto flex justify-evenly md:justify-between items-center py-2 rounded-sm duration-150">
         {/* secondary menu name  */}
         <div className="sideMenuIcon">
-          <h1 className="font-bold text-2xl my-2 text-white">LUCM</h1>
+          <h1 className="font-bold text-[18px] my-2 text-[#dc4734]">LUCM</h1>
         </div>
         {/* Left header logo below */}
-        <div className=" ">
+        <div className="">
           <h1 className="company-name">Leading University</h1>
-          {user?.emailVerified && (
-            <div className="flex flex-col md:flex-row justify-center items-center my-2">
+        </div>
+        {/* Search users */}
+        {user?.emailVerified && (
+          <div className="shadow-inner rounded-full px-3">
+            <form
+              onSubmit={handleSearchUser}
+              className="flex flex-row justify-center space-x-2 items-center my-2"
+            >
               <input
                 type="text"
+                name="searchName"
                 ref={searchRef}
-                className=" pl-2 rounded-md"
+                className=" pl-2  rounded-md  py-1 outline-none"
                 placeholder="Search by name or email"
               />
-              <button
-                className="block bg-[#FFFFF0] px-2 py-1 mt-2 md:mt-0 md:ml-2 rounded-md"
-                onClick={handleSearchUser}
+              <FaSearch
+                onClick={handleSearchUserbtn}
+                className="text-[333333] text-2xl font-normal   hover:text-[#dc4734]  rounded-md"
               >
-                Sub
-              </button>
-            </div>
-          )}
-          {/* showing users */}
-          {searchedUsers.length !== 0 && (
-            <div
-              className="bg-white hover:bg-[#FFFFF0] pl-2 z-50 w-full"
-              onClick={handleNav}
-            >
-              {searchedUsers[0].name}
-            </div>
-          )}
-        </div>
-        {/* Website Name */}
+                {/* <input type="submit" value="search" className="" /> */}
+              </FaSearch>
+            </form>
+            {/* showing users */}
+            {searchedUsers.length !== 0 && (
+              <div
+                className="bg-white hover:bg-[#FFFFF0] pl-2 z-50 w-full shadow-inner"
+                onClick={handleNav}
+              >
+                {searchedUsers[0].name}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Menu here below */}
         <div className="menuBar   ">
           <ul className="flex space-x-3 justify-end items-center">
-            <li className="header-text">
+            <li className="header-text text-lg font-bold">
               <NavLink
                 to="/home"
                 className={({ isActive }) =>
-                  isActive ? activeDesign : "header-text"
+                  isActive ? activeDesign : "header-text text-[#333333]"
                 }
               >
                 Home
               </NavLink>
             </li>
-            <li className="header-text">
+            <li className="header-text text-lg font-bold">
               <NavLink
                 to="/gallery"
                 className={({ isActive }) =>
-                  isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                  isActive ? activeDesign : "header-text text-[#333333] "
                 }
               >
                 Gallery
@@ -121,32 +146,32 @@ const Header = () => {
             </li>
 
             {user?.emailVerified && (
-              <li className="header-text">
+              <li className="header-text text-lg font-bold">
                 <NavLink
                   to="dept"
                   className={({ isActive }) =>
-                    isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                    isActive ? activeDesign : "header-text text-[#333333] "
                   }
                 >
                   Official Posts
                 </NavLink>
               </li>
             )}
-            <li className="header-text">
+            <li className="header-text text-lg font-bold">
               <NavLink
                 to="alumni"
                 className={({ isActive }) =>
-                  isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                  isActive ? activeDesign : "header-text text-[#333333] "
                 }
               >
                 Alumni
               </NavLink>
             </li>
             {user && (
-              <li className="header-text">
+              <li className="header-text text-lg  font-bold">
                 <div
                   className={({ isActive }) =>
-                    isActive ? activeDesign : "header-text text-[#F5EFE6]"
+                    isActive ? activeDesign : "header-text text-[#333333] "
                   }
                 >
                   <ProfileSideMenu></ProfileSideMenu>
@@ -154,7 +179,7 @@ const Header = () => {
               </li>
             )}
             {!user && (
-              <li className="header-text">
+              <li className="header-text text-lg font-bold">
                 <div className="text-[#F5EFE6]">
                   <label htmlFor="my-modal-3" className="modal-button">
                     Login
