@@ -123,17 +123,17 @@ const Dept = () => {
           />
         </div>
       ) : (
-        <div className="w-full pt-16">
+        <div className="w-full pt-28">
           {/* Toggle Buttons Below */}
-          <div className="block md:inline-block  md:ml-[10%]">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-4 place-content-center place-items-center">
+          <div className="w-full md:ml-[10%]">
+            <div className="w-full p-5 my-2 flex flex-col  md:flex-row md:space-x-3 ">
               <div
                 onClick={() => setPostType(1)}
                 className={`py-3 px-2 ${
                   postType === 1
-                    ? "bg-[#3c2317] hover:bg-[#628e90]"
-                    : "bg-[#628e90] hover:bg-[#3c2317]"
-                }   text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
+                    ? "bg-white text-[#dc4374] text-lg "
+                    : "bg-white text-[#36454F] text-lg"
+                }    font-bold duration-200`}
               >
                 University
               </div>
@@ -141,9 +141,9 @@ const Dept = () => {
                 onClick={() => setPostType(2)}
                 className={`py-3 px-2 ${
                   postType === 2
-                    ? "bg-[#3c2317] hover:bg-[#628e90]"
-                    : "bg-[#628e90] hover:bg-[#3c2317]"
-                }  text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
+                    ? "bg-white text-[#dc4374] text-lg "
+                    : "bg-white text-[#36454F] text-lg"
+                }    font-bold duration-200`}
               >
                 Department
               </div>
@@ -151,9 +151,9 @@ const Dept = () => {
                 onClick={() => setPostType(3)}
                 className={`py-3 px-2 ${
                   postType === 3
-                    ? "bg-[#3c2317] hover:bg-[#628e90]"
-                    : "bg-[#628e90] hover:bg-[#3c2317]"
-                }  text-lg text-white font-bold hover:text-white hover:scale-105 duration-200 rounded-md`}
+                    ? "bg-white text-[#dc4374] text-lg "
+                    : "bg-white text-[#36454F] text-lg"
+                }    font-bold duration-200`}
               >
                 Teacher
               </div>
