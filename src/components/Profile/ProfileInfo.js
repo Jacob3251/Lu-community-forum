@@ -10,7 +10,7 @@ const ProfileInfo = ({ profile, classes }) => {
   };
   return (
     <div className={classes}>
-      <h3 className="text-center text-black font-bold text-2xl my-5">
+      <h3 className="text-center text-[#36454F] font-bold text-xl my-5">
         Profile Information
       </h3>
       <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">

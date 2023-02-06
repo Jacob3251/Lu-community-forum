@@ -22,68 +22,7 @@ import { Puff } from "react-loader-spinner";
 const Gallery = () => {
   const [galleryData, setGalleryData] = useState([]);
   const [galleryDataLoader, setGalleryDataLoader] = useState(true);
-  const images1 = [
-    {
-      src: cmc1,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cmc2,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cmc3,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cmc4,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cmc5,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-  ];
-  const images2 = [
-    {
-      src: cc1,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cc2,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cc3,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cc4,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: cc5,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-  ];
-  const images3 = [
-    {
-      src: ss1,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: ss2,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: ss3,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-    {
-      src: ss4,
-      sizes: "(max-width: 1000px) 400px, (max-width: 2000px) 700px, 1000px",
-    },
-  ];
+
   const CustomFormatter = (arr) => {
     let x = [];
     for (let i = 0; i < arr.length; i++) {
@@ -104,13 +43,15 @@ const Gallery = () => {
       });
   }, []);
   return (
-    <div className="">
-      <h3 className="text-center font-mono font-bold text-lg md:text-2xl lg:text-4xl my-8">
-        Gallery de Memorial
-      </h3>
+    <div className="w-full pt-16">
+      <div className="w-[80%] mx-auto">
+        <h3 className="text-center md:text-start font-bold text-lg  my-5">
+          Event Gallery
+        </h3>
+      </div>
       {/* Gallery Posts container */}
       {galleryDataLoader ? (
-        <div className="h-[90vh] w-full flex flex-col justify-center items-center">
+        <div className="h-[90vh] w-full flex flex-col justify-center items-center pt-16">
           <Puff
             height="80"
             width="80"
@@ -124,18 +65,23 @@ const Gallery = () => {
           <h3 className="animate-bounce400 font-bold text-lg mt-2">Loading</h3>
         </div>
       ) : (
-        <div className="md:grid flex flex-col md:grid-cols-2 gap-5  w-[80%] mx-auto place-content-center place-items-center p-14 mb-10 bg-white bg-opacity-40 rounded-xl">
-          {galleryData.length !== 0 &&
+        <div className="md:grid flex flex-col md:grid-cols-2 gap-5   w-[80%] mx-auto place-content-center place-items-center mb-10  rounded-xl">
+          {galleryData.length !== 0 ? (
             galleryData.map((obj) => (
               <GalleryPostObj
                 key={obj?._id}
                 images={CustomFormatter(obj?.links)}
                 title={obj?.title}
               ></GalleryPostObj>
-            ))}
+            ))
+          ) : (
+            <div className="w-full h-full flex justify-center items-center">
+              No Gallery Post Added
+            </div>
+          )}
         </div>
       )}
-      <Footer footerClass={"w-[100vw]"}></Footer>
+      <Footer footerClass={"w-full"}></Footer>
     </div>
   );
 };

@@ -15,6 +15,7 @@ import { FaUpload } from "react-icons/fa";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import CreatePost from "../CreatePost/CreatePost";
 const Profile = () => {
   const [userArray, setUserArray] = useState([]);
   // const [profile, setProfile] = useState({});
@@ -148,7 +149,7 @@ const Profile = () => {
   }
 
   return (
-    <div className=" w-full">
+    <div className=" w-full pt-16">
       {profile[1] ? (
         <div className="h-[90vh] w-full flex flex-col justify-center items-center">
           <Puff
@@ -164,14 +165,14 @@ const Profile = () => {
           <h3 className="animate-bounce400 font-bold text-lg mt-2">Loading</h3>
         </div>
       ) : (
-        <div className="w-full  md:w-[75%]  mx-auto">
+        <div className="w-full">
           {/* profile box */}
           <div className="">
             {/* cover pic holder */}
             <div className="h-[270px] md:h-[350px] w-full mx-auto relative">
               <img
                 onClick={handleEnlargeCoverPic}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-fill"
                 src={profile[0].coverImgLink ? profile[0].coverImgLink : cover}
                 alt="cover-img"
               />
@@ -190,7 +191,7 @@ const Profile = () => {
                 </div>
               </div>
               {/* Info part holder where profile pic resides*/}
-              <div className="absolute bottom-[-18%] md:bottom-[-42%] left-[31%]  sm:left-[40%] md:left-[10%] ">
+              <div className="absolute bottom-[-18%] md:bottom-[-31%] left-[38%]  sm:left-[40%] md:left-[12.5%] ">
                 {/* profile image */}
                 <div className="flex md:flex-row flex-col justify-center items-center">
                   <div className="h-[140px] w-[140px] p-1 bg-white rounded-full relative">
@@ -225,61 +226,68 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          {/* secondary name and follow button container becauser of positoning issue */}
-          <div className="text-center md:hidden mt-[90px] w-full ">
-            <h3 className=" text-2xl font-bold text-black overflow-x-hidden">
-              {profile[0].name}
-            </h3>
-            {/* follow button  */}
-            <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
-              Followers: 443
-            </h3>
-          </div>
-          {/* Main contents of profile section */}
-          <div className="mt-[80px] mb-[50px] md:mt-[180px]">
-            {profile.length !== 0 ? (
-              <div className=" grid grid-cols-1 w-[95%] gap-y-5 md:gap-y-0 md:grid-cols-3 items-baseline gap-x-5 md:w-[80%] mx-auto">
-                <ProfileInfo
-                  profile={profile[0]}
-                  classes="bg-white bg-opacity-50 md:col-span-2 p-5 rounded-xl"
-                ></ProfileInfo>
-                <ProfileBio
-                  profile={profile[0]}
-                  classes="p-5 bg-[#628e90] hover:bg-[#3c2317] bg-opacity-70 rounded-xl"
-                ></ProfileBio>
-              </div>
-            ) : (
-              <div>No Data</div>
-            )}
-          </div>
-          {/* User's own post section */}
+          <div className="md:w-[75%]  mx-auto">
+            {/* secondary name and follow button container becauser of positoning issue */}
+            <div className="text-center md:hidden mt-[90px] w-full ">
+              <h3 className=" text-2xl font-bold text-black overflow-x-hidden">
+                {profile[0].name}
+              </h3>
+            </div>
+            {/* Main contents of profile section */}
+            <div className="mt-[20px] mb-[50px] md:mt-[110px]">
+              {profile.length !== 0 ? (
+                <div className="flex flex-col-reverse md:grid  p-2 md:gap-2 md:grid-cols-9 md:place-content-center md:place-items-start ">
+                  <div className="hidden md:block md:col-span-3">
+                    <ProfileInfo
+                      profile={profile[0]}
+                      classes="w-full bg-white p-1 shadow-inner"
+                    ></ProfileInfo>
+                  </div>
 
-          {!ap.postLoading && ap.allSinglePost.length !== 0 && (
-            <h3 className="text-3xl font-IndiFlower font-bold  my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">
-              Posts
-            </h3>
-          )}
-          <div>
-            {ap.postLoading && (
-              <div className="flex justify-center items-center">
-                <RotatingSquare color="#628E90"></RotatingSquare>
-              </div>
-            )}
-            {!ap.postLoading && ap.allSinglePost.length === 0 ? (
-              <div className="flex justify-center items-center">
-                <h3 className="text-3xl font-IndiFlower font-bold my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">
-                  {" "}
-                  No posts yet
-                </h3>
-              </div>
-            ) : (
-              ap.allSinglePost.map((singlePostData) => (
-                <PostBox
-                  post={singlePostData}
-                  key={singlePostData._id}
-                ></PostBox>
-              ))
-            )}
+                  <div className="col-span-4 ">
+                    {/* userCreate post */}
+                    <CreatePost />
+                    <div className="my-5">
+                      {ap.postLoading && (
+                        <div className="flex justify-center items-center">
+                          <RotatingSquare color="#628E90"></RotatingSquare>
+                        </div>
+                      )}
+                      {!ap.postLoading && ap.allSinglePost.length === 0 ? (
+                        <div className="flex justify-center items-center">
+                          <h3 className="text-3xl font-IndiFlower font-bold my-10 py-8 rounded-md bg-white bg-opacity-60 w-[80%] mx-auto text-center">
+                            {" "}
+                            No posts yet
+                          </h3>
+                        </div>
+                      ) : (
+                        ap.allSinglePost.map((singlePostData) => (
+                          <PostBox
+                            post={singlePostData}
+                            key={singlePostData._id}
+                          ></PostBox>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <div className="col-span-2 mb-8 md:mb-0 w-full">
+                    <ProfileBio
+                      profile={profile[0]}
+                      classes="w-full bg-white"
+                    ></ProfileBio>
+                  </div>
+                  <div className="block w-full md:hidden">
+                    <ProfileInfo
+                      profile={profile[0]}
+                      classes="bg-transplarent w-full pb-5 my-3"
+                    ></ProfileInfo>
+                  </div>
+                </div>
+              ) : (
+                <div>No Data</div>
+              )}
+            </div>
+            {/* User's own post section */}
           </div>
         </div>
       )}

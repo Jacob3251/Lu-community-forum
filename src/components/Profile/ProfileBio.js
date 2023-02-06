@@ -91,10 +91,12 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
           <div>Loading</div>
         ) : (
           <>
-            <div className={`${classes} relative`}>
-              <h3 className="my-5  text-2xl font-bold text-white">About Me</h3>
+            <div className={`${classes} relative px-4 py-3`}>
+              <h3 className=" text-[14px] font-bold text-[#36454F]">
+                About Me
+              </h3>
 
-              <p className="font-mono text-white mb-5">
+              <p className="font-medium text-[14px] text-[#36454F] mb-5">
                 {profile.bio ? profile.bio : "Update your bio"}
               </p>
               {updaterBio && (
@@ -108,7 +110,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
               {updaterBio !== true ? (
                 <button
                   onClick={() => setUpdaterBio(!updaterBio)}
-                  className="bg-[#FFF5EE]  rounded-full text-3xl hover:bg-[#FFFFF0] hover:scale-110 duration-200 hover:text-black p-2 absolute bottom-[-18px] right-2"
+                  className="  rounded-full text-md hover:bg-white shadow-inner border-2 border-[#dc4734] hover:scale-110 duration-200 bg-[#dc4734] hover:text-[#dc4734] text-white p-2 absolute bottom-[-20px] right-2"
                 >
                   <FaPencilAlt></FaPencilAlt>
                 </button>
@@ -135,7 +137,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                 </form>
               )}
             </div>
-            <div
+            {/* <div
               className={`${classes} mt-11 w-[80%] mx-auto font-mono text-white text-2xl font-bold hover:scale-105 duration-200 overflow-auto`}
             >
               <label
@@ -145,10 +147,10 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                 <span className="">Update Subscription </span>
                 <SlPencil className=" ml-3"></SlPencil>
               </label>
-            </div>
+            </div> */}
 
             {/* Modal Start */}
-            <input type="checkbox" id="my-modal1" className="modal-toggle" />
+            {/* <input type="checkbox" id="my-modal1" className="modal-toggle" />
             <div className="modal">
               <div className="modal-box bg-[#628e90]">
                 {teacherData.status !== "Not applicable" ? (
@@ -162,8 +164,6 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                     >
                       X
                     </label>
-
-                    {/* checkbox for dept */}
 
                     <h3 className="text-white font-semibold underline text-lg text-center my-3">
                       Not Selected Teachers
@@ -240,7 +240,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
             {/* Modal End */}
           </>
         )}

@@ -4,7 +4,10 @@ import "react-gallery-carousel/dist/index.css";
 import "./Gallery.css";
 const GalleryPostObj = ({ images, title }) => {
   return (
-    <div className="bg-[#FFFFF0] px-2 py-5 w-full">
+    <div
+      className="bg-white px-2 py-5 w-full "
+      style={{ boxShadow: "0px 1px 15px 0px rgb(51 51 51 / 20%)" }}
+    >
       <div className="h-[250px] lg:h-[300px] ">
         <Carousel
           className="framed-carousel"

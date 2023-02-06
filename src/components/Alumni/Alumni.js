@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 
 const Alumni = () => {
   const alumnis = [
@@ -28,20 +29,23 @@ const Alumni = () => {
     },
   ];
   return (
-    <div className="h-full overflow-auto w-[80%] mx-auto">
-      <h1 className="font-bold text-center text-4xl font-pacifico my-10">
-        Our Respected Alumni's
-      </h1>
-      <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {alumnis.map((u) => (
-          <AlumniBox
-            alumniName={u.alumniName}
-            alumniPhotoUrl={u.alumniPhotoUrl}
-            alumniCurrentPosition={u.alumniCurrentPosition}
-            alumniDescription={u.alumniDescription}
-          ></AlumniBox>
-        ))}
+    <div>
+      <div className="h-full overflow-auto w-[80%] mx-auto pt-16">
+        <h1 className="font-bold text-center text-xl font-pacifico my-10">
+          Our Respected Alumni's
+        </h1>
+        <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          {alumnis.map((u) => (
+            <AlumniBox
+              alumniName={u.alumniName}
+              alumniPhotoUrl={u.alumniPhotoUrl}
+              alumniCurrentPosition={u.alumniCurrentPosition}
+              alumniDescription={u.alumniDescription}
+            ></AlumniBox>
+          ))}
+        </div>
       </div>
+      <Footer footerClass={"w-full"}></Footer>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { FaSearch, FaStream } from "react-icons/fa";
+import { FaSearch, FaStream, FaUserAlt } from "react-icons/fa";
 import "./Header.css";
 import { auth } from "../../../firebase.init";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
@@ -11,10 +11,17 @@ import Login from "../../Login/Login";
 import { useEffect } from "react";
 import { checkTargetForNewValues } from "framer-motion";
 import { useRef } from "react";
+import {
+  faArrowRightFromBracket,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DemoSideMenu from "../../ProfileSideMenu/DemoSideMenu";
 const Header = () => {
   const [user] = useAuthState(auth);
   // const [signOut, loading, error] = useSignOut(auth);
   const activeDesign = "text-[#dc4734] text-xl scale-125 header-text";
+  const [openDropdown, setOpenDropdown] = useState(false);
   const [activeSide, setActiveSide] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
   const [showSearchSubmit, setShowSearchSubmit] = useState(false);
@@ -78,7 +85,7 @@ const Header = () => {
   };
   const navigate = useNavigate();
   return (
-    <div className="bg-white drop-shadow-lg">
+    <div className="bg-white drop-shadow-lg w-full absolute z-50">
       <div className="main-header w-full md:w-[75%] mx-auto flex justify-evenly md:justify-between items-center py-2 rounded-sm duration-150">
         {/* secondary menu name  */}
         <div className="sideMenuIcon">
@@ -112,7 +119,7 @@ const Header = () => {
             {/* showing users */}
             {searchedUsers.length !== 0 && (
               <div
-                className="bg-white hover:bg-[#FFFFF0] pl-2 z-50 w-full shadow-inner"
+                className="bg-white hover:bg-[#FFFFF0] pl-2 w-full shadow-inner"
                 onClick={handleNav}
               >
                 {searchedUsers[0].name}
@@ -167,11 +174,12 @@ const Header = () => {
                 Alumni
               </NavLink>
             </li>
+            {/* ProfileSide menu below================================================================== */}
             {user && (
-              <li className="header-text text-lg  font-bold">
+              <li className="header-text text-lg  font-bold ">
                 <div
                   className={({ isActive }) =>
-                    isActive ? activeDesign : "header-text text-[#333333] "
+                    isActive ? `${activeDesign}` : "header-text text-[#333333] "
                   }
                 >
                   <ProfileSideMenu></ProfileSideMenu>
@@ -187,41 +195,6 @@ const Header = () => {
                 </div>
               </li>
             )}
-
-            {/* {!user && (
-              <li className="header-text">
-                <NavLink
-                  to="register"
-                  className={({ isActive }) =>
-                    isActive ? activeDesign : "header-text text-[#F5EFE6]"
-                  }
-                >
-                  SignUp
-                </NavLink>
-              </li>
-            )} */}
-            {/* {user && (
-              <li className="header-text">
-                <button
-                  className="header-text text-[#F5EFE6]"
-                  onClick={() => {
-                    signOut(auth);
-                    toast("You're logged out", {
-                      position: "bottom-center",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                    });
-                  }}
-                >
-                  Sign Out
-                </button>
-              </li>
-            )} */}
           </ul>
         </div>
         <button

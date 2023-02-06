@@ -23,7 +23,7 @@ const Transport = () => {
       .then((data) => setNotices(data));
   }, [notices]);
   return (
-    <div className="w-full mx-auto ">
+    <div className="w-full mx-auto pt-16">
       <div className="w-5/6 mx-auto">
         <h2 className="text-3xl my-8 text-center  font-bold">
           Today's Transport Schedule

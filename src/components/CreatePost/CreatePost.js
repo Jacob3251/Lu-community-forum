@@ -107,7 +107,7 @@ const CreatePost = () => {
   }, []);
 
   return (
-    <div className=" bg-white w-full  duration-300 p-5 my-5 xl:my-0  mx-auto text-center ">
+    <div className=" bg-white w-full  duration-300 p-5 my-5 xl:my-0  mx-auto text-center">
       <div className="flex flex-row md:flex  items-center justify-start ">
         {/* users profile image link will go here */}
         <div className="flex items-center justify-center space-x-2">

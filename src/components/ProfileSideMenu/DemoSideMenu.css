@@ -1,0 +1,6 @@
+.sideMenu {
+  background-color: red;
+  position: absolute;
+  top: 6rem;
+  z-index: 9999;
+}

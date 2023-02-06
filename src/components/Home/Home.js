@@ -33,7 +33,7 @@ const Home = () => {
     "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8aHVtYW4lMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
   ];
   return (
-    <div className=" lg:w-full h-[80%]  mx-auto ">
+    <div className=" lg:w-full h-[80%] pt-16  md:pt-[5rem]  mx-auto">
       {/* <Header></Header> */}
       {/* <Header></Header> */}
       {/* body part */}

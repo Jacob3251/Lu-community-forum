@@ -123,7 +123,7 @@ const Dept = () => {
           />
         </div>
       ) : (
-        <div className="w-full ">
+        <div className="w-full pt-16">
           {/* Toggle Buttons Below */}
           <div className="block md:inline-block  md:ml-[10%]">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 my-4 place-content-center place-items-center">

@@ -42,7 +42,7 @@ const AdminDashboard = () => {
   //     return navigate("/home");
   //   }
   return (
-    <div className="w-full">
+    <div className="w-full pt-16">
       {/* body start */}
       <div className="w-[90%] mx-auto mt-20  grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
         {/* admin left navigation */}
