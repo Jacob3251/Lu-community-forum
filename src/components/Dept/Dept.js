@@ -15,17 +15,19 @@ const SpecificUniversityPost = ({
   time,
 }) => {
   return (
-    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
-      <h3 className="font-bold text-2xl">{title}</h3>
+    <div className="bg-white text-[#36454F] my-8 px-5 pt-2 pb-3 drop-shadow-md hover:drop-shadow-lg">
       <div className="flex flex-col my-3">
-        <b className="text-[#3c2317] text-lg">Type:{type}</b>
+        <span className="text-[#36454F] font-semibold text-[14px]">
+          Type: <span className="text-[#dc4734] font-bold">{type}</span>
+        </span>
         {/* Time will go below here ============================ */}
-        <i className="text-xs">Published at: {time}</i>
+        <i className="text-[10px]">Published at: {time}</i>
       </div>
-      <p>
-        Published by: <i>{name}</i>
+      <p className="text-[12px] font-bold my-2">
+        Published by: <i className="text-[#dc4734] italic">{name}</i>
       </p>
-      <p className="mb-5">{content}</p>
+      <h3 className="font-bold text-[14px] mt-2">{title}</h3>
+      <p className="mb-5 text-[14px] ">{content}</p>
     </div>
   );
 };
@@ -40,17 +42,20 @@ const SpecificDepartmentPost = ({
   type,
 }) => {
   return (
-    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
-      <h3 className="font-bold text-2xl">{title}</h3>
+    <div className="bg-white my-8 px-5 pt-2 pb-3 drop-shadow-md hover:drop-shadow-lg">
       <div className="flex flex-col my-3">
-        <b className="text-[#3c2317] text-lg">Type: {type}</b>
+        <span className="text-[#36454F] font-semibold text-[14px]">
+          Type:
+          <span className="text-[#dc4734] font-bold"> {type}</span>
+        </span>
         {/* Time will go below here ============================ */}
-        <i className="text-xs">Published at: {time}</i>
+        <i className="text-[10px]">Published at: {time}</i>
       </div>
-      <p className="text-xs">
-        Published By: <i>{name}</i>
-      </p>
-      <p className="mb-5">{content}</p>
+      <span className="text-[12px] font-bold text-[#36454F] my-2">
+        Published By: <i className="text-[#dc4734]">{name}</i>
+      </span>
+      <h3 className="font-bold text-[14px] text-[#36454F] mt-2">{title}</h3>
+      <p className="mb-5 text-[14px]">{content}</p>
     </div>
   );
 };
@@ -65,17 +70,20 @@ const SpecificTeacherPost = ({
   type,
 }) => {
   return (
-    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
-      <h3 className="font-bold text-2xl">{title}</h3>
+    <div className="bg-white drop-shadow-md my-8 px-5 pt-2 pb-3 hover:drop-shadow-lg">
       <div className="flex flex-col my-3">
-        <b className="text-[#3c2317] text-lg">Type:{type}</b>
+        <span className="text-[#36454F] font-semibold text-[14px]">
+          Type:
+          <span className=" text-[#dc4734] font-bold"> {type}</span>
+        </span>
         {/* Time will go below here ============================ */}
-        <i className="text-xs">Posted at: {time}</i>
+        <i className="text-[10px]">Posted at: {time}</i>
       </div>
-      <p className="text-xs">
-        Published By: <i>{name}</i>
+      <p className="text-[12px] font-bold text-[#36454F]">
+        Published By: <i className="text-[#dc4734]">{name}</i>
       </p>
-      <p className="mb-5">{content}</p>
+      <h3 className="font-bold text-[14px] text-[#36454F] mt-2">{title}</h3>
+      <p className="mb-5 text-[14px]">{content}</p>
     </div>
   );
 };
@@ -125,13 +133,13 @@ const Dept = () => {
       ) : (
         <div className="w-full pt-28">
           {/* Toggle Buttons Below */}
-          <div className="w-full md:ml-[10%]">
-            <div className="w-full p-5 my-2 flex flex-col  md:flex-row md:space-x-3 ">
+          <div className="w-full md:w-[80%] md:mx-auto">
+            <div className="p-5 my-0 flex flex-col space-y-2 md:space-y-0 w-5/6 mx-auto md:w-full text-center   md:flex-row md:space-x-3 ">
               <div
                 onClick={() => setPostType(1)}
-                className={`py-3 px-2 ${
+                className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 1
-                    ? "bg-white text-[#dc4374] text-lg "
+                    ? "bg-white text-[#dc4734] text-lg "
                     : "bg-white text-[#36454F] text-lg"
                 }    font-bold duration-200`}
               >
@@ -139,9 +147,9 @@ const Dept = () => {
               </div>
               <div
                 onClick={() => setPostType(2)}
-                className={`py-3 px-2 ${
+                className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 2
-                    ? "bg-white text-[#dc4374] text-lg "
+                    ? "bg-white text-[#dc4734] text-lg "
                     : "bg-white text-[#36454F] text-lg"
                 }    font-bold duration-200`}
               >
@@ -149,9 +157,9 @@ const Dept = () => {
               </div>
               <div
                 onClick={() => setPostType(3)}
-                className={`py-3 px-2 ${
+                className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 3
-                    ? "bg-white text-[#dc4374] text-lg "
+                    ? "bg-white text-[#dc4734] text-lg "
                     : "bg-white text-[#36454F] text-lg"
                 }    font-bold duration-200`}
               >
@@ -160,7 +168,7 @@ const Dept = () => {
             </div>
           </div>
 
-          <div className=" my-6 rounded-2xl p-2 w-4/5 mx-auto">
+          <div className="mt-0  mb-6 rounded-2xl  w-4/5 mx-auto">
             {postType === 1 && (
               <div>
                 {newPostUniversity.map((u) => (
@@ -180,20 +188,6 @@ const Dept = () => {
             )}
             {postType === 2 && (
               <div>
-                <div className="form-control w-full max-w-xs ">
-                  <select
-                    tabIndex="0"
-                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 h-10  hover:bg-blue-200"
-                  >
-                    <option value="cse">Department Post</option>
-                    <option value="cse">Computer Science</option>
-                    <option value="eee">Electrical Enginnering</option>
-                    {/* <option value="ce">Civil Enginnering</option>
-                <option value="eng">English</option>
-                <option value="arch">Architecture</option>
-                <option value="bba">Busincess</option> */}
-                  </select>
-                </div>
                 {newPostDepartment.map((u) => (
                   // <p>{u.content}</p>
                   <SpecificDepartmentPost
@@ -213,23 +207,6 @@ const Dept = () => {
             )}
             {postType === 3 && (
               <div>
-                {/* <div className="w-full bg-slate-300 rounded-lg my-5 flex flex-col md:flex-row justify-center lg:justify-start items-center space-x-4 py-3 pl-5">
-              {profile[0].userType === 1 && (
-                <button
-                  onClick={() => setTeacherPostToggler(1)}
-                  className="bg-white py-2 px-2 scale-95 my-2 hover:scale-100 duration-200 text-lg font-semibold rounded-md hover:bg-slate-100"
-                >
-                  Subscribed Teacher's Post
-                </button>
-              )}
-              <button
-                onClick={() => setTeacherPostToggler(0)}
-                className="bg-white py-2 px-2 scale-95 my-2 hover:scale-100 duration-200 text-lg font-semibold rounded-md hover:bg-slate-100"
-              >
-                All Teacher's Posts
-              </button>
-            </div> */}
-                <h3>subscribed teacher post</h3>
                 {newPostTeacher.map((u) => (
                   // <p>{u.content}</p>
                   <SpecificTeacherPost

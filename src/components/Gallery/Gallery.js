@@ -43,7 +43,7 @@ const Gallery = () => {
       });
   }, []);
   return (
-    <div className="w-full pt-16">
+    <div className="w-full pt-[5rem]">
       <div className="w-[80%] mx-auto">
         <h3 className="text-center md:text-start font-bold text-lg  my-5">
           Event Gallery

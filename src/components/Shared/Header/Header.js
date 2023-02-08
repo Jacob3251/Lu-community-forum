@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { FaSearch, FaStream, FaUserAlt } from "react-icons/fa";
+import {
+  FaAssistiveListeningSystems,
+  FaSearch,
+  FaStream,
+  FaUserAlt,
+} from "react-icons/fa";
 import "./Header.css";
 import { auth } from "../../../firebase.init";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
@@ -13,6 +18,7 @@ import { checkTargetForNewValues } from "framer-motion";
 import { useRef } from "react";
 import {
   faArrowRightFromBracket,
+  faTty,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +33,17 @@ const Header = () => {
   const [showSearchSubmit, setShowSearchSubmit] = useState(false);
   const [allUsersProfile, setAllUsersProfile] = useState([]);
   const [searchedUsers, setSearchedUsers] = useState([]);
+  const [admin, setAdmin] = useState(false);
   const searchRef = useRef("");
+  const email = user?.email;
+  useEffect(() => {
+    const checkreg = /^(cse|eee|ce|eng)[_]\d{10}[@]lus[.]ac[.]bd$/.test(email);
+    console.log("writing");
+    if (!checkreg) {
+      // setAdmin(true);
+      setAdmin(!admin);
+    }
+  }, []);
   useEffect(() => {
     fetch("http://localhost:9000/user")
       .then((res) => res.json())
@@ -225,12 +241,12 @@ const Header = () => {
               onClick={() => {
                 setActiveSide(!activeSide);
               }}
-              to="/service"
+              to="/gallery"
               className={({ isActive }) =>
                 isActive ? activeDesign : "header-text"
               }
             >
-              Service
+              Gallery
             </NavLink>
           </li>
           <li>
@@ -238,14 +254,58 @@ const Header = () => {
               onClick={() => {
                 setActiveSide(!activeSide);
               }}
-              to="blogs"
+              to="dept"
               className={({ isActive }) =>
                 isActive ? activeDesign : "header-text"
               }
             >
-              Blogs
+              Official Posts
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              onClick={() => {
+                setActiveSide(!activeSide);
+              }}
+              to="alumni"
+              className={({ isActive }) =>
+                isActive ? activeDesign : "header-text"
+              }
+            >
+              Alumni
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              onClick={() => {
+                setActiveSide(!activeSide);
+              }}
+              to="transport"
+              className={({ isActive }) =>
+                isActive ? activeDesign : "header-text"
+              }
+            >
+              Transport Posts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              onClick={() => {
+                setActiveSide(!activeSide);
+              }}
+              to="profile"
+              className={({ isActive }) =>
+                isActive ? activeDesign : "header-text"
+              }
+            >
+              Profile
+            </NavLink>
+          </li>
+          {admin === true && (
+            <li className="hover:text-white hover:bg-[#dc4734] bg-white  duration-200">
+              <Link to="/admin">Dashboard</Link>
+            </li>
+          )}
           {!user && (
             <li className="header-text">
               <NavLink

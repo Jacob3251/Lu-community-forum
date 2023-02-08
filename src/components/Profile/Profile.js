@@ -218,9 +218,6 @@ const Profile = () => {
                       {profile[0]?.name}
                     </h3>
                     {/* follow button  */}
-                    <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
-                      Followers: 443
-                    </h3>
                   </div>
                 </div>
               </div>

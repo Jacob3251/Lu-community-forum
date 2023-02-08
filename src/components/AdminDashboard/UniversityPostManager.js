@@ -72,16 +72,18 @@ const UniversityPostManager = () => {
         setNormalPosts(data);
         setUniNormalPostLoading(false);
       });
-  }, []);
+  }, [normalPosts]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const title = postInput.current[0].value;
     const content = postInput.current[2].value;
     const type = postInput.current[1].value;
+    const username = profile[0]?.name;
     const email = user?.email;
     const time = moment().format("MMMM Do YYYY, h:mm:ss a");
     const postObject = {
       title: title,
+      name: username,
       content: content,
       email: email,
       type: type,
@@ -89,16 +91,11 @@ const UniversityPostManager = () => {
       postType: 0,
     };
     console.log(postInput);
-    fetch(
-      `http://localhost:9000/selectedpost/${
-        user?.email + "***" + profile[0]?.userType
-      }`,
-      {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(postObject),
-      }
-    )
+    fetch(`http://localhost:9000/selectedpost`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(postObject),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("success", data);
