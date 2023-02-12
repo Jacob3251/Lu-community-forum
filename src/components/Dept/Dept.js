@@ -135,7 +135,7 @@ const Dept = () => {
           {/* Toggle Buttons Below */}
           <div className="w-full md:w-[80%] md:mx-auto">
             <div className="p-5 my-0 flex flex-col space-y-2 md:space-y-0 w-5/6 mx-auto md:w-full text-center   md:flex-row md:space-x-3 ">
-              <div
+              <button
                 onClick={() => setPostType(1)}
                 className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 1
@@ -144,8 +144,8 @@ const Dept = () => {
                 }    font-bold duration-200`}
               >
                 University
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => setPostType(2)}
                 className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 2
@@ -154,8 +154,8 @@ const Dept = () => {
                 }    font-bold duration-200`}
               >
                 Department
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => setPostType(3)}
                 className={`py-3 px-2 drop-shadow-md hover:drop-shadow-lg duration-200 ${
                   postType === 3
@@ -164,7 +164,7 @@ const Dept = () => {
                 }    font-bold duration-200`}
               >
                 Teacher
-              </div>
+              </button>
             </div>
           </div>
 

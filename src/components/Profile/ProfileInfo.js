@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { FaPencilAlt } from "react-icons/fa";
 import { SlPencil } from "react-icons/sl";
 import { useParams } from "react-router-dom";
 import { auth } from "../../firebase.init";
@@ -10,63 +11,105 @@ const ProfileInfo = ({ profile, classes }) => {
   };
   return (
     <div className={classes}>
-      <h3 className="text-center text-[#36454F] font-bold text-xl my-5">
+      <h3 className="text-center text-[#36454F] font-bold text-[14px] my-5">
         Profile Information
       </h3>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div>Name: {profile.name}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="text-[14px] text-[#dc4734] font-bold">
+          Name:{" "}
+          <span className="text-[12px] text-[#36454F]"> {profile.name}</span>
+        </div>
       </div>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div>Department: {profile.dept}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="text-[14px] text-[#dc4734] font-bold">
+          Department:{" "}
+          <span className="text-[12px] text-[#36454F]"> {profile.dept}</span>
+        </div>
       </div>
       {profile.userType === 2 && (
-        <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-          <div>Designation: {profile.designation}</div>
+        <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+          <div className="text-[14px] text-[#dc4734] font-bold">
+            Designation:{" "}
+            <span className="text-[12px] text-[#36454F]">
+              {profile.designation}
+            </span>
+          </div>
         </div>
       )}
       {profile.userType === 1 ? (
-        <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-          <div>Student Id: {profile.studentID}</div>
+        <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+          <div className="text-[14px] text-[#dc4734] font-bold">
+            Student Id:{" "}
+            <span className="text-[#36454F] text-[12px]">
+              {profile.studentID}
+            </span>
+          </div>
         </div>
       ) : (
-        <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-          <div>Teacher Id: {profile.teacherID}</div>
+        <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+          <div className="text-[#dc4734] text-[14px] font-bold">
+            Teacher Id:{" "}
+            <span className="text-[#35454F] text-[12px]">
+              {profile.teacherID}
+            </span>
+          </div>
         </div>
       )}
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div>Phone: {profile.phoneNumber}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="text-[#dc4734] text-[14px] font-bold">
+          Phone:{" "}
+          <span className="text-[#36454F] text-[12px]">
+            {profile.phoneNumber}
+          </span>
+        </div>
       </div>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div className="overflow-x-scroll">Email: {profile.email}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="overflow-x-scroll text-[14px] text-[#dc4734] font-bold">
+          Email:{" "}
+          <span className="text-[12px] text-[#36454F]">{profile.email}</span>
+        </div>
       </div>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div>Blood Group: {profile.bloodGroup}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="text-[#dc4734] text-[14px] font-bold">
+          Blood Group:{" "}
+          <span className="text-[#36454F] text-[12px]">
+            {profile.bloodGroup}
+          </span>
+        </div>
       </div>
-      <div className="bg-[#F9F6EE] w-[80%] bg-opacity-50 mx-auto py-5 my-4 rounded-md px-5 font-bold text-gray-600 border-[2px] hover:drop-shadow-md border-white">
-        <div>Address: {profile.address}</div>
+      <div className="bg-[#f1f1f1] shadow-inner w-[80%] text-[14px] mx-auto py-3 my-4 text-[#36454F] px-5   border-[2px] border-white">
+        <div className="text-[#dc4734] text-[14px] font-bold">
+          Address:{" "}
+          <span className="text-[#36454F] text-[14px]">{profile.address}</span>
+        </div>
       </div>
-      <div className="bg-[#00755E] hover:bg-[#FFFFF0] w-[80%]  mx-auto py-5 my-4 rounded-md px-5 font-bold border-0 hover:border-[2px] hover:drop-shadow-md border-white hover:border-[#628e90] hover:text-black text-[#FFFFF0] duration-75">
+      <div
+        style={{
+          cursor: "pointer",
+        }}
+        className="bg-[#dc4734] hover:bg-[#FFFFF0] w-[80%]  mx-auto py-3 my-4  px-5 font-bold border-0 hover:border-[2px] hover:drop-shadow-md border-white hover:border-[#dc4734] hover:text-[#dc4734]  text-[#FFFFF0] duration-200"
+      >
         {/* update profile modal placement */}
         <label
           htmlFor="my-modal"
-          className=" flex items-center justify-center  w-full text-lg"
+          className=" flex items-center justify-center  w-full "
         >
-          <span className="">Update Profile </span>
-          <SlPencil className=" ml-3"></SlPencil>
+          <span className="text-[14px]">Update Profile </span>
+          <FaPencilAlt className=" ml-3 text-md font-bold"></FaPencilAlt>
         </label>
       </div>
 
       {/* update profile modal inside start ===================================*/}
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box bg-[#628e90]">
+        <div className="modal-box bg-white">
           <div className="relative">
-            <h3 className="text-center font-bold text-white text-2xl mt-5 mb-8">
+            <h3 className="text-center font-bold text-[#36454F] text-xl mt-5 mb-8">
               Update Profile
             </h3>
             <label
               htmlFor="my-modal"
-              className="absolute top-0 right-2 btn btn-circle btn-md"
+              className="absolute top-0 right-2 hover:bg-red-600 btn font-bold text-white border-none drop-shadow-md btn-circle btn-sm rounded-full"
             >
               X
             </label>
@@ -74,10 +117,10 @@ const ProfileInfo = ({ profile, classes }) => {
               type="text"
               name="name"
               placeholder="Enter Name..."
-              className="w-full p-2 mb-4 bg-[#FAF9F6] rounded-xl h-[60px] placeholder-gray-500 pl-5 font-semibold"
+              className="w-full mb-4 bg-white shadow-inner shadow-gray-200  h-[60px] placeholder-gray-500 pl-5 font-semibold"
             />
             {/* checkbox for dept */}
-            <select className="select w-full p-2 mb-4 bg-[#FAF9F6] rounded-xl h-[60px] placeholder-gray-500 pl-5 font-semibold">
+            <select className="select w-full mb-4 bg-white shadow-inner shadow-gray-200  h-[60px] placeholder-gray-500 pl-5 font-semibold outline-none border-none rounded-none ">
               <option value="not" disabled selected>
                 Select Department
               </option>
@@ -90,24 +133,24 @@ const ProfileInfo = ({ profile, classes }) => {
               type="text"
               name="phone"
               placeholder="Enter Phone Number..."
-              className="w-full p-2 mb-4 bg-[#FAF9F6] rounded-xl h-[60px] placeholder-gray-500 pl-5 font-semibold"
+              className="w-full  mb-4 bg-white shadow-inner shadow-gray-200  h-[60px] placeholder-gray-500 pl-5 font-semibold"
             />
 
             <input
               type="text"
               name="address"
               placeholder="Enter Address..."
-              className="w-full p-2 bg-[#FAF9F6] rounded-xl h-[60px] placeholder-gray-500 pl-5 font-semibold"
+              className="w-full  bg-white shadow-inner shadow-gray-200  h-[60px] placeholder-gray-500 pl-5 font-semibold"
             />
           </div>
 
           <div className="modal-action">
             <label
               htmlFor="my-modal"
-              className="w-full  flex justify-center items-center text-white  hover:bg-[#50C878] duration-150 bg-[#097969] rounded-xl h-[60px] placeholder-gray-500 text-xl font-bold"
+              className="w-full  flex justify-center items-center text-white hover:text-[#dc4734] hover:border-2 border-[#dc4734]   duration-200 bg-[#dc4734] shadow-md  py-3 placeholder-gray-500 text-[14px] hover:bg-white font-bold hover:translate-y-[-4px] shadow-gray-600"
               onClick={handleUpdateProfile}
             >
-              Submit
+              SUBMIT
             </label>
           </div>
         </div>
