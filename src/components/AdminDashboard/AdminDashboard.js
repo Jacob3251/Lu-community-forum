@@ -44,93 +44,73 @@ const AdminDashboard = () => {
   return (
     <div className="w-full pt-16">
       {/* body start */}
-      <div className="w-[90%] mx-auto mt-20  grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-7 gap-y-5 gap-x-2">
+      <div className="w-full md:w-[95%] lg:w-[80%] mx-auto mt-12 mb-20  grid grid-cols-1 lg:grid-cols-7 xl:grid-cols-9   gap-x-2">
         {/* admin left navigation */}
 
-        <div className=" lg:col-span-2 xl:col-span-2 z-30">
-          <div className="bg-[#628e90]  px-5 mx-2 py-2 rounded-xl">
-            <div
-              className={`flex justify-center items-center ${
-                showOptions ? "flex-row" : "flex-col pb-5"
-              }`}
-            >
-              <h3 className="text-center text-white  font-semibold text-2xl my-5">
+        <div className=" lg:col-span-2 xl:col-span-2  z-30 ">
+          <div className="bg-white  px-5 mx-2 py-2 shadow-none drop-shadow-md hover:shadow-lg shadow-gray-600">
+            <div className={`text-center md:text-start md:ml-2`}>
+              <h3 className=" text-[#36454f]  font-bold text-[16px] mt-5 drop-shadow-md">
                 Admin Dashboard
               </h3>
-              <button
-                className={`text-2xl ml-2 text-white ${
-                  showOptions ? "" : "animate-bounce400"
-                } `}
-                onClick={() => setShowOptions(!showOptions)}
-              >
-                {!showOptions ? (
-                  <FaAngleDoubleDown></FaAngleDoubleDown>
-                ) : (
-                  <p className="rounded-full px-3 py-1 text-lg bg-gray-400 hover:bg-red-600 duration-200 scale-95 font-bold hover:scale-100">
-                    X
-                  </p>
-                )}
-              </button>
             </div>
-            {showOptions && (
-              <div className="grid grid-cols-1 gap-1  md:grid-cols-1 p-2 md:px-5 items-center justify-center ">
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(0)}
-                >
-                  <BiArchive className="mr-3 text-md"></BiArchive>
-                  <p className="text-md font-bold">Overview</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(1)}
-                >
-                  <FaSchool className="mr-3 text-xl"></FaSchool>
-                  <p className="text-md font-bold">University Post</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg px-2 py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(2)}
-                >
-                  <FaSign className="mr-3 text-xl"></FaSign>
-                  <p className="text-md font-bold">Department Post</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(3)}
-                >
-                  <FaBus className="mr-3 text-xl"></FaBus>
-                  <p className="text-md font-bold">Transport Notice</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(4)}
-                >
-                  <FaPencilAlt className="mr-3 text-xl"></FaPencilAlt>
-                  <p className="text-md font-bold">My posts</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(5)}
-                >
-                  <FcBusinessman className="mr-3 text-xl"></FcBusinessman>
-                  <p className="text-md font-bold">Alumni Posts</p>
-                </div>
-                <div
-                  className="bg-white flex pl-2 justify-start md:pl-0  md:justify-center  items-center rounded-lg py-2 scale-90 hover:text-white hover:bg-[#3c2317] hover:scale-100 duration-200"
-                  onClick={() => setContent(6)}
-                >
-                  <TfiImage className="mr-3 text-lg"></TfiImage>
-                  <p className="text-md font-bold">Gallery Post</p>
-                </div>
+            <div className="flex flex-col space-y-2 py-2 items-center justify-start bg-white">
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(0)}
+              >
+                <BiArchive></BiArchive>
+                <p className="ml-2">Overview</p>
               </div>
-            )}
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(1)}
+              >
+                <FaSchool></FaSchool>
+                <p className="ml-2">University Post</p>
+              </div>
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(2)}
+              >
+                <FaSign></FaSign>
+                <p className="ml-2">Department Post</p>
+              </div>
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(3)}
+              >
+                <FaBus></FaBus>
+                <p className="ml-2">Transport Notice</p>
+              </div>
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(4)}
+              >
+                <FaPencilAlt></FaPencilAlt>
+                <p className="ml-2">My posts</p>
+              </div>
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(5)}
+              >
+                <FcBusinessman></FcBusinessman>
+                <p className="ml-2">Alumni Posts</p>
+              </div>
+              <div
+                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                onClick={() => setContent(6)}
+              >
+                <TfiImage></TfiImage>
+                <p className="ml-2">Gallery Post</p>
+              </div>
+            </div>
           </div>
         </div>
         {/* Main Bodypart */}
-        <div className="lg:col-span-4  xl:col-span-5">
+        <div className="lg:col-span-5 xl:col-span-7   ">
           {content === 0 && (
-            <div className="w-5/6 p-4 mx-auto bg-[#628e90] my-5">
+            <div className="w-full mx-auto bg-white mb-5">
               {loading ? (
                 <div className="h-[90vh] w-full flex flex-col justify-center items-center">
                   <Puff
@@ -148,22 +128,43 @@ const AdminDashboard = () => {
                   </h3>
                 </div>
               ) : (
-                <div className=" ">
+                <div className="drop-shadow-md shadow-gray-600 p-5">
                   {/* Here all the stats will be shown */}
                   {/* General Stat Information */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 p-5 bg-white  ">
-                    {data[1].map((u) => (
-                      <h3
-                        title={u.tit}
-                        key={u.id}
-                        className="text-xs my-2 font-bold py-3 px-5 rounded-2xl flex items-center justify-center bg-[#628e90] text-white overflow-hidden"
-                      >
-                        {u.title}: {u.length}
-                      </h3>
-                    ))}
+                  <h3 className="text-[14px] font-extrabold ml-2 py-3">
+                    Analytics Overview
+                  </h3>
+                  <div className="flex space-y-3 md:space-y-0 md:space-x-2 flex-col md:flex-row justify-start">
+                    <div className="w-[95%] mx-auto md:w-[50%] p-2 text-[14px] ">
+                      {data[1].map((u) => (
+                        <li
+                          title={`${u.title} : ${u.length} `}
+                          key={u.id}
+                          className="my-1 shadow-inner"
+                        >
+                          <span className="font-bold text-[#36454f]">
+                            {u.title}
+                          </span>
+                          :{" "}
+                          <span className="font-semibold text-black">
+                            {u.length}
+                          </span>
+                        </li>
+                      ))}
+                    </div>
+                    <div className=" w-[95%] mx-auto md:w-[50%]  px-5">
+                      <li className="text-[14px] text-[#36454f] font-bold">
+                        Total Teacher's:{" "}
+                        <span className="font-normal">{data[0].teachers}</span>
+                      </li>
+                      <li className="text-[14px]  font-bold text-[#36454f]">
+                        Total Students:{" "}
+                        <span className="font-normal">{data[0].students}</span>
+                      </li>
+                    </div>
                   </div>
 
-                  <div className="bg-slate-100  w-full flex flex-col items-center justify-center">
+                  <div className="bg-[#36454f]  w-full flex flex-col items-center justify-center">
                     <CustomPieChart
                       data={data[1]}
                       colors={[
@@ -175,16 +176,6 @@ const AdminDashboard = () => {
                         "#00E676",
                       ]}
                     ></CustomPieChart>
-                  </div>
-                  <div className="bg-white px-5">
-                    <h3 className="text-lg font-sans font-semibold">
-                      Total Teacher's:{" "}
-                      <span className="font-bold">{data[0].teachers}</span>
-                    </h3>
-                    <h3 className="text-lg font-sans font-semibold">
-                      Total Students:{" "}
-                      <span className="font-bold">{data[0].students}</span>
-                    </h3>
                   </div>
                 </div>
               )}

@@ -40,58 +40,61 @@ const CustomPieChart = ({ data, colors }) => {
         dominantBaseline="central"
       >
         <tspan>{name}</tspan>
-        <tspan x={x} dy="1.2em">{`${(percent * 100).toFixed(0)}%`}</tspan>
+        {/* <tspan x={x} dy="1.2em">{`${(percent * 100).toFixed(0)}%`}</tspan> */}
       </text>
     );
   };
   return (
-    <div className="overflow-scroll md:overflow-auto mt-10 flex flex-col space-x-4 2xl:flex-row">
-      <div className="z-0">
-        <PieChart width={400} height={300}>
-          <Pie
-            data={usedata}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {usedata.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-
-        <h3 className="text-lg my-5 text-center font-bold">Total Stats</h3>
-      </div>
-      <div className="">
-        <PieChart width={400} height={300}>
-          <Pie
-            data={usedata1}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {usedata1.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS1[index % COLORS1.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-        <h3 className="text-lg my-5  text-center font-bold">
-          Other Posts Stats
-        </h3>
+    <div>
+      <div className="grid gird-cols-1 md:grid-cols-2 gap-x-2">
+        <div className="z-0  relative">
+          <PieChart width={280} height={300}>
+            <Pie
+              data={usedata}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={70}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {usedata.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+          <h3 className="text-[14px] mb-5 absolute bottom-5 left-[38%] text-white font-bold">
+            Total Stats
+          </h3>
+        </div>
+        <div className=" relative">
+          <PieChart width={280} height={300}>
+            <Pie
+              data={usedata1}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={70}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {usedata1.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS1[index % COLORS1.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+          <h3 className="text-[14px] mb-5 absolute bottom-5 md:bottom-[8%] text-white left-[28%] text-center font-bold">
+            Other Posts Stats
+          </h3>
+        </div>
       </div>
     </div>
   );
