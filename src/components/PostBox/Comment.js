@@ -46,16 +46,16 @@ const Comment = ({ post }) => {
 
   return (
     <div className="my-2 ">
-      <form className="relative " onSubmit={handleNewComment}>
+      <form className="relative" onSubmit={handleNewComment}>
         <input
           type="text"
           placeholder="Enter Comment"
-          className="w-full rounded-lg h-[40px] pl-4 pr-20 text-sm italic"
+          className="w-full rounded-lg h-[40px] pl-4 pr-20 text-sm italic outline-none shadow-inner shadow-gray-300"
           name="usercomment"
         />
         <label
           htmlFor="sendBtn"
-          className="absolute top-1 z-40 right-3 text-3xl text-[#628E90] hover:text-green-400 hover:bg-white hover:rounded-full"
+          className="absolute top-1 z-40 right-3 text-3xl text-[#dc4734] hover:text-white bg-white hover:bg-[#dc4734] border-2 border-white duration-200 hover:border-[#dc4734] hover:rounded-full"
         >
           <BsArrowRightCircleFill></BsArrowRightCircleFill>
         </label>
@@ -63,7 +63,7 @@ const Comment = ({ post }) => {
       </form>
       <div
         style={{
-          backgroundColor: "whitesmoke",
+          backgroundColor: "white",
           borderRadius: "10px",
           padding: "4px 10px",
           margin: "10px 0",

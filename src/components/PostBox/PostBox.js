@@ -1,6 +1,6 @@
 import React from "react";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
-import { FaTrash, FaExclamationTriangle } from "react-icons/fa";
+import { FaTrash, FaExclamationTriangle, FaStream } from "react-icons/fa";
 import { HiDotsVertical } from "react-icons/hi";
 import { FaPencilAlt } from "react-icons/fa";
 import { useEffect } from "react";
@@ -155,10 +155,10 @@ const PostBox = ({ post }) => {
               </div>
               <div className="flex flex-row space-x-2 ">
                 <button
-                  className="btn btn-ghost text-[#F5EFE6]"
+                  className="btn btn-ghost rounded-none text-[#36454f] hover:text-[#dc4734] border-2 hover:border-[#dc4734] hover:bg-white"
                   onClick={() => setShowOptions(!showOptions)}
                 >
-                  <HiDotsVertical className="h-5 w-5 mr-2"></HiDotsVertical>
+                  <FaStream className=""></FaStream>
                 </button>
                 {showOptions && (
                   <div>
@@ -196,11 +196,11 @@ const PostBox = ({ post }) => {
                   </div>
                   {/* <div className="text-[#F5EFE6]"> 60 comments</div> */}
                 </div>
-                <hr />
-                <div className="flex justify-between mt-2">
+                <hr className="mt-3" />
+                <div className="flex justify-between">
                   <div className="flex  ">
                     <button
-                      className={`btn btn-ghost hover:bg-[#DC4734] hover:text-white ${
+                      className={`btn btn-ghost text-[14px] hover:bg-[#DC4734] hover:text-white ${
                         likes.find((u) => u === user?.email)
                           ? "text-[#DC4734]"
                           : "text-[#333333]"

@@ -56,49 +56,49 @@ const AdminDashboard = () => {
             </div>
             <div className="flex flex-col space-y-2 py-2 items-center justify-start bg-white">
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(0)}
               >
                 <BiArchive></BiArchive>
                 <p className="ml-2">Overview</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(1)}
               >
                 <FaSchool></FaSchool>
                 <p className="ml-2">University Post</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(2)}
               >
                 <FaSign></FaSign>
                 <p className="ml-2">Department Post</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(3)}
               >
                 <FaBus></FaBus>
                 <p className="ml-2">Transport Notice</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(4)}
               >
                 <FaPencilAlt></FaPencilAlt>
                 <p className="ml-2">My posts</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(5)}
               >
                 <FcBusinessman></FcBusinessman>
                 <p className="ml-2">Alumni Posts</p>
               </div>
               <div
-                className="w-[95%] bg-[#dc4734] hover:bg-white flex px-2 py-2 text-white hover:text-[#dc4734] border-2 border-[#dc4734] font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
+                className="w-[95%] hover:bg-[#dc4734] bg-white flex px-2 py-2 text-[#36454f] hover:text-white  font-bold text-[14px] items-center mx-2 duration-200 hover:drop-shadow-md "
                 onClick={() => setContent(6)}
               >
                 <TfiImage></TfiImage>
@@ -155,11 +155,15 @@ const AdminDashboard = () => {
                     <div className=" w-[95%] mx-auto md:w-[50%]  px-5">
                       <li className="text-[14px] text-[#36454f] font-bold">
                         Total Teacher's:{" "}
-                        <span className="font-normal">{data[0].teachers}</span>
+                        <span className="font-semibold text-black">
+                          {data[0].teachers}
+                        </span>
                       </li>
                       <li className="text-[14px]  font-bold text-[#36454f]">
                         Total Students:{" "}
-                        <span className="font-normal">{data[0].students}</span>
+                        <span className="font-semibold text-black">
+                          {data[0].students}
+                        </span>
                       </li>
                     </div>
                   </div>

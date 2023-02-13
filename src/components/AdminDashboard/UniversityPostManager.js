@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CiPen, CiTrash } from "react-icons/ci";
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 import { auth } from "../../firebase.init";
 import useSingleUser from "../../hooks/useSingleUser";
 import useUniversityPost from "../../hooks/useUniversityPost";
@@ -38,23 +39,28 @@ const UniversitySpecificPostBox = ({
     window.location.reload();
   };
   return (
-    <div className="bg-[#628e90] text-white my-8 p-5 rounded-md ">
-      <div className="flex justify-between items-center">
-        <h3 className="font-bold text-2xl">{title}</h3>
-        <div className="bg-white flex py-2 rounded-xl px-2">
-          <CiPen className="text-2xl text-[#3c2317] p-1 h-10 w-10 rounded-full hover:bg-green-500 hover:text-white duraiton-300"></CiPen>
-          <CiTrash
-            onClick={() => handlePostDelete(id)}
-            className="text-2xl text-[#3c2317] p-1 h-10 w-10 rounded-full hover:bg-red-500 hover:text-white duraiton-300"
-          ></CiTrash>
+    <div className="bg-white shadow-md shadow-gray-400 text-[#36454f] mb-8 pt-2 pb-3 px-5 rounded-md ">
+      <div className="flex flex-col mt-2 ">
+        <div className="flex justify-between">
+          <b className="text-[#dc4734] font-bold text-[14px]">
+            Type: <span className="text-[#36454f]">{type}</span>
+          </b>
+          {/* Time will go below here ============================ */}
+          <div className="bg-white flex space-x-2">
+            <FaPencilAlt className="text-[10px] w-10 h-10 p-2 text-[#36454f] rounded-full hover:bg-[#dc4734]  hover:text-white duraiton-300"></FaPencilAlt>
+            <FaTrashAlt
+              onClick={() => handlePostDelete(id)}
+              className="text-[10px] w-10 h-10 p-2 text-[#36454f] rounded-full hover:bg-[#dc4734]   hover:text-white duraiton-300"
+            ></FaTrashAlt>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col my-3">
-        <b className="text-[#3c2317] text-lg">Type:{type}</b>
-        {/* Time will go below here ============================ */}
-        <i className="text-xs">Posted at: {time}</i>
+      <div className="flex flex-col  items-start">
+        <h3 className="font-bold text-[14px]">{title}</h3>
+        <i className="text-[10px]">Posted at: {time}</i>
+
+        <p className="mb-5 text-[14px] mt-2">{content}</p>
       </div>
-      <p className="mb-5">{content}</p>
     </div>
   );
 };
@@ -104,8 +110,23 @@ const UniversityPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="h-full">
-      <div className="w-full bg-gray-200 px-5  rounded-lg ">
+    <div className="h-full grid grid-cols-7 place-content-center gap-x-5">
+      <div className="col-span-5 ">
+        <div className="mb-16">
+          {normalPosts.map((post) => (
+            <UniversitySpecificPostBox
+              key={post._id}
+              title={post.title}
+              id={post._id}
+              content={post.content}
+              email={post.email}
+              type={post.type}
+              time={post.time ? post.time : null}
+            ></UniversitySpecificPostBox>
+          ))}
+        </div>
+      </div>
+      <div className="w-full bg-gray-200 px-5 col-span-2 rounded-lg ">
         <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
           University Post Submission Form
         </h3>
@@ -135,22 +156,6 @@ const UniversityPostManager = () => {
             className="w-full my-2 py-3 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
           />
         </form>
-      </div>
-      <h2 className="text-[#3c2317] text-2xl font-bold text-center my-10">
-        Manage University Posts
-      </h2>
-      <div className="mb-16">
-        {normalPosts.map((post) => (
-          <UniversitySpecificPostBox
-            key={post._id}
-            title={post.title}
-            id={post._id}
-            content={post.content}
-            email={post.email}
-            type={post.type}
-            time={post.time ? post.time : null}
-          ></UniversitySpecificPostBox>
-        ))}
       </div>
       {/* <button onClick={handleSubmit}>Add post university</button> */}
     </div>

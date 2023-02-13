@@ -34,7 +34,7 @@ const SingleComment = ({ item, commenter, postId }) => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="flex  justify-start w-full my-2">
         <div className="w-[50px] h-[50px] mr-2 ">
           <img
@@ -48,7 +48,7 @@ const SingleComment = ({ item, commenter, postId }) => {
           />
         </div>
         <div
-          className="bg-[#EDEADE] w-[95%] relative"
+          className="bg-[#f1f1f1] w-[95%] relative"
           style={{
             margin: "0px 0",
 
@@ -67,7 +67,7 @@ const SingleComment = ({ item, commenter, postId }) => {
           {(user?.email === commenter || admin) && (
             <button
               onClick={() => handleDelete(item.commentId)}
-              className="text-white bg-red-500 text-xs p-1 rounded-md absolute top-1 right-2"
+              className="text-white bg-red-500 hover:bg-white border-2 border-white hover:border-[#dc4734] hover:text-[#dc4734] font-bold duration-200 text-xs p-1 rounded-md absolute top-1 right-2"
             >
               Delete
             </button>
