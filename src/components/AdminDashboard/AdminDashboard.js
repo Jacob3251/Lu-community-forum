@@ -128,7 +128,7 @@ const AdminDashboard = () => {
                   </h3>
                 </div>
               ) : (
-                <div className="drop-shadow-md shadow-gray-600 p-5">
+                <div className="drop-shadow-md shadow-gray-600 p-5 mt-5 md:mt-0 ">
                   {/* Here all the stats will be shown */}
                   {/* General Stat Information */}
                   <h3 className="text-[14px] font-extrabold ml-2 py-3">

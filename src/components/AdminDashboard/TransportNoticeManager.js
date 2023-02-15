@@ -34,7 +34,7 @@ const TransportNoticeManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="mb-20 flex space-x-5  items-start justify-center">
+    <div className="mb-20 flex mt-5 w-[95%] mx-auto md:space-x-5 flex-col-reverse md:flex-row items-start justify-center">
       <div className="w-full  py-2 mx-auto  px-5  bg-white shadow-gray-500 shadow-md hover:drop-shadow-md">
         <h3 className="text-[#36454f] text-[14px] font-bold text-center my-5 ">
           Manage Transport Posts
@@ -51,7 +51,7 @@ const TransportNoticeManager = () => {
           ></NoticeBox>
         ))}
       </div>
-      <div className="w-full ">
+      <div className="w-full mb-5 md:mb-0">
         <div className="bg-white shadow-[#36454f] shadow-md hover:drop-shadow-lg  ">
           <h3 className="text-[#36454f] text-[14px] font-bold text-center my-3 pt-3">
             Transport Notice Submission Form

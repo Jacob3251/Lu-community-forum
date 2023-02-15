@@ -130,8 +130,8 @@ const TeacherPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="flex  items-start space-x-5 justify-center ">
-      <div className="w-full">
+    <div className="flex flex-col-reverse md:flex-row  items-start pt-5 md:pt-0 md:space-x-5 justify-center ">
+      <div className="md:w-full w-[90%] mx-auto mt-5 md:mt-0">
         {teacherNormalPostLoading ? (
           <div className="h-[90vh] w-full flex flex-col justify-center items-center">
             <Puff

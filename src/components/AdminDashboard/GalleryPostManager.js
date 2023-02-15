@@ -1,11 +1,14 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Puff } from "react-loader-spinner";
 import { v4 } from "uuid";
 import { storage } from "../../firebase.init";
-
+import { FaTrashAlt } from "react-icons/fa";
 const GalleryPostManager = () => {
   const [galleryPictureFile, setGalleryPictureFile] = useState(null);
+  const [galleryData, setGalleryData] = useState([]);
+  const [galleryDataLoader, setGalleryDataLoader] = useState(true);
   const [title, setTitle] = useState("");
   const [imglinkGallery, setimglinkGallery] = useState([]);
   const time = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -46,57 +49,105 @@ const GalleryPostManager = () => {
         window.location.reload();
       });
   };
+  useEffect(() => {
+    fetch("http://localhost:9000/gallerypost")
+      .then((res) => res.json())
+      .then((data) => {
+        setGalleryData(data);
+        setGalleryDataLoader(false);
+      });
+  }, []);
   return (
-    <div className="">
-      <h3 className="bg-[#628e90] rounded-md text-2xl font-bold text-center text-white py-5">
-        Gallery Post Submission
-      </h3>
+    <div className="flex flex-col md:flex-row w-full space-x-5">
+      <div className="w-full ">
+        {galleryDataLoader ? (
+          <div className="h-[90vh] w-full flex flex-col justify-center items-center pt-16">
+            <Puff
+              height="80"
+              width="80"
+              radius={1}
+              color="#3c2317"
+              ariaLabel="puff-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+            <h3 className="animate-bounce400 font-bold text-lg mt-2">
+              Loading
+            </h3>
+          </div>
+        ) : (
+          <div>
+            {galleryData.map((data) => (
+              <div
+                key={data._id}
+                className="flex justify-between items-center hover:drop-shadow-md shadow-md shadow-gray-300 mb-2 bg-white py-3 w-full p-2 text-[14px] font-bold text-[#36454f]"
+              >
+                <div className="flex space-x-2">
+                  <p>{"\u2B24"}</p>
+                  <h3>{data.title}</h3>
+                </div>
+                <div className="text-[18px] hover:text-[#dc4734] p-2 rounded-full border-2 hover:border-[#dc4734] border-white">
+                  <FaTrashAlt />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="w-full ">
+        <div className="bg-white">
+          <h3 className="  text-[14px] font-bold text-center text-[#36454f] py-5">
+            Gallery Post Submission
+          </h3>
 
-      <div className="flex flex-col mt-14 justify-start w-[85%] p-5 bg-white mx-auto">
-        <input
-          required
-          className="py-3 my-5 scale-95 pl-3 bg-slate-100  placeholder:text-lg rounded-md "
-          type="text"
-          placeholder="Enter title"
-          name="title"
-          onBlur={(e) => setTitle(e.target.value)}
-        />
-        <h3 className="text-lg font-bold text-start scale-95">
-          Upload Picture's
-        </h3>
-        <input
-          required
-          type="file"
-          multiple
-          onChange={(e) => setGalleryPictureFile(e.target.files)}
-          className=" w-full  scale-95"
-          // style={{ visibility: "hidden" }}
-        />
+          <div className="flex flex-col justify-start  px-5">
+            <input
+              required
+              className="py-3 mb-5 pl-3   placeholder:text-[12px] outline-none shadow-inner shadow-gray-400"
+              type="text"
+              placeholder="Enter title"
+              name="title"
+              onBlur={(e) => setTitle(e.target.value)}
+            />
+            <h3 className="text-[12px] font-bold text-start ml-2 mb-2">
+              Upload Picture's
+            </h3>
+            <input
+              required
+              type="file"
+              multiple
+              onChange={(e) => setGalleryPictureFile(e.target.files)}
+              className=" w-full  text-[12px] ml-2"
+              // style={{ visibility: "hidden" }}
+            />
 
-        <button
-          onClick={uploadGalleryFileInFirebase}
-          disabled={imglinkGallery.length !== 0 ? true : false}
-          // disabled={imglingProfilePicUploadStatus ? true : false}
-          className={`w-full rounded-md  bg-slate-100 font-bold  my-3 text-lg py-3 scale-95 duration-200  ${
-            imglinkGallery.length !== 0
-              ? "text-green-400 "
-              : "text-blue-300 hover:scale-100 hover:text-blue-500 hover:bg-slate-200"
-          }`}
-        >
-          {imglinkGallery.length !== 0 ? "Uploaded" : "Upload"}
-        </button>
-        <button
-          onClick={postGalleryForm}
-          disabled={imglinkGallery.length === 0 ? true : false}
-          htmlFor="profilepic-modal"
-          className={`w-full  rounded-md  bg-slate-100 font-bold  mb-3 text-lg py-3 scale-95  duration-200 hover: ${
-            imglinkGallery.length === 0
-              ? "text-red-400"
-              : "text-blue-500 hover:scale-100 hover:bg-slate-200"
-          }`}
-        >
-          Submit
-        </button>
+            <button
+              onClick={uploadGalleryFileInFirebase}
+              disabled={imglinkGallery.length !== 0 ? true : false}
+              // disabled={imglingProfilePicUploadStatus ? true : false}
+              className={`w-full  bg-[#f1f1f1] font-bold  my-3 text-[14px] py-3  duration-200  ${
+                imglinkGallery.length !== 0
+                  ? "text-green-400 "
+                  : "text-blue-300 hover:scale-100 hover:text-blue-500 hover:bg-slate-200"
+              }`}
+            >
+              {imglinkGallery.length !== 0 ? "Uploaded" : "Upload"}
+            </button>
+            <button
+              onClick={postGalleryForm}
+              disabled={imglinkGallery.length === 0 ? true : false}
+              htmlFor="profilepic-modal"
+              className={`w-full  bg-[#f1f1f1] font-bold  mb-3 text-[14px] py-3  duration-200 ${
+                imglinkGallery.length === 0
+                  ? "text-red-400"
+                  : "text-blue-500 hover:scale-100 hover:bg-slate-200"
+              }`}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
