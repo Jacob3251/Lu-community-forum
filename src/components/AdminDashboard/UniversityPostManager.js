@@ -110,8 +110,8 @@ const UniversityPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="h-full grid grid-cols-7 place-content-center gap-x-5">
-      <div className="col-span-5 ">
+    <div className="h-full grid grid-col-1 md:grid-cols-7 mt-5 mx-2 md:place-content-center place-items-stretch gap-x-5">
+      <div className="md:col-span-4 ">
         <div className="mb-16">
           {normalPosts.map((post) => (
             <UniversitySpecificPostBox
@@ -126,36 +126,45 @@ const UniversityPostManager = () => {
           ))}
         </div>
       </div>
-      <div className="w-full bg-gray-200 px-5 col-span-2 rounded-lg ">
-        <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
-          University Post Submission Form
-        </h3>
-        <form onSubmit={handleSubmit} ref={postInput} className="flex flex-col">
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter University Post Title"
-            className="w-full py-3 my-2 pl-3 rounded-md"
-          />
-          <input
-            type="text"
-            name="type"
-            placeholder="Enter Post Importance"
-            className="w-full py-3 my-2 pl-3 rounded-md"
-          />
-          <textarea
-            name="content"
-            className="w-full py-3 my-2 pl-3 rounded-md"
-            placeholder="Enter University Post Details"
-            cols="30"
-            rows="4"
-          ></textarea>
-          <input
-            type="submit"
-            value="Submit"
-            className="w-full my-2 py-3 bg-[#628e90] hover:bg-[#3c2317] text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
-          />
-        </form>
+      <div className=" md:col-span-3">
+        <div className="bg-white shadow-md shadow-gray-500 px-3">
+          <h3 className="text-[#36454f]  text-[14px] font-bold text-center pt-5 mb-5 ">
+            University Post Form
+          </h3>
+          <form
+            onSubmit={handleSubmit}
+            ref={postInput}
+            className="flex flex-col space-y-2 pb-10"
+          >
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter University Post Title"
+              className="w-full shadow-inner p-2 placeholder:text-[12px] outline-none shadow-gray-500 placeholder:shadow-gray-400"
+            />
+            <input
+              type="text"
+              name="type"
+              placeholder="Enter Post Importance"
+              className="w-full shadow-inner p-2 placeholder:text-[12px] outline-none shadow-gray-500 placeholder:shadow-gray-400"
+            />
+            <textarea
+              name="content"
+              className="w-full shadow-inner p-2 placeholder:text-[12px] outline-none shadow-gray-500 placeholder:shadow-gray-400"
+              placeholder="Enter University Post Details"
+              cols="20"
+              rows="3"
+            ></textarea>
+            <input
+              type="submit"
+              value="Submit"
+              style={{
+                cursor: "pointer",
+              }}
+              className="w-full py-2 bg-[#dc4734] border-2 border-[#dc4734] text-white hover:text-[#dc4734] hover:bg-white text-[14px] font-bold  duration-200 "
+            />
+          </form>
+        </div>
       </div>
       {/* <button onClick={handleSubmit}>Add post university</button> */}
     </div>

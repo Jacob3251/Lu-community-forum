@@ -34,9 +34,9 @@ const TransportNoticeManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="mb-20 grid grid-cols-3 gap-6  ">
-      <div className="w-full col-span-2 px-14 mx-auto pt-10 pb-8 mt-5 rounded-2xl bg-[#628e90]">
-        <h3 className="text-white text-2xl font-bold text-center mb-1 ">
+    <div className="mb-20 flex space-x-5  items-start justify-center">
+      <div className="w-full  py-2 mx-auto  px-5  bg-white shadow-gray-500 shadow-md hover:drop-shadow-md">
+        <h3 className="text-[#36454f] text-[14px] font-bold text-center my-5 ">
           Manage Transport Posts
         </h3>
         <div className="divider"></div>
@@ -51,30 +51,31 @@ const TransportNoticeManager = () => {
           ></NoticeBox>
         ))}
       </div>
-      <div className="w-full col-span-1">
-        <h3 className="text-[#3c2317] text-2xl font-bold text-center mb-10 ">
-          Transport Notice Submission Form
-        </h3>
-        <div className="divider"></div>
-        <form onSubmit={handleSubmit} ref={postInput} className="w-full">
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter Notice Title"
-            className="w-full py-3 my-2 rounded-md pl-3"
-          />
-          <input
-            type="text"
-            name="link"
-            placeholder="Enter Link"
-            className="w-full py-3 my-2 rounded-md pl-3"
-          />
-          <input
-            type="submit"
-            value="Submit"
-            className="w-full my-2 py-3 bg-[#ffffff] hover:bg-[#dc4734] text-black hover:text-white text-lg font-bold scale-95 hover:scale-100 duration-200 rounded-md"
-          />
-        </form>
+      <div className="w-full ">
+        <div className="bg-white shadow-[#36454f] shadow-md hover:drop-shadow-lg  ">
+          <h3 className="text-[#36454f] text-[14px] font-bold text-center my-3 pt-3">
+            Transport Notice Submission Form
+          </h3>
+          <form onSubmit={handleSubmit} ref={postInput} className="w-full p-2">
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter Notice Title"
+              className="w-full py-3 my-2  pl-3 shadow-inner shadow-gray-500 outline-none"
+            />
+            <input
+              type="text"
+              name="link"
+              placeholder="Enter Link"
+              className="w-full py-3 my-2  pl-3 shadow-inner shadow-gray-500 outline-none"
+            />
+            <input
+              type="submit"
+              value="Submit"
+              className="w-full my-2 py-3 bg-[#dc4734] hover:bg-white duration-200 text-white hover:text-[#dc4734] border-2 border-[#dc4734] text-[14px] font-bold "
+            />
+          </form>
+        </div>
       </div>
 
       {/* <button onClick={handleSubmit}>Add post university</button> */}
