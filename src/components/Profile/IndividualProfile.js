@@ -49,7 +49,11 @@ const IndividualProfile = () => {
         <div className="">
           {/* cover pic holder */}
           <div className="h-[270px] md:h-[350px] w-full mx-auto relative">
-            <img className="w-full h-full" src={cover} alt="cover-img" />
+            <img
+              className="w-full h-full"
+              src={profile[0].coverImgLink}
+              alt="cover-img"
+            />
             {/* edit cover img button below */}
             <div className=" absolute bottom-[5%] right-[12%]">
               <div className="bg-[#FFFDD0] p-2 rounded-md text-xl inline-block">
@@ -65,7 +69,7 @@ const IndividualProfile = () => {
               <div className="flex md:flex-row flex-col justify-center items-center">
                 <div className="h-[140px] w-[140px] p-1 bg-white rounded-full relative">
                   <img
-                    src={profilepic}
+                    src={profile[0].profileImgLink}
                     className="w-full h-full rounded-full"
                     alt="profile picture"
                   />
@@ -79,7 +83,7 @@ const IndividualProfile = () => {
                       {profile[0].name}
                     </h3>
                   )}
-                  {/* follow button  */}
+                  {/* follow button 
                   <button
                     onClick={() => setFollow(!follow)}
                     className={`px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:scale-110 duration-200 ${
@@ -89,7 +93,7 @@ const IndividualProfile = () => {
                     }`}
                   >
                     {!follow ? "Follow" : "Followed"}
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -98,24 +102,24 @@ const IndividualProfile = () => {
         {/* secondary name and follow button container becauser of positoning issue */}
         <div className="text-center md:hidden mt-[90px] w-full ">
           <h3 className=" text-2xl font-bold text-black overflow-x-hidden">
-            Md. Nayeem Hasan Adil
+            {profile[0].name}
           </h3>
           {/* follow button  */}
-          <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
+          {/* <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">
             Followers: 443
-          </h3>
+          </h3> */}
         </div>
         {/* Main contents of profile section */}
         <div className="mt-[80px] mb-[50px] md:mt-[180px]">
           {profile.length !== 0 ? (
-            <div className=" grid grid-cols-1 w-[95%] gap-y-5 md:gap-y-0 md:grid-cols-3 items-baseline gap-x-5 md:w-[80%] mx-auto">
+            <div className="flex flex-col-reverse">
               <IndividualProInfo
                 profile={profile[0]}
-                classes="bg-white bg-opacity-50 md:col-span-2 p-5 rounded-xl"
+                classes="w-full bg-white p-1 shadow-md shadow-gray-400 hover:drop-shadow-md"
               ></IndividualProInfo>
               <IndividualProBio
                 profile={profile[0]}
-                classes="p-5 bg-[#628e90] bg-opacity-70 rounded-xl"
+                classes="w-full bg-white"
               ></IndividualProBio>
             </div>
           ) : (

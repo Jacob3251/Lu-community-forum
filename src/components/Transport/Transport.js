@@ -6,6 +6,7 @@ import TransportBox from "./TransportBox";
 import ProfileSideMenu from "../ProfileSideMenu/ProfileSideMenu";
 import { Link } from "react-router-dom";
 import NoticeBoxStudent from "./NoticeBoxStudent";
+import Footer from "../Footer/Footer";
 const Transport = () => {
   const R1 = [2, 2, 2, 2];
   const C1 = [100, 100, 100, 100];
@@ -24,8 +25,8 @@ const Transport = () => {
   }, [notices]);
   return (
     <div className="w-full mx-auto pt-16">
-      <div className="w-5/6 mx-auto">
-        <h2 className="text-3xl my-8 text-center  font-bold">
+      <div className="w-5/6 mx-auto text-[#26454f]">
+        <h2 className="text-[24px] mt-8 text-center  font-bold">
           Today's Transport Schedule
         </h2>
         <div className="divider"></div>
@@ -35,12 +36,12 @@ const Transport = () => {
           <TransportBox Bus={R3} Capacity={C3} Route_name={3}></TransportBox>
           <TransportBox Bus={R4} Capacity={C4} Route_name={4}></TransportBox>
         </div>
-        <h2 className="text-3xl my-8 text-center font-bold">
+        <h2 className="text-[24px] my-5 text-center font-bold">
           Regular Schedule
         </h2>
         <div className="divider"></div>
         <img src={img} alt="" className="w-4/5 mx-auto" />
-        <div className="text-3xl  my-8 text-center font-bold">
+        <div className="text-[24px]  my-8 text-center font-bold">
           Transport Notices
         </div>{" "}
         <div className="divider"></div>
@@ -56,6 +57,7 @@ const Transport = () => {
           ))}
         </div>
       </div>
+      <Footer footerClass="w-full"></Footer>
     </div>
   );
 };

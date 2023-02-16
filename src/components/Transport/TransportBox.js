@@ -14,7 +14,6 @@ const TransportBox = ({ Bus, Capacity, Route_name }) => {
               <th>Time</th>
               <th>Bus</th>
               <th>Capacity</th>
-              <th>Confirm Bus</th>
             </tr>
           </thead>
           <tbody>
@@ -23,43 +22,23 @@ const TransportBox = ({ Bus, Capacity, Route_name }) => {
               <th>8.00</th>
               <td>{Bus[0]}</td>
               <td>{Capacity[0]}</td>
-              <td>
-                <button>
-                  <PlusIcon className="h-6 w-6 text-blue-500 mx-auto"></PlusIcon>
-                </button>
-              </td>
             </tr>
             {/* <!-- row 2 --> */}
             <tr>
               <th>9.00</th>
               <td>{Bus[1]}</td>
               <td>{Capacity[1]}</td>
-              <td>
-                <button>
-                  <PlusIcon className="h-6 w-6 text-blue-500 mx-auto"></PlusIcon>
-                </button>
-              </td>
             </tr>
             <tr>
               <th>10.00</th>
               <td>{Bus[2]}</td>
               <td>{Capacity[2]}</td>
-              <td>
-                <button>
-                  <PlusIcon className="h-6 w-6 text-blue-500 mx-auto"></PlusIcon>
-                </button>
-              </td>
             </tr>
             {/* <!-- row 3 --> */}
             <tr>
               <th>11.00</th>
               <td>{Bus[3]}</td>
               <td>{Capacity[3]}</td>
-              <td>
-                <button>
-                  <PlusIcon className="h-6 w-6 text-blue-500 mx-auto"></PlusIcon>
-                </button>
-              </td>
             </tr>
           </tbody>
         </table>

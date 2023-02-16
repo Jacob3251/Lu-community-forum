@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import Footer from "../Footer/Footer";
 
 const Alumni = () => {
-  const alumnis = [
+  const [alumnis, setAlumnis] = useState([]);
+  const alumniss = [
     {
       id: 1,
       alumniName: "Asfak Mahbub Mahi",
@@ -28,21 +30,28 @@ const Alumni = () => {
         "Abu Sufian Fuad, known as Fuad is an EX-Student of Batch 47 om CSE Department who completed his Bachelor Degree in 2022 and currently he is working with a ICT Based Firm known as Staff Asia as a develover and he is expert on Front end with core Java Scripts.",
     },
   ];
+  useEffect(() => {
+    fetch("http://localhost:9000/alumnipost")
+      .then((res) => res.json())
+      .then((data) => setAlumnis(data));
+  }, []);
+
   return (
     <div>
       <div className="h-full overflow-auto w-[80%] mx-auto pt-16">
-        <h1 className="font-bold text-center text-xl font-pacifico my-10">
-          Our Respected Alumni's
+        <h1 className="font-bold text-center text-[18px] text-[#36454f] my-10">
+          Our Alumni's
         </h1>
         <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {alumnis.map((u) => (
-            <AlumniBox
-              alumniName={u.alumniName}
-              alumniPhotoUrl={u.alumniPhotoUrl}
-              alumniCurrentPosition={u.alumniCurrentPosition}
-              alumniDescription={u.alumniDescription}
-            ></AlumniBox>
-          ))}
+          {alumnis.length !== 0 &&
+            alumnis.map((u) => (
+              <AlumniBox
+                alumniName={u.name}
+                alumniPhotoUrl={u.imgLink}
+                alumniCurrentPosition={u.position}
+                alumniDescription={u.description}
+              ></AlumniBox>
+            ))}
         </div>
       </div>
       <Footer footerClass={"w-full"}></Footer>
@@ -57,15 +66,19 @@ const AlumniBox = ({
   alumniDescription,
 }) => {
   return (
-    <div className="bg-white scale-95 hover:scale-100 duration-200">
+    <div className="bg-white  duration-200 shadow-md shadow-gray-400 hover:drop-shadow-md">
       <img
         className="h-[200px] sm:h-[250px] md:h-[350px] w-full"
         src={alumniPhotoUrl}
       />
       <div className="p-5">
-        <h3 className="font-bold text-lg mb-4">{alumniName}</h3>
-        <h3 className="font-bold text-base mb-2">{alumniCurrentPosition}</h3>
-        <p>{alumniDescription}</p>
+        <h3 className="font-bold  text-[#36454f] text-[14px] mb-4">
+          {alumniName}
+        </h3>
+        <h3 className="font-bold  text-[#36454f] text-[14px] mb-2">
+          {alumniCurrentPosition}
+        </h3>
+        <p className="text-[14px] text-[#36454f] ">{alumniDescription}</p>
       </div>
     </div>
   );

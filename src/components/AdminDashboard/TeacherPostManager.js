@@ -48,10 +48,7 @@ const TeacherPostBox = ({
             {/* Time will go below here ============================ */}
             <i className="text-[10px]">Posted at: {time}</i>
           </div>
-          <div className="flex py-2 space-x-2">
-            <div className="text-[18px] text-[#36454f] rounded-full hover:bg-[#dc4734] hover:text-white duration-200 flex justify-center items-center px-3">
-              <FaPencilAlt></FaPencilAlt>
-            </div>
+          <div className="flex py-2">
             <div className="text-[18px] text-[#36454f] rounded-full hover:bg-[#dc4734] hover:text-white duration-200 flex justify-center items-center px-3">
               <FaTrashAlt onClick={() => handlePostDelete(id)}></FaTrashAlt>
             </div>
@@ -130,8 +127,8 @@ const TeacherPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="flex flex-col-reverse md:flex-row  items-start pt-5 md:pt-0 md:space-x-5 justify-center ">
-      <div className="md:w-full w-[90%] mx-auto mt-5 md:mt-0">
+    <div className="flex flex-col-reverse md:flex-row mt-5 lg:mt-0 w-[95%] mx-auto  items-start pt-5 md:pt-0 lg:space-x-5 justify-center">
+      <div className="md:w-full w-[95%] mx-auto mt-5 md:mt-0">
         {teacherNormalPostLoading ? (
           <div className="h-[90vh] w-full flex flex-col justify-center items-center">
             <Puff
@@ -167,7 +164,7 @@ const TeacherPostManager = () => {
           </div>
         )}
       </div>
-      <div className="w-full px-5 mx-auto">
+      <div className="w-full ml-0 sm:ml-2 lg:ml-0 mx-auto">
         <div className="bg-white shadow-md shadow-gray-500 hover:drop-shadow-md">
           <h3 className="text-[#36454f] text-[14px] font-bold text-center mb-5 pt-5">
             Teacher Post Submission Form

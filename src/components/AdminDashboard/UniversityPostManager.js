@@ -39,7 +39,7 @@ const UniversitySpecificPostBox = ({
     window.location.reload();
   };
   return (
-    <div className="bg-white shadow-md shadow-gray-400 text-[#36454f] mb-8 pt-2 pb-3 px-5 rounded-md ">
+    <div className="bg-white shadow-md shadow-gray-400 hover:drop-shadow-md text-[#36454f] mb-8 pt-2 pb-3 px-5">
       <div className="flex flex-col mt-2 ">
         <div className="flex justify-between">
           <b className="text-[#dc4734] font-bold text-[14px]">
@@ -47,11 +47,12 @@ const UniversitySpecificPostBox = ({
           </b>
           {/* Time will go below here ============================ */}
           <div className="bg-white flex space-x-2">
-            <FaPencilAlt className="text-[10px] w-10 h-10 p-2 text-[#36454f] rounded-full hover:bg-[#dc4734]  hover:text-white duraiton-300"></FaPencilAlt>
-            <FaTrashAlt
+            <div
               onClick={() => handlePostDelete(id)}
-              className="text-[10px] w-10 h-10 p-2 text-[#36454f] rounded-full hover:bg-[#dc4734]   hover:text-white duraiton-300"
-            ></FaTrashAlt>
+              className="text-[18px]  p-2 text-[#36454f] rounded-full hover:bg-[#dc4734]   hover:text-white duraiton-300"
+            >
+              <FaTrashAlt></FaTrashAlt>
+            </div>
           </div>
         </div>
       </div>
@@ -110,8 +111,8 @@ const UniversityPostManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="h-full grid grid-col-1 md:grid-cols-7 mt-5 mx-2 md:place-content-center place-items-stretch gap-x-5">
-      <div className="md:col-span-4 ">
+    <div className="h-full flex flex-col-reverse md:flex-row  mt-5 lg:mt-0 mx-2 pr-0  md:pr-2 justify-center md:justify-between md:space-x-2 items-start ">
+      <div className="w-full mt-5 md:mt-0">
         <div className="mb-16">
           {normalPosts.map((post) => (
             <UniversitySpecificPostBox
@@ -126,7 +127,7 @@ const UniversityPostManager = () => {
           ))}
         </div>
       </div>
-      <div className=" md:col-span-3">
+      <div className="w-full">
         <div className="bg-white shadow-md shadow-gray-500 px-3">
           <h3 className="text-[#36454f]  text-[14px] font-bold text-center pt-5 mb-5 ">
             University Post Form

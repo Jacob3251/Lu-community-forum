@@ -48,9 +48,9 @@ const DepartmentPostBox = ({
           <i className="text-[10px]">Posted at: {time}</i>
         </div>
         <div className="bg-white flex py-2 rounded-xl px-2">
-          <div className="flex justify-center items-center text-[#36454f]   h-8 w-8 p-1 rounded-full hover:border-[#dc4734] border-2 border-white font-bold hover:text-[#dc4734] duraiton-200">
+          {/* <div className="flex justify-center items-center text-[#36454f]   h-8 w-8 p-1 rounded-full hover:border-[#dc4734] border-2 border-white font-bold hover:text-[#dc4734] duraiton-200">
             <FaPencilAlt></FaPencilAlt>
-          </div>
+          </div> */}
           <div className="flex justify-center items-center text-[#36454f]   h-8 w-8 p-1 rounded-full hover:border-[#dc4734] border-2 border-white font-bold hover:text-[#dc4734] duraiton-200">
             <FaTrashAlt onClick={() => handlePostDelete(id)}></FaTrashAlt>
           </div>
@@ -127,8 +127,8 @@ const DepartmentPostManager = () => {
       });
   };
   return (
-    <div className="w-full flex flex-col p-2 space-y-3 md:space-y-0 md:flex-row-reverse justify-evenly items-start ">
-      <div className=" bg-white md:ml-5 shadow-md shadow-gray-500 hover:drop-shadow-md">
+    <div className="w-full flex flex-col md:p-0 p-2 space-y-3 md:space-y-0 md:flex-row-reverse justify-center md:justify-evenly items-start mt-5 lg:mt-0">
+      <div className=" bg-white w-full md:ml-5 shadow-md shadow-gray-500 hover:drop-shadow-md">
         <h3 className="text-[#3c2317] text-[14px] font-bold text-center my-2 ">
           Department Post Form
         </h3>

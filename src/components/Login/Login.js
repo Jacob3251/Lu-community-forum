@@ -9,6 +9,7 @@ import { sendPasswordResetEmail, signOut } from "firebase/auth";
 import Loader from "../Loader/Loader";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import Footer from "../Footer/Footer";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loadinglogin, errorlogin] =
     useSignInWithEmailAndPassword(auth);
@@ -58,52 +59,53 @@ const Login = () => {
   };
 
   return (
-    <motion.div
-      className="text-center bg-gray-200 rounded-lg w-96 h-[500px] py-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      {/* Email and Password div */}
-      <div>
-        <form
-          onSubmit={handleLogin}
-          className=" py-4 px-auto text-left mx-12"
-          ref={formRef}
-        >
-          <h3 className="text-3xl my-2 text-center font-semibold ">Log In</h3>
-          <input
-            type="email"
-            placeholder="Enter university email"
-            className="text-black h-10 w-full rounded-lg pl-4 my-5"
-          />
-          {/* <h3 className="text-xl my-2">Enter password</h3> */}
-          <input
-            type="password"
-            placeholder="Enter password"
-            className="text-black h-10 w-full rounded-lg pl-4"
-          />
-          <button className="my-2 text-blue-700">
-            <Link to="/forgotemail">Forgot Password</Link>
-          </button>{" "}
-          <br />
-          {errorElement}
-          <button className="bg-blue-800 text-white rounded-md w-full h-9 font-bold my-4">
-            <input type="submit" value="Login" />
-          </button>
-        </form>
-
-        <br />
-
-        <div className="py-8">
-          <hr className="border-dashed bg-slate-600" />
-
-          <button className="bg-green-700 text-white font-semibold rounded-md w-4/5 h-14 mt-5">
-            <Link to="/register">Create New Account</Link>
-          </button>
+    <div className="relative">
+      <div className="text-center w-[95%] mx-auto md:w-full h-[100vh] pt-[30%]  md:pt-[10%] flex justify-center items-center flex-col">
+        {/* Email and Password div */}
+        <div className="bg-white mb-20  shadow-md shadow-gray-400 hover:drop-shadow-md">
+          <form
+            onSubmit={handleLogin}
+            className="pt-10  px-auto text-left mx-12 text-[#36454f]"
+            ref={formRef}
+          >
+            <h3 className="text-[24px] my-2 text-center font-semibold font-pacifico">
+              Log In
+            </h3>
+            <input
+              type="email"
+              placeholder="Enter university email"
+              className="text-black shadow-gray-500 placeholder:text-[12px] placeholder:text-gray-600 outline-none w-full shadow-inner pl-4 my-5 py-3"
+            />
+            {/* <h3 className="text-xl my-2">Enter password</h3> */}
+            <input
+              type="password"
+              placeholder="Enter password"
+              className="text-black shadow-gray-500 placeholder:text-[12px] placeholder:text-gray-600 outline-none w-full shadow-inner pl-4 my-5 py-3"
+            />
+            <button className="my-2 text-[#dc4734] flex">
+              <Link to="/forgotemail" className="text-[14px]">
+                Forgot Password?
+              </Link>
+            </button>
+            <br />
+            {errorElement}
+            <button className="bg-[#dc4734] text-white text-[14px] w-full py-3 font-bold hover:bg-white border-2 border-[#dc4734] hover:text-[#dc4734]">
+              <input type="submit" value="LOGIN" />
+            </button>
+          </form>
+          <div className="text-[#36454f] mb-24 font-bold text-[14px] mt-4">
+            Don't have an account?
+            <Link
+              className="ml-2 text-[#dc4734] hover:underline"
+              to="/register"
+            >
+              Create New Account
+            </Link>
+          </div>
         </div>
       </div>
-    </motion.div>
+      <Footer footerClass="w-full"></Footer>
+    </div>
   );
 };
 

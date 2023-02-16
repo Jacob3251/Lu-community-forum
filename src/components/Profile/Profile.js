@@ -178,7 +178,7 @@ const Profile = () => {
               />
               {/* edit cover img button below */}
               <div className=" absolute bottom-[5%] right-[12%]">
-                <div className="bg-[#FFFDD0] p-2 rounded-md text-xl inline-block">
+                <div className="bg-white p-2 rounded-md text-[14px] inline-block">
                   <label
                     htmlFor="coverpic-modal"
                     className="flex justify-center items-center"
@@ -233,15 +233,15 @@ const Profile = () => {
             {/* Main contents of profile section */}
             <div className="mt-[20px] mb-[50px] md:mt-[110px]">
               {profile.length !== 0 ? (
-                <div className="flex flex-col-reverse md:grid  p-2 md:gap-2 md:grid-cols-9 md:place-content-center md:place-items-start ">
-                  <div className="hidden md:block md:col-span-3">
+                <div className="flex flex-col-reverse p-2 md:flex-row space-x-0 md:space-x-5">
+                  <div className="hidden md:block  md:w-full">
                     <ProfileInfo
                       profile={profile[0]}
-                      classes="w-full bg-white p-1 shadow-inner"
+                      classes="w-full bg-white p-1 shadow-md shadow-gray-400 hover:drop-shadow-md"
                     ></ProfileInfo>
                   </div>
 
-                  <div className="col-span-4 ">
+                  <div className="w-full ">
                     {/* userCreate post */}
                     <CreatePost />
                     <div className="my-5">
@@ -267,16 +267,16 @@ const Profile = () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-span-2 mb-8 md:mb-0 w-full">
+                  <div className="mb-8 md:mb-0 w-full">
                     <ProfileBio
                       profile={profile[0]}
                       classes="w-full bg-white"
                     ></ProfileBio>
                   </div>
-                  <div className="block w-full md:hidden">
+                  <div className="block w-full md:hidden mx-auto ">
                     <ProfileInfo
                       profile={profile[0]}
-                      classes="bg-transplarent w-full pb-5 my-3"
+                      classes="bg-white shadow-md shadow-gray-400 hover:drop-shadow-md w-full pb-5 my-3"
                     ></ProfileInfo>
                   </div>
                 </div>

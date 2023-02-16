@@ -29,6 +29,7 @@ import Alumni from "./components/Alumni/Alumni";
 import IndividualProfile from "./components/Profile/IndividualProfile";
 import CoverPictureView from "./components/Profile/CoverPictureView";
 import ProfilePictureView from "./components/Profile/ProfilePictureView";
+import Login from "./components/Login/Login";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
@@ -72,6 +73,7 @@ function App() {
 
           <Route path="/transport" element={<Transport></Transport>}></Route>
           <Route path="/gallery" element={<Gallery></Gallery>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
           <Route
             path="/userProfile/:id"
             element={<IndividualProfile></IndividualProfile>}

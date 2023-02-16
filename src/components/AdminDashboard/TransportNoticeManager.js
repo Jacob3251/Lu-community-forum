@@ -34,12 +34,12 @@ const TransportNoticeManager = () => {
   };
   //   const [post] = useUniversityPost();
   return (
-    <div className="mb-20 flex mt-5 w-[95%] mx-auto md:space-x-5 flex-col-reverse md:flex-row items-start justify-center">
+    <div className="mb-20 flex mt-5 lg:mt-0 w-[95%] mx-auto lg:space-x-5 flex-col-reverse lg:flex-row items-start justify-center ">
       <div className="w-full  py-2 mx-auto  px-5  bg-white shadow-gray-500 shadow-md hover:drop-shadow-md">
-        <h3 className="text-[#36454f] text-[14px] font-bold text-center my-5 ">
+        <h3 className="text-[#36454f] text-[14px] font-bold text-center mt-2 mb-2 ">
           Manage Transport Posts
         </h3>
-        <div className="divider"></div>
+        <div className="divider my-0 p-0"></div>
 
         {notices.map((u) => (
           <NoticeBox
@@ -51,10 +51,10 @@ const TransportNoticeManager = () => {
           ></NoticeBox>
         ))}
       </div>
-      <div className="w-full mb-5 md:mb-0">
-        <div className="bg-white shadow-[#36454f] shadow-md hover:drop-shadow-lg  ">
-          <h3 className="text-[#36454f] text-[14px] font-bold text-center my-3 pt-3">
-            Transport Notice Submission Form
+      <div className="w-full justify-center items-center  mb-5 lg:mb-0 flex">
+        <div className="bg-white w-full shadow-[#36454f] shadow-md hover:drop-shadow-lg  ">
+          <h3 className="text-[#36454f] text-[14px] font-bold text-center  pt-3">
+            Transport Notice Form
           </h3>
           <form onSubmit={handleSubmit} ref={postInput} className="w-full p-2">
             <input

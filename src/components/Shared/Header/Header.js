@@ -204,11 +204,14 @@ const Header = () => {
             )}
             {!user && (
               <li className="header-text text-lg font-bold">
-                <div className="text-[#F5EFE6]">
-                  <label htmlFor="my-modal-3" className="modal-button">
-                    Login
-                  </label>
-                </div>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? `${activeDesign}` : "header-text text-[#333333] "
+                  }
+                  to="login"
+                >
+                  Login
+                </NavLink>
               </li>
             )}
           </ul>
@@ -354,24 +357,6 @@ const Header = () => {
           )}
         </ul>
       </div>
-      {/* login modal */}
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
-      {!user && (
-        <div className="modal">
-          <div className="modal-box relative">
-            <label
-              htmlFor="my-modal-3"
-              className="btn btn-sm btn-circle absolute right-5 top-2"
-            >
-              ✕
-            </label>
-            <div className=" pl-8">
-              <Login></Login>
-            </div>
-          </div>
-        </div>
-      )}
-      <ToastContainer />
     </div>
   );
 };

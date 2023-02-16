@@ -49,6 +49,20 @@ const GalleryPostManager = () => {
         window.location.reload();
       });
   };
+
+  const handleGalleryPostDelete = (id) => {
+    const permission = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
+
+    if (permission) {
+      fetch(`http://localhost:9000/gallerypost/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json()) // or res.json()
+        .then((res) => alert("Gallery Post Deleted"));
+    }
+  };
   useEffect(() => {
     fetch("http://localhost:9000/gallerypost")
       .then((res) => res.json())
@@ -56,10 +70,10 @@ const GalleryPostManager = () => {
         setGalleryData(data);
         setGalleryDataLoader(false);
       });
-  }, []);
+  }, [galleryData]);
   return (
-    <div className="flex flex-col md:flex-row w-full space-x-5">
-      <div className="w-full ">
+    <div className="flex flex-col-reverse md:flex-row mx-auto md:w-full mt-5 md:mt-0 md:space-x-5 w-[90%]">
+      <div className="w-full mt-5 md:mt-0">
         {galleryDataLoader ? (
           <div className="h-[90vh] w-full flex flex-col justify-center items-center pt-16">
             <Puff
@@ -87,7 +101,10 @@ const GalleryPostManager = () => {
                   <p>{"\u2B24"}</p>
                   <h3>{data.title}</h3>
                 </div>
-                <div className="text-[18px] hover:text-[#dc4734] p-2 rounded-full border-2 hover:border-[#dc4734] border-white">
+                <div
+                  onClick={() => handleGalleryPostDelete(data._id)}
+                  className="text-[18px] hover:text-[#dc4734] p-2 rounded-full border-2 hover:border-[#dc4734] border-white"
+                >
                   <FaTrashAlt />
                 </div>
               </div>

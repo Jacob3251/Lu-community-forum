@@ -53,7 +53,7 @@ const LandingPage = () => {
   }
   const footerClass = "";
   return (
-    <div className="relative">
+    <div className="w-full pt-16">
       <div className="fixed bottom-2 right-[13%] md:bottom-5 md:right-5 bg-[#628e90] rounded-3xl z-50 p-2 shadow-black shadow-md">
         <div className="flex flex-row justify-center space-x-2 items-center">
           <div className="text-base  rounded-xl hover:bg-[#3c2317] py-2 bg-white scale-95 hover:scale-100 hover:text-white text-[#3c2317]   font-bold  duration-200 px-3">
@@ -79,7 +79,7 @@ const LandingPage = () => {
         {/* Body part */}
         <div>
           {/* carosel part */}
-          <div className=" bg-white p-0">
+          <div className=" bg-white p-0 z-0">
             <Carousel
               autoPlay
               infiniteLoop
