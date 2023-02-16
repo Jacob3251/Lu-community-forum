@@ -7,7 +7,7 @@ const useSingleUser = (email) => {
   const [profileLoading, setProfileLoading] = useState(true);
   // const [user, loading] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:9000/users/${email}`)
+    fetch(`https://lu-community-forum-backend.up.railway.app/users/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setProfile(data);

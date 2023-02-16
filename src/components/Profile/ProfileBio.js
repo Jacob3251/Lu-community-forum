@@ -22,7 +22,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
       bio: e.target.msg.value,
     };
     console.log("New Obj", newObj);
-    fetch("http://localhost:9000/profilebio", {
+    fetch("https://lu-community-forum-backend.up.railway.app/profilebio", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
     alert(id);
     const newObj = { selectedId: id };
     fetch(
-      `http://localhost:9000/subscribedteachers/${
+      `https://lu-community-forum-backend.up.railway.app/subscribedteachers/${
         profile.email + "***" + profile.userType
       }`,
       {
@@ -58,7 +58,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
     alert(id);
     const newObj = { selectedId: id };
     fetch(
-      `http://localhost:9000/subscribedteachersSub/${
+      `https://lu-community-forum-backend.up.railway.app/subscribedteachersSub/${
         profile.email + "***" + profile.userType
       }`,
       {
@@ -74,7 +74,7 @@ const ProfileBio = ({ profile, classes, subscribedData }) => {
   };
   useEffect(() => {
     fetch(
-      `http://localhost:9000/subscribedteachers/${
+      `https://lu-community-forum-backend.up.railway.app/subscribedteachers/${
         profile.email + "***" + profile.userType
       }`
     )

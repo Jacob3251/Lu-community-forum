@@ -31,7 +31,7 @@ const Alumni = () => {
     },
   ];
   useEffect(() => {
-    fetch("http://localhost:9000/alumnipost")
+    fetch("https://lu-community-forum-backend.up.railway.app/alumnipost")
       .then((res) => res.json())
       .then((data) => setAlumnis(data));
   }, []);

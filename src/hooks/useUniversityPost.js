@@ -10,7 +10,7 @@ const useUniversityPost = () => {
   const profile = useSingleUser(user?.email);
   useEffect(() => {
     fetch(
-      `http://localhost:9000/selectedpost/${
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/${
         user?.email + "***" + profile[0]?.userType
       }`
     )

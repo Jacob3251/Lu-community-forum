@@ -34,7 +34,7 @@ const IndividualProfile = () => {
   console.log(profile);
   const footerClass = " w-full";
   useEffect(() => {
-    fetch(`http://localhost:9000/users/${mail.id}`)
+    fetch(`https://lu-community-forum-backend.up.railway.app/users/${mail.id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -36,7 +36,7 @@ const GalleryPostManager = () => {
       time: time,
     };
     console.log(newObj);
-    fetch("http://localhost:9000/gallerypost", {
+    fetch("https://lu-community-forum-backend.up.railway.app/gallerypost", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(newObj),
@@ -56,15 +56,18 @@ const GalleryPostManager = () => {
     );
 
     if (permission) {
-      fetch(`http://localhost:9000/gallerypost/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://lu-community-forum-backend.up.railway.app/gallerypost/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json()) // or res.json()
         .then((res) => alert("Gallery Post Deleted"));
     }
   };
   useEffect(() => {
-    fetch("http://localhost:9000/gallerypost")
+    fetch("https://lu-community-forum-backend.up.railway.app/gallerypost")
       .then((res) => res.json())
       .then((data) => {
         setGalleryData(data);

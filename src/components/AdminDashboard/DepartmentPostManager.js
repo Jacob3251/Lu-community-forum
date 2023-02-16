@@ -21,13 +21,16 @@ const DepartmentPostBox = ({
   const handlePostDelete = (id) => {
     const data = { stat: null };
     alert(id);
-    fetch(`http://localhost:9000/selectedpost/deptpost/${id}`, {
-      method: "DELETE", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/deptpost/${id}`,
+      {
+        method: "DELETE", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -76,7 +79,7 @@ const DepartmentPostManager = () => {
   const [normalPosts, setNormalPosts] = useState([]);
   const [deptNormalPostLoading, setDeptNormalPostLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:9000/users")
+    fetch("https://lu-community-forum-backend.up.railway.app/users")
       .then((res) => res.json())
       .then((data) => {
         const teacherProfile = data[1].find((p) => p.email === email);
@@ -85,7 +88,9 @@ const DepartmentPostManager = () => {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost/deptpost")
+    fetch(
+      "https://lu-community-forum-backend.up.railway.app/selectedpost/deptpost"
+    )
       .then((res) => res.json())
       .then((data) => {
         setNormalPosts(data);
@@ -111,7 +116,7 @@ const DepartmentPostManager = () => {
     };
     console.log();
     fetch(
-      `http://localhost:9000/selectedpost/${
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/${
         user?.email + "***" + profile[0]?.userType
       }`,
       {

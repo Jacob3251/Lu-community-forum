@@ -53,13 +53,16 @@ const Profile = () => {
       profileImgLink: imglinkProfilePic,
     };
     console.log("newObj profiledata: ", newObj);
-    fetch(`http://localhost:9000/profilepic/modify`, {
-      method: "PUT", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newObj),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/profilepic/modify`,
+      {
+        method: "PUT", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newObj),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -98,7 +101,7 @@ const Profile = () => {
   const updateCoverImg = () => {
     const newObj = { profileData: profile[0], coverImgLink: imglinkCoverPic };
     console.log("newObj coverdata: ", newObj);
-    fetch(`http://localhost:9000/coverpic/modify`, {
+    fetch(`https://lu-community-forum-backend.up.railway.app/coverpic/modify`, {
       method: "PUT", // or 'PUT'
       headers: {
         "Content-Type": "application/json",

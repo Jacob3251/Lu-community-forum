@@ -35,7 +35,7 @@ const Gallery = () => {
     return x;
   };
   useEffect(() => {
-    fetch("http://localhost:9000/gallerypost")
+    fetch("https://lu-community-forum-backend.up.railway.app/gallerypost")
       .then((res) => res.json())
       .then((data) => {
         setGalleryData(data);

@@ -8,7 +8,9 @@ const useCommenter = (commenter) => {
   const [admin, setAdmin] = useState(false);
   const [user] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:9000/users/${commenter}`)
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/users/${commenter}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCommenterInfo(data);

@@ -9,7 +9,9 @@ const useSingleUserAllPost = (email) => {
   const [postLoading, setPostLoading] = useState(true);
   // if(loading)
   useEffect(() => {
-    fetch(`http://localhost:9000/allSingleUserPost/${email}`)
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/allSingleUserPost/${email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

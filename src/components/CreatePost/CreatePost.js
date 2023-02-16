@@ -83,7 +83,7 @@ const CreatePost = () => {
     };
     console.log(postObject);
 
-    fetch("http://localhost:9000/generalposts", {
+    fetch("https://lu-community-forum-backend.up.railway.app/generalposts", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(postObject),
@@ -99,7 +99,9 @@ const CreatePost = () => {
       });
   };
   useEffect(() => {
-    fetch(`http://localhost:9000/users/${user?.email}`)
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/users/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setUserdata(data);

@@ -8,7 +8,7 @@ export default function useAllStats() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:9000/showstats")
+      .get("https://lu-community-forum-backend.up.railway.app/showstats")
       .then((response) => {
         setData(response.data);
         setLoading(false);

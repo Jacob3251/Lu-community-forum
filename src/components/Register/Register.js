@@ -27,7 +27,7 @@ const Register = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [ertext, setErtext] = useState("");
   useEffect(() => {
-    fetch("http://localhost:9000/user")
+    fetch("https://lu-community-forum-backend.up.railway.app/user")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -104,82 +104,89 @@ const Register = () => {
   // Send Email verification
 
   return (
-    <div>
-      <div className="w-4/5 mx-auto py-14 px-10 my-10 ">
+    <div className="pt-16">
+      <div className="w-4/5 mx-auto pt-10 pb-14 px-10 mb-10  text-[14px]">
         {/* <Header></Header> */}
-        <h3 className="text-3xl text-center font-bold">Register Now</h3>
-        <div className="divider"></div>
-        {/* Student-Teacher checkbox */}
-        <div className="flex flex-col md:flex-row my-2">
-          <div className="form-control">
-            <label className="label cursor-pointer">
-              <span className="label-text mr-2">Student</span>
-              <input
-                type="radio"
-                name="radio-6"
-                className="radio checked:bg-red-500"
-                onClick={() => setUserType(1)}
-              />
-            </label>
+        <div className="mt-2 bg-white px-5">
+          <h3 className="text-[24px] text-center font-bold">Register Now</h3>
+          <div className="divider"></div>
+          {/* Student-Teacher checkbox */}
+          <div className="flex flex-col md:flex-row my-2 ">
+            <div className="form-control">
+              <label className="label cursor-pointer">
+                <span className="label-text mr-2">Student</span>
+                <input
+                  type="radio"
+                  name="radio-6"
+                  className="radio checked:bg-red-500"
+                  onClick={() => setUserType(1)}
+                />
+              </label>
+            </div>
+            <div className="form-control">
+              <label className="label cursor-pointer">
+                <span className="label-text mr-2">Teacher</span>
+                <input
+                  type="radio"
+                  name="radio-6"
+                  className="radio checked:bg-blue-500"
+                  onClick={() => setUserType(2)}
+                />
+              </label>
+            </div>
           </div>
-          <div className="form-control">
-            <label className="label cursor-pointer">
-              <span className="label-text mr-2">Teacher</span>
+          {/* Student-teacher checkbox complete email validation below-------*/}
+          <form
+            onSubmit={handleEmailVerification}
+            className="flex  flex-col justify-center items-center w-full mx-auto my-4 py-5"
+          >
+            <input
+              type="text"
+              placeholder="Enter university email"
+              className="w-full py-3 pl-3 outline-none shadow-inner shadow-gray-400   duation-200 my-2"
+              onBlur={handleEmail}
+            />
+            <input
+              type="password"
+              placeholder="Enter password"
+              className="w-full py-3 pl-3 outline-none shadow-inner shadow-gray-400  duation-200 my-2"
+              onBlur={handlePass}
+            />
+            <input
+              type="password"
+              placeholder="Type password again"
+              className="w-full py-3 pl-3 outline-none shadow-inner shadow-gray-400  duation-200 my-2"
+              onChange={handleRePass}
+            />
+            <button className="bg-[#dc4734] text-white border-2 hover:bg-white border-[#dc4734] hover:text-[#dc4734] py-2 px-2  duration-200 w-full">
               <input
-                type="radio"
-                name="radio-6"
-                className="radio checked:bg-blue-500"
-                onClick={() => setUserType(2)}
+                type="submit"
+                value="Submit"
+                className="text-[14px] font-bold"
               />
-            </label>
-          </div>
+            </button>
+          </form>
+          {ertext !== null && (
+            <p className="text-red-600 text-center font-bold">{ertext}</p>
+          )}
+          {/* {user && `<p>${user?.email}</p>`} */}
+          {/* Email validation done */}
+          {userType === 1 && registered === true && (
+            <StudentRegistration
+              email={email}
+              password={pass}
+              userType={userType}
+            ></StudentRegistration>
+          )}
+          {userType === 2 && registered === true && (
+            <TeacherRegistration
+              email={email}
+              password={pass}
+              userType={userType}
+            ></TeacherRegistration>
+          )}
         </div>
-        {/* Student-teacher checkbox complete email validation below-------*/}
-        <form
-          onSubmit={handleEmailVerification}
-          className="flex bg-slate-100 flex-col justify-center items-center w-[85%] mx-auto my-4 p-5"
-        >
-          <input
-            type="text"
-            placeholder="Enter university email"
-            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
-            onBlur={handleEmail}
-          />
-          <input
-            type="password"
-            placeholder="Enter password"
-            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
-            onBlur={handlePass}
-          />
-          <input
-            type="password"
-            placeholder="Type password again"
-            className="w-full py-3 pl-3 rounded-md scale-[98%] hover:scale-100 duation-200 my-2"
-            onChange={handleRePass}
-          />
-          <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317]">
-            <input type="submit" value="Submit" className="text-lg font-bold" />
-          </button>
-        </form>
-        {ertext !== null && (
-          <p className="text-red-600 text-center font-bold">{ertext}</p>
-        )}
-        {/* {user && `<p>${user?.email}</p>`} */}
-        {/* Email validation done */}
-        {userType === 1 && registered === true && (
-          <StudentRegistration
-            email={email}
-            password={pass}
-            userType={userType}
-          ></StudentRegistration>
-        )}
-        {userType === 2 && registered === true && (
-          <TeacherRegistration
-            email={email}
-            password={pass}
-            userType={userType}
-          ></TeacherRegistration>
-        )}
+
         {/* {user && `<p>${user?.emailVerified}</p>`} */}
         {/* {userType === 1 && registered === true && (
         <StudentRegistration></StudentRegistration>

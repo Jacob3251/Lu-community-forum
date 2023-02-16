@@ -24,13 +24,16 @@ const PostBox = ({ post }) => {
   // console.log(name);
   const handleLiked = () => {
     setLikeColor(!likeColor);
-    fetch(`http://localhost:9000/generalposts/${_id}++${user?.email}`, {
-      method: "PUT", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/generalposts/${_id}++${user?.email}`,
+      {
+        method: "PUT", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {})
       .catch((error) => {
@@ -48,13 +51,16 @@ const PostBox = ({ post }) => {
         time,
         comments,
       };
-      fetch("http://localhost:9000/generalposts/reported", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reportedPost),
-      })
+      fetch(
+        "https://lu-community-forum-backend.up.railway.app/generalposts/reported",
+        {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reportedPost),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
@@ -68,9 +74,12 @@ const PostBox = ({ post }) => {
     const found = window.confirm("Do you want to delete your post?");
     console.log(found);
     if (found) {
-      fetch(`http://localhost:9000/generalposts/${_id}`, {
-        method: "DELETE", // or 'PUT'
-      })
+      fetch(
+        `https://lu-community-forum-backend.up.railway.app/generalposts/${_id}`,
+        {
+          method: "DELETE", // or 'PUT'
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
@@ -90,7 +99,7 @@ const PostBox = ({ post }) => {
   };
 
   // useEffect(() => {
-  //   fetch(`http://localhost:9000/users/${user?.email}`)
+  //   fetch(`https://lu-community-forum-backend.up.railway.app/users/${user?.email}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setUserdata(data);

@@ -24,13 +24,16 @@ const Comment = ({ post }) => {
     // setComments([...comment, newComment]);
     // console.log(newComment);
     alert(newComment.commentContent);
-    fetch(`http://localhost:9000/singlepost/${_id}`, {
-      method: "PUT", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newComment),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/singlepost/${_id}`,
+      {
+        method: "PUT", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);

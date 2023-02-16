@@ -16,13 +16,16 @@ const SingleComment = ({ item, commenter, postId }) => {
     // console.log(item);
     const data = { id: item };
     console.log(postId);
-    fetch(`http://localhost:9000/singlecomment/${postId}`, {
-      method: "PUT", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/singlecomment/${postId}`,
+      {
+        method: "PUT", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);

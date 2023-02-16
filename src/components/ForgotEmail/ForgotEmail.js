@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase.init";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "../Footer/Footer";
 const ForgotEmail = () => {
   const [email, setEmail] = useState("");
   const [sendPasswordResetEmail, sending, error] =
@@ -26,30 +27,30 @@ const ForgotEmail = () => {
   return (
     <div>
       <div className="h-[100vh] flex justify-center items-center ">
-        <div className=" w-5/6  mx-auto bg-slate-200 py-10 rounded-xl shadow-lg ">
+        <div className=" w-5/6  mx-auto bg-white py-10  shadow-md shadow-gray-500 hover:drop-shadow-md ">
           <div className="text-center  w-5/6 mx-auto">
             <div>
-              <h1 className="bg-blue-200 w-5/6 mx-auto text-xl font-bold outline outline-2 outline-offset-0 outline-gray-500 rounded-md py-2">
+              <h1 className=" w-5/6 mx-auto text-xl font-bold  py-2">
                 Find Your Account
               </h1>
-              <p className="py-6">
+              <p className="py-3 text-start font-bold">
                 Please enter your email address of your account.
               </p>
               {/* email part */}
               <form onSubmit={handleForgetPassword}>
                 <div className="flex justify-center items-center">
-                  <span className="text-xl mr-5">Enter Email</span>
                   <input
                     type="email"
-                    className="h-8 w-1/3 rounded-md"
+                    className=" w-full pl-3 outline-none shadow-inner shadow-gray-400 py-2 rounded-md"
+                    placeholder="Enter email"
                     onBlur={handleEmail}
                   />
                 </div>
                 <div>
-                  <button className="mt-10 bg-white hover:bg-blue-700 text-black mx-3 font-bold py-1 px-3  rounded ">
+                  <button className="mt-10 bg-white hover:bg-[#dc4734] hover:text-white text-[#dc4734] mx-3 font-bold py-1 border-white border-2 hover:border-[#dc4734] px-3   ">
                     <Link to="/login">Return to Login</Link>
                   </button>
-                  <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 border border-blue-700 rounded">
+                  <button className="mt-10 bg-[#dc4734] hover:bg-white hover:text-[#dc4734] text-white font-bold py-1 px-3 border-2 duration-200 border-[#dc4734] ">
                     <input type="submit" value="Submit" />
                   </button>
                 </div>
@@ -58,6 +59,7 @@ const ForgotEmail = () => {
           </div>
         </div>
       </div>
+      <Footer footerClass="w-full"></Footer>
     </div>
   );
 };

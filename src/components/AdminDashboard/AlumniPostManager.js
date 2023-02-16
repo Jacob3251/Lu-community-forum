@@ -38,7 +38,7 @@ const AlumniPostManager = () => {
     };
     console.log(alumniObj);
 
-    fetch("http://localhost:9000/alumnipost", {
+    fetch("https://lu-community-forum-backend.up.railway.app/alumnipost", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(alumniObj),
@@ -59,15 +59,18 @@ const AlumniPostManager = () => {
     );
 
     if (permission) {
-      fetch(`http://localhost:9000/alumnipost/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://lu-community-forum-backend.up.railway.app/alumnipost/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json()) // or res.json()
         .then((res) => alert("Alumni Post Deleted"));
     }
   };
   useEffect(() => {
-    fetch("http://localhost:9000/alumnipost")
+    fetch("https://lu-community-forum-backend.up.railway.app/alumnipost")
       .then((res) => res.json())
       .then((data) => setAlumniData(data));
   }, [alumniData]);
@@ -136,10 +139,8 @@ const AlumniPostManager = () => {
               </div>
               <div>
                 <h4 className="font-bold">{data.name}</h4>
-              </div>
-              <div>
                 <h4>
-                  Position: <span className="font-bold">{data.position}</span>
+                  <span className="text-[12px]">{data.position}</span>
                 </h4>
               </div>
             </div>

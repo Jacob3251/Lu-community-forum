@@ -19,7 +19,7 @@ const Transport = () => {
   const [notices, setNotices] = useState([]);
   let x = 0;
   useEffect(() => {
-    fetch("http://localhost:9000/transportnotice")
+    fetch("https://lu-community-forum-backend.up.railway.app/transportnotice")
       .then((res) => res.json())
       .then((data) => setNotices(data));
   }, [notices]);

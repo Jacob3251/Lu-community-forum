@@ -18,7 +18,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/user")
+    fetch("https://lu-community-forum-backend.up.railway.app/user")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -74,13 +74,13 @@ const Login = () => {
             <input
               type="email"
               placeholder="Enter university email"
-              className="text-black shadow-gray-500 placeholder:text-[12px] placeholder:text-gray-600 outline-none w-full shadow-inner pl-4 my-5 py-3"
+              className="text-black shadow-gray-300 placeholder:text-[14px] rounded-xl placeholder:text-gray-600 w-full shadow-inner pl-4 my-5 py-3"
             />
             {/* <h3 className="text-xl my-2">Enter password</h3> */}
             <input
               type="password"
               placeholder="Enter password"
-              className="text-black shadow-gray-500 placeholder:text-[12px] placeholder:text-gray-600 outline-none w-full shadow-inner pl-4 my-5 py-3"
+              className="text-black shadow-gray-300 placeholder:text-[14px] rounded-xl placeholder:text-gray-600 w-full shadow-inner pl-4 my-5 py-3"
             />
             <button className="my-2 text-[#dc4734] flex">
               <Link to="/forgotemail" className="text-[14px]">

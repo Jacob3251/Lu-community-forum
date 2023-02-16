@@ -63,7 +63,7 @@ const TeacherRegistration = ({ email, password, userType }) => {
         let userlog = window.confirm("Verify your email and login in");
         if (userlog) {
           // sending data to the server
-          fetch("http://localhost:9000/user", {
+          fetch("https://lu-community-forum-backend.up.railway.app/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(userObject),
@@ -82,40 +82,37 @@ const TeacherRegistration = ({ email, password, userType }) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form
+      onSubmit={handleFormSubmit}
+      className="py-10 text-[14px] text-[#36454f]"
+    >
       <div className="grid grid-cols-1 place-items-center place-content-center md:grid-cols-3 gap-5 ">
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text font-bold text-lg">
-              Select your username
-            </span>
+            <span className="label-text">Select your username</span>
           </label>
           <input
             type="text"
             placeholder="Type here"
             onBlur={handleUsername}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text font-bold text-lg">
-              Write your Teacher ID
-            </span>
+            <span className="label-text">Write your Teacher ID</span>
           </label>
           <input
             type="text"
             onBlur={handleTeacherID}
             placeholder="Type here"
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs shadow-inner shadow-gray-400"
           />
         </div>
         <div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text font-bold text-lg">
-                Pick your Designation
-              </span>
+              <span className="label-text">Pick your Designation</span>
             </label>
             <select
               onChange={handleDesignation}
@@ -134,50 +131,42 @@ const TeacherRegistration = ({ email, password, userType }) => {
 
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text font-bold text-lg">
-              Write your Phone Number
-            </span>
+            <span className="label-text">Write your Phone Number</span>
           </label>
           <input
             type="number"
             onBlur={handlePhoneNumber}
             placeholder="Type here"
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text font-bold text-lg">
-              Select your BloodGroup
-            </span>
+            <span className="label-text">Select your BloodGroup</span>
           </label>
           <input
             type="text"
             onBlur={handleBloodGrp}
             placeholder="Type here"
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
           <label className="label">
-            <span className="label-text font-bold text-lg">
-              Write your address
-            </span>
+            <span className="label-text">Write your address</span>
           </label>
           <input
             type="text"
             onBlur={handleAddress}
             placeholder="Type here"
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs shadow-inner shadow-gray-400"
           />
         </div>
         {/* Dept dropdown */}
         <div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text font-bold text-lg">
-                Pick your Department
-              </span>
+              <span className="label-text">Pick your Department</span>
             </label>
             <select className="select rounded-none" onChange={handleDeptSelect}>
               <option value="not">Select Department</option>
@@ -193,11 +182,11 @@ const TeacherRegistration = ({ email, password, userType }) => {
       </div>
 
       <div className="text-center mt-10">
-        <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317]">
+        <button className="bg-[#dc4734] text-white py-2 px-2 w-full duration-200 hover:bg-white hover:text-[#dc4734] border-2 border-[#dc4734]">
           <input
             type="submit"
             value="Submit Form"
-            className="text-lg font-bold"
+            className="text-[14px] font-bold"
           />
         </button>
       </div>

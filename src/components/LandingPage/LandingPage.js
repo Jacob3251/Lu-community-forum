@@ -25,7 +25,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [loggedUser, setLoggedUser] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9000/user")
+    fetch("https://lu-community-forum-backend.up.railway.app/user")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

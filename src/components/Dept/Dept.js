@@ -103,7 +103,7 @@ const Dept = () => {
   // const techArray = newPostTeacher[0];
 
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost")
+    fetch("https://lu-community-forum-backend.up.railway.app/selectedpost")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

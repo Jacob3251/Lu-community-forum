@@ -21,13 +21,16 @@ const TeacherPostBox = ({
   const handlePostDelete = (id) => {
     const data = { stat: null };
     alert(id);
-    fetch(`http://localhost:9000/selectedpost/teacherpost/${id}`, {
-      method: "DELETE", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/teacherpost/${id}`,
+      {
+        method: "DELETE", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -75,7 +78,7 @@ const TeacherPostManager = () => {
   const [teacherNormalPostLoading, setTeacherNormalPostLoading] =
     useState(true);
   useEffect(() => {
-    fetch("http://localhost:9000/users")
+    fetch("https://lu-community-forum-backend.up.railway.app/users")
       .then((res) => res.json())
       .then((data) => {
         const teacherProfile = data[1].find((p) => p.email === email);
@@ -84,7 +87,9 @@ const TeacherPostManager = () => {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost/teacherpost")
+    fetch(
+      "https://lu-community-forum-backend.up.railway.app/selectedpost/teacherpost"
+    )
       .then((res) => res.json())
       .then((data) => {
         setNormalPosts(data);
@@ -110,7 +115,7 @@ const TeacherPostManager = () => {
       postType: 2,
     };
     fetch(
-      `http://localhost:9000/selectedpost/${
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/${
         user?.email + "***" + profile[0]?.userType
       }`,
       {

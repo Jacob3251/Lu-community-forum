@@ -21,7 +21,7 @@ const ProfileInfo = ({ profile, classes }) => {
         email: profile.email,
       };
       console.log(updatedObj);
-      fetch("http://localhost:9000/profileupdate", {
+      fetch("https://lu-community-forum-backend.up.railway.app/profileupdate", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const ProfileInfo = ({ profile, classes }) => {
         email: profile.email,
       };
       console.log(updatedObj);
-      fetch("http://localhost:9000/profileupdate", {
+      fetch("https://lu-community-forum-backend.up.railway.app/profileupdate", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

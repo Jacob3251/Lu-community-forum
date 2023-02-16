@@ -22,13 +22,16 @@ const UniversitySpecificPostBox = ({
   const handlePostDelete = (id) => {
     const data = { stat: null };
     alert(id);
-    fetch(`http://localhost:9000/selectedpost/unipost/${id}`, {
-      method: "DELETE", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/selectedpost/unipost/${id}`,
+      {
+        method: "DELETE", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -73,7 +76,9 @@ const UniversityPostManager = () => {
   const profile = useSingleUser(user?.email);
   const [uniNormalPostLoading, setUniNormalPostLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:9000/selectedpost/unipost")
+    fetch(
+      "https://lu-community-forum-backend.up.railway.app/selectedpost/unipost"
+    )
       .then((res) => res.json())
       .then((data) => {
         setNormalPosts(data);
@@ -98,7 +103,7 @@ const UniversityPostManager = () => {
       postType: 0,
     };
     console.log(postInput);
-    fetch(`http://localhost:9000/selectedpost`, {
+    fetch(`https://lu-community-forum-backend.up.railway.app/selectedpost`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(postObject),

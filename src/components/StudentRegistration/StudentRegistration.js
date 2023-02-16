@@ -64,7 +64,7 @@ const StudentRegistration = ({ email, password, userType }) => {
         let userlog = window.confirm("Verify your email and login in");
         if (userlog) {
           // sending data to the server
-          fetch("http://localhost:9000/user", {
+          fetch("https://lu-community-forum-backend.up.railway.app/user", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(userObject),
@@ -83,7 +83,7 @@ const StudentRegistration = ({ email, password, userType }) => {
     console.log("created user: ", userObject);
   };
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} className=" text-[14px]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="form-control w-full max-w-xs">
           <label className="label">
@@ -93,7 +93,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleUsername}
-            className="input w-full rounded-none max-w-xs"
+            className="input w-full rounded-none max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -104,7 +104,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleStudentID}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -115,7 +115,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleBatchNumber}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -126,7 +126,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handlePhoneNumber}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -137,7 +137,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleBloodGrp}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
         <div className="form-control w-full max-w-xs">
@@ -148,7 +148,7 @@ const StudentRegistration = ({ email, password, userType }) => {
             type="text"
             placeholder="Type here"
             onBlur={handleAddress}
-            className="input rounded-none w-full max-w-xs"
+            className="input rounded-none w-full max-w-xs outline-none shadow-inner shadow-gray-400"
           />
         </div>
 
@@ -168,8 +168,8 @@ const StudentRegistration = ({ email, password, userType }) => {
           </select>
         </div>
       </div>
-      <div className="text-center mt-10">
-        <button className="bg-[#628e90] text-white py-2 px-2 rounded-md scale-95 hover:scale-100 duration-200 hover:bg-[#3c2317] text-lg font-bold">
+      <div className="text-center pb-8 pt-4">
+        <button className="bg-[#dc4734] text-white hover:text-[#dc4734] border-2 border-[#dc4734] w-full  py-2 px-2  duration-200 hover:bg-white text-[14px] font-bold">
           <input type="submit" value="Submit Form" />
         </button>
       </div>

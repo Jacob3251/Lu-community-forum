@@ -45,11 +45,13 @@ const Header = () => {
     }
   }, []);
   useEffect(() => {
-    fetch("http://localhost:9000/user")
+    fetch("https://lu-community-forum-backend.up.railway.app/user")
       .then((res) => res.json())
       .then((data) => setAllUsers(data));
     allUsers.map((u) => {
-      fetch(`http://localhost:9000/users/${u.email}`)
+      fetch(
+        `https://lu-community-forum-backend.up.railway.app/users/${u.email}`
+      )
         .then((res) => res.json())
         .then((output) => setAllUsersProfile((prev) => [...prev, output]));
     });
