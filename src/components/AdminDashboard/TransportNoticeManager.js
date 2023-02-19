@@ -41,15 +41,21 @@ const TransportNoticeManager = () => {
         </h3>
         <div className="divider my-0 p-0"></div>
 
-        {notices.map((u) => (
-          <NoticeBox
-            key={u._id}
-            number={++x}
-            title={u.title}
-            link={u.link}
-            id={u._id}
-          ></NoticeBox>
-        ))}
+        {notices.length !== 0 ? (
+          notices.map((u) => (
+            <NoticeBox
+              key={u._id}
+              number={++x}
+              title={u.title}
+              link={u.link}
+              id={u._id}
+            ></NoticeBox>
+          ))
+        ) : (
+          <div className="text-center text-[#36454f] text-[14px] py-5">
+            No Transport Notice set yet
+          </div>
+        )}
       </div>
       <div className="w-full justify-center items-center  mb-5 lg:mb-0 flex">
         <div className="bg-white w-full shadow-[#36454f] shadow-md hover:drop-shadow-lg  ">

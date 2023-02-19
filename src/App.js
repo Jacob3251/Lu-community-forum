@@ -33,93 +33,81 @@ import Login from "./components/Login/Login";
 function App() {
   const [user] = useAuthState(auth);
   const location = useLocation();
-  // console.log("from app js", user?.emailVerified);
-  // console.log(user);
-  // const [log, setLog] = useState(false);
-  // if (user?.emailVerified) {
-  //   setLog(true);
-  // }
 
   return (
     // inside routes }
-    <div
-      className="App bg-[#f1f1f1]"
-      // style={{
-      //   backgroundImage: `url("https://images.unsplash.com/photo-1560780552-ba54683cb263?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")`,
-      // }}
-    >
+    <div className="App bg-[#f1f1f1]">
       <Header className=""></Header>
-      <AnimatePresence>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<LandingPage></LandingPage>}></Route>
-          <Route
-            path="/home"
-            element={
-              <RequireAuth>
-                <Home></Home>
-              </RequireAuth>
-              // )
-            }
-          ></Route>
 
-          <Route
-            path="/dept"
-            element={
-              <RequireAuth>
-                <Dept></Dept>
-              </RequireAuth>
-            }
-          ></Route>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<LandingPage></LandingPage>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
+        <Route
+          path="/home"
+          element={
+            <RequireAuth>
+              <Home></Home>
+            </RequireAuth>
+            // )
+          }
+        ></Route>
 
-          <Route path="/transport" element={<Transport></Transport>}></Route>
-          <Route path="/gallery" element={<Gallery></Gallery>}></Route>
-          <Route path="/login" element={<Login></Login>}></Route>
-          <Route
-            path="/userProfile/:id"
-            element={<IndividualProfile></IndividualProfile>}
-          ></Route>
-          <Route
+        <Route
+          path="/dept"
+          element={
+            <RequireAuth>
+              <Dept></Dept>
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route path="/transport" element={<Transport></Transport>}></Route>
+        <Route path="/gallery" element={<Gallery></Gallery>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route
+          path="/userProfile/:id"
+          element={<IndividualProfile></IndividualProfile>}
+        ></Route>
+        {/* <Route
             path="/careerblogs"
             element={<CareerBlogs></CareerBlogs>}
-          ></Route>
-          <Route path="/research" element={<Research></Research>}></Route>
-          <Route path="/library" element={<Library></Library>}></Route>
-          <Route path="/alumni" element={<Alumni></Alumni>}></Route>
-          <Route path="/register" element={<Register></Register>}></Route>
-          <Route path="/profile" element={<Profile></Profile>}></Route>
-          <Route
-            path="/profile-cover/coverpic"
-            element={<CoverPictureView></CoverPictureView>}
-          ></Route>
-          <Route
-            path="/profile-cover/profilepic"
-            element={<ProfilePictureView></ProfilePictureView>}
-          ></Route>
-          <Route path="/blogs" element={<Profile></Profile>}></Route>
-          <Route
-            path="/:imageId"
-            element={
-              <RequireAuth>
-                <SingleImage></SingleImage>
-              </RequireAuth>
-            }
-          ></Route>
-          <Route path="/demo" element={<Demo></Demo>}></Route>
-          <Route
-            path="/admin"
-            element={
-              <RequireAdmin>
-                <AdminDashboard></AdminDashboard>
-              </RequireAdmin>
-            }
-          ></Route>
-          <Route
-            path="/forgotemail"
-            element={<ForgotEmail></ForgotEmail>}
-          ></Route>
-          <Route path="*" element={<NotFound></NotFound>}></Route>
-        </Routes>
-      </AnimatePresence>
+          ></Route> */}
+        {/* <Route path="/research" element={<Research></Research>}></Route> */}
+        {/* <Route path="/library" element={<Library></Library>}></Route> */}
+        <Route path="/alumni" element={<Alumni></Alumni>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
+        <Route
+          path="/profile-cover/coverpic"
+          element={<CoverPictureView></CoverPictureView>}
+        ></Route>
+        <Route
+          path="/profile-cover/profilepic"
+          element={<ProfilePictureView></ProfilePictureView>}
+        ></Route>
+        {/* <Route path="/blogs" element={<Profile></Profile>}></Route> */}
+        <Route
+          path="/:imageId"
+          element={
+            <RequireAuth>
+              <SingleImage></SingleImage>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route path="/demo" element={<Demo></Demo>}></Route>
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminDashboard></AdminDashboard>
+            </RequireAdmin>
+          }
+        ></Route>
+        <Route
+          path="/forgotemail"
+          element={<ForgotEmail></ForgotEmail>}
+        ></Route>
+      </Routes>
     </div>
   );
 }

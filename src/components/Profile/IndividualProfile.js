@@ -51,12 +51,12 @@ const IndividualProfile = () => {
           <div className="h-[270px] md:h-[350px] w-full mx-auto relative">
             <img
               className="w-full h-full"
-              src={profile[0].coverImgLink}
+              src={profile[0]?.coverImgLink}
               alt="cover-img"
             />
             {/* edit cover img button below */}
             <div className=" absolute bottom-[5%] right-[12%]">
-              <div className="bg-[#FFFDD0] p-2 rounded-md text-xl inline-block">
+              <div className="bg-white p-2 rounded-md text-xl inline-block">
                 <button className="flex justify-center items-center">
                   <BsCameraFill className="lg:mr-2"></BsCameraFill>
                   <span className="lg:inline-block hidden">Edit cover pic</span>
@@ -69,7 +69,7 @@ const IndividualProfile = () => {
               <div className="flex md:flex-row flex-col justify-center items-center">
                 <div className="h-[140px] w-[140px] p-1 bg-white rounded-full relative">
                   <img
-                    src={profile[0].profileImgLink}
+                    src={profile[0]?.profileImgLink}
                     className="w-full h-full rounded-full"
                     alt="profile picture"
                   />
@@ -80,7 +80,7 @@ const IndividualProfile = () => {
                 <div className="ml-5 hidden md:block">
                   {profile.length !== 0 && (
                     <h3 className=" text-2xl font-bold text-black">
-                      {profile[0].name}
+                      {profile[0]?.name}
                     </h3>
                   )}
                   {/* follow button 
@@ -102,7 +102,7 @@ const IndividualProfile = () => {
         {/* secondary name and follow button container becauser of positoning issue */}
         <div className="text-center md:hidden mt-[90px] w-full ">
           <h3 className=" text-2xl font-bold text-black overflow-x-hidden">
-            {profile[0].name}
+            {profile[0]?.name}
           </h3>
           {/* follow button  */}
           {/* <h3 className="bg-white px-3 inline-block py-1 mt-2 font-semibold rounded-md hover:bg-[#3c2317] hover:text-white text-[#3c2317]">

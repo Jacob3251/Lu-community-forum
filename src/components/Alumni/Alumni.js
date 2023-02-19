@@ -42,17 +42,24 @@ const Alumni = () => {
         <h1 className="font-bold text-center text-[18px] text-[#36454f] my-10">
           Our Alumni's
         </h1>
-        <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {alumnis.length !== 0 &&
-            alumnis.map((u) => (
-              <AlumniBox
-                alumniName={u.name}
-                alumniPhotoUrl={u.imgLink}
-                alumniCurrentPosition={u.position}
-                alumniDescription={u.description}
-              ></AlumniBox>
-            ))}
-        </div>
+
+        {alumnis.length !== 0 ? (
+          <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            {alumnis.length !== 0 &&
+              alumnis.map((u) => (
+                <AlumniBox
+                  alumniName={u.name}
+                  alumniPhotoUrl={u.imgLink}
+                  alumniCurrentPosition={u.position}
+                  alumniDescription={u.description}
+                ></AlumniBox>
+              ))}
+          </div>
+        ) : (
+          <div className="text-center font-bold text-[14px] text-[#36454f] h-[70vh] flex justify-center items-center">
+            No Alumni's Added Yet!!
+          </div>
+        )}
       </div>
       <Footer footerClass={"w-full"}></Footer>
     </div>

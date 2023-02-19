@@ -20,7 +20,6 @@ const DepartmentPostBox = ({
 }) => {
   const handlePostDelete = (id) => {
     const data = { stat: null };
-    alert(id);
     fetch(
       `https://lu-community-forum-backend.up.railway.app/selectedpost/deptpost/${id}`,
       {
@@ -34,11 +33,11 @@ const DepartmentPostBox = ({
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-    window.location.reload();
   };
   return (
     <div className="bg-white text-[#36454f] mb-5 px-3 py-2 shadow-md hover:drop-shadow-lg shadow-gray-500">
@@ -134,7 +133,7 @@ const DepartmentPostManager = () => {
   return (
     <div className="w-full flex flex-col md:p-0 p-2 space-y-3 md:space-y-0 md:flex-row-reverse justify-center md:justify-evenly items-start mt-5 lg:mt-0">
       <div className=" bg-white w-full md:ml-5 shadow-md shadow-gray-500 hover:drop-shadow-md">
-        <h3 className="text-[#3c2317] text-[14px] font-bold text-center my-2 ">
+        <h3 className="text-[#36454f] text-[14px] font-bold text-center my-2 ">
           Department Post Form
         </h3>
         <form onSubmit={handleSubmit} ref={postInput} className="p-2">

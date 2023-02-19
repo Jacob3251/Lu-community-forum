@@ -341,6 +341,7 @@ const Header = () => {
                 className="header-text"
                 onClick={() => {
                   signOut(auth);
+
                   toast("You're logged out", {
                     position: "bottom-center",
                     autoClose: 5000,

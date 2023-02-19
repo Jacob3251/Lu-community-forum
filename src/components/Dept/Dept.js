@@ -170,58 +170,76 @@ const Dept = () => {
 
           <div className="mt-0  mb-6 rounded-2xl  w-4/5 mx-auto">
             {postType === 1 && (
-              <div>
-                {newPostUniversity.map((u) => (
-                  // <p>{u.content}</p>
-                  <SpecificUniversityPost
-                    key={u._id}
-                    title={u.title}
-                    name={u.name ? u.name : null}
-                    content={u.content}
-                    email={u.email}
-                    type={u.type}
-                    time={u.time ? u.time : null}
-                  ></SpecificUniversityPost>
-                  // <UniversityPost posts={u} key={++x}></UniversityPost>
-                ))}
+              <div className="h-[100vh] overflow-y-scroll">
+                {newPostUniversity.length !== 0 ? (
+                  newPostUniversity.map((u) => (
+                    // <p>{u.content}</p>
+                    <SpecificUniversityPost
+                      key={u._id}
+                      title={u.title}
+                      name={u.name ? u.name : null}
+                      content={u.content}
+                      email={u.email}
+                      type={u.type}
+                      time={u.time ? u.time : null}
+                    ></SpecificUniversityPost>
+                    // <UniversityPost posts={u} key={++x}></UniversityPost>
+                  ))
+                ) : (
+                  <div className="text-center font-bold text-[14px] text-[#36454f] h-[70vh] flex justify-center items-center">
+                    No University Post Added Yet!!
+                  </div>
+                )}
               </div>
             )}
             {postType === 2 && (
               <div>
-                {newPostDepartment.map((u) => (
-                  // <p>{u.content}</p>
-                  <SpecificDepartmentPost
-                    key={u._id}
-                    title={u.title}
-                    name={u.name}
-                    dept={u.dept}
-                    content={u.content}
-                    email={u.email}
-                    type={u.type}
-                    id={u._id}
-                    time={u.time ? u.time : null}
-                  ></SpecificDepartmentPost>
-                  // <UniversityPost posts={u} key={++x}></UniversityPost>
-                ))}
+                {newPostDepartment.length !== 0 ? (
+                  newPostDepartment.map((u) => (
+                    // <p>{u.content}</p>
+                    <SpecificDepartmentPost
+                      key={u._id}
+                      title={u.title}
+                      name={u.name}
+                      dept={u.dept}
+                      content={u.content}
+                      email={u.email}
+                      type={u.type}
+                      id={u._id}
+                      time={u.time ? u.time : null}
+                    ></SpecificDepartmentPost>
+                    // <UniversityPost posts={u} key={++x}></UniversityPost>
+                  ))
+                ) : (
+                  <div className="text-center font-bold text-[14px] text-[#36454f] h-[70vh] flex justify-center items-center">
+                    No Department Post Added Yet!!
+                  </div>
+                )}
               </div>
             )}
             {postType === 3 && (
               <div>
-                {newPostTeacher.map((u) => (
-                  // <p>{u.content}</p>
-                  <SpecificTeacherPost
-                    key={u._id}
-                    name={u.name}
-                    title={u.title}
-                    id={u._id}
-                    dept={u.dept}
-                    content={u.content}
-                    email={u.email}
-                    type={u.type}
-                    time={u.time ? u.time : null}
-                  ></SpecificTeacherPost>
-                  // <UniversityPost posts={u} key={++x}></UniversityPost>
-                ))}
+                {newPostTeacher.length !== 0 ? (
+                  newPostTeacher.map((u) => (
+                    // <p>{u.content}</p>
+                    <SpecificTeacherPost
+                      key={u._id}
+                      name={u.name}
+                      title={u.title}
+                      id={u._id}
+                      dept={u.dept}
+                      content={u.content}
+                      email={u.email}
+                      type={u.type}
+                      time={u.time ? u.time : null}
+                    ></SpecificTeacherPost>
+                    // <UniversityPost posts={u} key={++x}></UniversityPost>
+                  ))
+                ) : (
+                  <div className="text-center font-bold text-[14px] text-[#36454f] h-[70vh] flex justify-center items-center">
+                    No Teacher Post Added Yet!!
+                  </div>
+                )}
 
                 {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-[80%] mx-auto">
               {teacher.length !== 0 &&

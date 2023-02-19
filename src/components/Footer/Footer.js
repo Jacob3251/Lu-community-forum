@@ -8,7 +8,7 @@ import {
 const Footer = ({ footerClass }) => {
   return (
     <div className={footerClass}>
-      <footer className="flex justify-center space-y-4 flex-col p-5  text-base-content  bg-[#dc4735]">
+      <footer className="flex justify-center space-y-4 flex-col p-5  text-base-content  bg-gray-800">
         <div className="flex justify-center space-x-3">
           <a className="link link-hover text-white">About us</a>
           <a className="link link-hover text-white">Contact</a>

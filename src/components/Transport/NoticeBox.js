@@ -1,6 +1,24 @@
 import React from "react";
 
 const NoticeBox = ({ id, link, title, number }) => {
+  const handleDelete = (id) => {
+    fetch(
+      `https://lu-community-forum-backend.up.railway.app/transportnotice/${id}`,
+      {
+        method: "DELETE", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
   return (
     <div className="w-full mb-5 bg-slate-50 shadow-md shadow-gray-300 hover:drop-shadow-md p-2 ">
       <div className="flex justify-between items-center">
@@ -15,7 +33,10 @@ const NoticeBox = ({ id, link, title, number }) => {
                 Link
               </a>
             </button>
-            <button className="w-full my-2 px-2  py-1 bg-[#dc4734] border-2 border-[#dc4734] hover:bg-white text-white hover:text-[#dc4734] font-bold duration-200 ">
+            <button
+              onClick={() => handleDelete(id)}
+              className="w-full my-2 px-2  py-1 bg-[#dc4734] border-2 border-[#dc4734] hover:bg-white text-white hover:text-[#dc4734] font-bold duration-200 "
+            >
               Delete
             </button>
           </div>

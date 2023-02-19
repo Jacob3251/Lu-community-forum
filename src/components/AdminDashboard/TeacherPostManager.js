@@ -20,7 +20,6 @@ const TeacherPostBox = ({
 }) => {
   const handlePostDelete = (id) => {
     const data = { stat: null };
-    alert(id);
     fetch(
       `https://lu-community-forum-backend.up.railway.app/selectedpost/teacherpost/${id}`,
       {
@@ -34,11 +33,11 @@ const TeacherPostBox = ({
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-    window.location.reload();
   };
   return (
     <div className="bg-white text-[#36454f] mb-8 p-5 shadow-md shadow-gray-500 hover:drop-shadow-md">
@@ -152,20 +151,26 @@ const TeacherPostManager = () => {
           </div>
         ) : (
           <div className="w-full">
-            {normalPosts.map((post) => (
-              <TeacherPostBox
-                name={post.name}
-                title={post.title}
-                id={post._id}
-                dept={post.dept}
-                content={post.content}
-                email={post.email}
-                type={post.type}
-                time={post.time ? post.time : null}
+            {normalPosts.length === 0 ? (
+              <div
+                className={`w-full  flex h-[70vh] font-bold text-[#36454f] justify-center items-center `}
               >
-                {}
-              </TeacherPostBox>
-            ))}
+                No Teacher Post
+              </div>
+            ) : (
+              normalPosts.map((post) => (
+                <TeacherPostBox
+                  name={post.name}
+                  title={post.title}
+                  id={post._id}
+                  dept={post.dept}
+                  content={post.content}
+                  email={post.email}
+                  type={post.type}
+                  time={post.time ? post.time : null}
+                ></TeacherPostBox>
+              ))
+            )}
           </div>
         )}
       </div>

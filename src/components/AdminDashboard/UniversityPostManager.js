@@ -21,7 +21,6 @@ const UniversitySpecificPostBox = ({
 }) => {
   const handlePostDelete = (id) => {
     const data = { stat: null };
-    alert(id);
     fetch(
       `https://lu-community-forum-backend.up.railway.app/selectedpost/unipost/${id}`,
       {
@@ -39,7 +38,7 @@ const UniversitySpecificPostBox = ({
       .catch((error) => {
         console.error("Error:", error);
       });
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <div className="bg-white shadow-md shadow-gray-400 hover:drop-shadow-md text-[#36454f] mb-8 pt-2 pb-3 px-5">
